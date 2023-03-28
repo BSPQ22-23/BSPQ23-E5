@@ -20,21 +20,31 @@
     </plugins>
   </build>
   
-  <dependencies>
-  	<dependency>
-    	<groupId>javax.jdo</groupId>
-    	<artifactId>jdo-api</artifactId>
-    	<version>3.2.1</version>
-	</dependency>
-	<dependency>
-    	<groupId>org.datanucleus</groupId>
-    	<artifactId>datanucleus-api-jdo</artifactId>
-    	<version>6.0.1</version>
-	</dependency>
-	<dependency>
-    	<groupId>org.datanucleus</groupId>
-    	<artifactId>datanucleus-core</artifactId>
-    	<version>6.0.3</version>
-</dependency>
-  </dependencies>
+  	<dependencies>
+		<dependency>
+			<groupId>org.datanucleus</groupId>
+			<artifactId>javax.jdo</artifactId>
+			<version>[3.2.0-release, )</version>
+		</dependency>
+		<dependency>
+			<groupId>org.datanucleus</groupId>
+			<artifactId>datanucleus-core</artifactId>
+			<version>[6.0.0-m1, 6.9)</version>
+		</dependency>
+		<dependency>
+			<groupId>org.datanucleus</groupId>
+			<artifactId>datanucleus-api-jdo</artifactId>
+			<version>[6.0.0-m1, 6.9)</version>
+		</dependency>
+		<dependency>
+			<groupId>org.datanucleus</groupId>
+			<artifactId>datanucleus-rdbms</artifactId>
+			<version>[6.0.0-m1, 6.9)</version>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>8.0.29</version>
+		</dependency>
+	</dependencies>
 </project>
