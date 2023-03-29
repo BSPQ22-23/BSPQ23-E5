@@ -12,8 +12,11 @@ public class RegisterHandler implements HttpHandler{
 	
     @Override
     public void handle(HttpExchange t) throws IOException {
-    	System.out.println(t.getAttribute("user"));
-    	ServerAppService.register(t.getRequestHeaders().getOrDefault("user", List.of("")).get(0), t.getRequestHeaders().getOrDefault("password", List.of("")).get(0));
+    	ServerAppService.register(
+			t.getRequestHeaders().getOrDefault("user", List.of("")).get(0),
+			t.getRequestHeaders().getOrDefault("email", List.of("")).get(0),
+			t.getRequestHeaders().getOrDefault("password", List.of("")).get(0)
+    	);
     	//TODO Generate token
 //    	System.out.println(t.getRequestHeaders());
 //        String response = "This is the response";

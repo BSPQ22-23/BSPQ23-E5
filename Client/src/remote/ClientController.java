@@ -12,14 +12,15 @@ public class ClientController {
 	}
 	public static void main(String[] args) throws IOException, InterruptedException, ExecutionException {
 		setServerHandler(new ServiceLocator("127.0.0.1", 8000));
-		register("this is a user", "this is a password");
+		register("this is a user", "this is a mail", "this is a password");
 	}
 	private static ServiceLocator handler;
 	
-	public static void register(String user, String password) throws InterruptedException, ExecutionException{
+	public static void register(String user, String email, String password) throws InterruptedException, ExecutionException{
 		try {
 			HashMap<String, String> headers = new HashMap<>();
 			headers.put("user", user);
+			headers.put("email", email);
 			headers.put("password", password);
 			HttpResponse<String> response = handler.sendRequest("register", headers);
 		} catch (URISyntaxException e) {

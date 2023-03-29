@@ -5,18 +5,21 @@ public class ServerAppService {
 	 * Checks if a username it's not already taken and adds it to the database if possible
 	 *  @param username Username of the registering account
 	 *  @param password Password of the registering account
-	 *  @return if the account it's registrable and has succesfully registered
+	 * @param string 
+	 *  @return The account token or null if the user can't be registered
 	 */
-	public static boolean register(String username, String password) {
-		return false;
+	public static String register(String username, String email, String password) {
+		
+		return Server.createSession(username);//TODO Change username for the User class instance
 	}
 	/**
 	 * Checks if a user can be logged in
 	 * @param username Username of the logging account
 	 * @param password Password of the logging account
-	 * @return if the account has been succesfully logged in
+	 * @return The account token or null if the user credentials aren't correct
 	 */
-	public static boolean login(String username, String password) {
-		return false;
+	public static String login(String username, String password) {
+		
+		return Server.createSession(username);//TODO Change username for the User class instance
 	}
 }
