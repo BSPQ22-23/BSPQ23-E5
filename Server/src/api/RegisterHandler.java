@@ -8,6 +8,9 @@ public class RegisterHandler implements HttpHandler{
 	
     @Override
     public void handle(HttpExchange t) throws IOException {
+    	t.getRequestHeaders().forEach((k, v) -> {
+    		System.out.println(k + ':' + v);
+    	});
 //    	System.out.println(t.getRequestHeaders());
 //        String response = "This is the response";
 //        t.sendResponseHeaders(200, response.length());
