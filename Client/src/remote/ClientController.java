@@ -10,6 +10,10 @@ public class ClientController {
 	public static void setServerHandler(ServiceLocator sv) {
 		handler = sv;
 	}
+	public static void main(String[] args) throws IOException, InterruptedException, ExecutionException {
+		setServerHandler(new ServiceLocator("127.0.0.1", 8000));
+		register("this is a user", "this is a password");
+	}
 	private static ServiceLocator handler;
 	
 	public static void register(String user, String password) throws InterruptedException, ExecutionException{
