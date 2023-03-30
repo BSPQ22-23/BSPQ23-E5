@@ -4,98 +4,95 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class RegistrationWindow extends JFrame implements ActionListener {
+	 private JLabel nicknameLabel, passwordLabel, nameLabel, lastNameLabel, idLabel, ageLabel, cityLabel;
+	    private JTextField nicknameTextField, passwordTextField, nameTextField, lastNameTextField, idTextField, ageTextField, cityTextField;
+	    private JButton submitButton, clearButton;
 
+	    public RegistrationWindow() {
+	        super("Hotel Registration Form");
 
-    JLabel nameLabel, lastNameLabel, idLabel, ageLabel, cityLabel, nicknameLabel, passwordLabel;
-    JTextField nameTextField, lastNameTextField, idTextField, ageTextField, cityTextField, nicknameTextField, passwordTextField;
-    JButton submitButton, clearButton;
+	        nicknameLabel = new JLabel("Nickname:");
+	        passwordLabel = new JLabel("Password:");
+	        nameLabel = new JLabel("Name:");
+	        lastNameLabel = new JLabel("Last Name:");
+	        idLabel = new JLabel("ID Number:");
+	        ageLabel = new JLabel("Age:");
+	        cityLabel = new JLabel("City of Origin:");
 
-    public RegistrationWindow() {
-        super("Hotel Registration Form");
+	        nicknameTextField = new JTextField(20);
+	        passwordTextField = new JTextField(20);
+	        nameTextField = new JTextField(20);
+	        lastNameTextField = new JTextField(20);
+	        idTextField = new JTextField(20);
+	        ageTextField = new JTextField(20);
+	        cityTextField = new JTextField(20);
 
-        // create labels
-        nameLabel = new JLabel("Name:");
-        lastNameLabel = new JLabel("Last Name:");
-        idLabel = new JLabel("ID Number:");
-        ageLabel = new JLabel("Age:");
-        cityLabel = new JLabel("City of Origin:");
-        nicknameLabel = new JLabel("Nickname:");
-        passwordLabel = new JLabel("Password:");
+	        submitButton = new JButton("Submit");
+	        clearButton = new JButton("Clear");
 
-        // create text fields
-        nameTextField = new JTextField(20);
-        lastNameTextField = new JTextField(20);
-        idTextField = new JTextField(20);
-        ageTextField = new JTextField(20);
-        cityTextField = new JTextField(20);
-        nicknameTextField = new JTextField(20);
-        passwordTextField = new JPasswordField(20);
+	        submitButton.addActionListener(this);
+	        clearButton.addActionListener(this);
 
-        // create buttons
-        submitButton = new JButton("Submit");
-        clearButton = new JButton("Clear");
+	        JPanel formPanel = new JPanel(new GridLayout(7, 2, 5, 5));
+	        formPanel.setBackground(new Color(255, 228, 181));
+	        formPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+	        formPanel.add(nicknameLabel);
+	        formPanel.add(nicknameTextField);
+	        formPanel.add(passwordLabel);
+	        formPanel.add(passwordTextField);
+	        formPanel.add(nameLabel);
+	        formPanel.add(nameTextField);
+	        formPanel.add(lastNameLabel);
+	        formPanel.add(lastNameTextField);
+	        formPanel.add(idLabel);
+	        formPanel.add(idTextField);
+	        formPanel.add(ageLabel);
+	        formPanel.add(ageTextField);
+	        formPanel.add(cityLabel);
+	        formPanel.add(cityTextField);
 
-        // add action listeners to the buttons
-        submitButton.addActionListener(this);
-        clearButton.addActionListener(this);
+	        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+	        buttonPanel.setBackground(new Color(135, 206, 250));
+	        buttonPanel.setBorder(BorderFactory.createEmptyBorder(0, 10, 10, 10)); 
+	        buttonPanel.add(submitButton);
+	        buttonPanel.add(clearButton);
 
-        // create form panel
-        JPanel formPanel = new JPanel();
-        formPanel.setLayout(new GridLayout(7, 2, 5, 5));
-        formPanel.add(nameLabel);
-        formPanel.add(nameTextField);
-        formPanel.add(lastNameLabel);
-        formPanel.add(lastNameTextField);
-        formPanel.add(idLabel);
-        formPanel.add(idTextField);
-        formPanel.add(ageLabel);
-        formPanel.add(ageTextField);
-        formPanel.add(cityLabel);
-        formPanel.add(cityTextField);
-        formPanel.add(nicknameLabel);
-        formPanel.add(nicknameTextField);
-        formPanel.add(passwordLabel);
-        formPanel.add(passwordTextField);
+	        getContentPane().setLayout(new BorderLayout());
+	        getContentPane().add(formPanel, BorderLayout.CENTER);
+	        getContentPane().add(buttonPanel, BorderLayout.SOUTH);
 
-        // create button panel
-        JPanel buttonPanel = new JPanel();
-        buttonPanel.add(submitButton);
-        buttonPanel.add(clearButton);
+	   
+	        setSize(400, 300);
+	        setLocationRelativeTo(null);
+	        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	        setVisible(true);
+	    }
 
-        // add panels to the frame
-        getContentPane().add(formPanel, BorderLayout.CENTER);
-        getContentPane().add(buttonPanel, BorderLayout.SOUTH);
+	    
+	    public void actionPerformed(ActionEvent e) {
+	        if (e.getSource() == submitButton) {
+	            String nickname = nicknameTextField.getText();
+	            String password = passwordTextField.getText();
+	            String name = nameTextField.getText();
+	            String lastName = lastNameTextField.getText();
+	            String id = idTextField.getText();
+	            String age = ageTextField.getText();
+	            String city = cityTextField.getText();
+	            JOptionPane.showMessageDialog(this, "Thank you for registering, " + name + "!\n" +
+	                    "Your nickname is " + nickname + " and your password is " + password);
+	        } else if (e.getSource() == clearButton) {
+	        	 nicknameTextField.setText("");
+	             passwordTextField.setText("");
+	             nameTextField.setText("");
+	             lastNameTextField.setText("");
+	             idTextField.setText("");
+	             ageTextField.setText("");
+	             cityTextField.setText("");
+	         }
+	     }
 
-        // set frame properties
-        setSize(400, 300);
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setVisible(true);
-    }
-
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == submitButton) {
-            String name = nameTextField.getText();
-            String lastName = lastNameTextField.getText();
-            String id = idTextField.getText();
-            String age = ageTextField.getText();
-            String city = cityTextField.getText();
-            String nickname = nicknameTextField.getText();
-            String password = passwordTextField.getText();
-            JOptionPane.showMessageDialog(this, "Thank you for registering, " + name + "!\n" +
-                    "Your nickname is " + nickname + " and your password is " + password);
-        } else if (e.getSource() == clearButton) {
-            nameTextField.setText("");
-            lastNameTextField.setText("");
-            idTextField.setText("");
-            ageTextField.setText("");
-            cityTextField.setText("");
-            nicknameTextField.setText("");
-            passwordTextField.setText("");
-        }
-    }
-
-    public static void main(String[] args) {
-        new RegistrationWindow();
-    }
+	     public static void main(String[] args) {
+	         RegistrationWindow registrationForm = new RegistrationWindow();
+	     }
+	        
 }
