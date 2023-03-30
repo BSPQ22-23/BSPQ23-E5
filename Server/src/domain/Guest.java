@@ -1,21 +1,42 @@
 package domain;
 
 public class Guest {
+
 	private String name;
     private String surname;
+	private String nick;
+	private String password;
     private String dni;
     private int age;
     private String cityOfProvenance;
 
-    public Guest(String name, String surname, String dni, int age, String cityOfProvenance) {
+    public Guest(String name, String surname,String nick, String password, String dni, int age, String cityOfProvenance) {
         this.name = name;
         this.surname = surname;
+        this.nick = nick;
+        this.password = password;
         this.dni = dni;
         this.age = age;
         this.cityOfProvenance = cityOfProvenance;
     }
 
-    public String getName() {
+    public String getNick() {
+		return nick;
+	}
+
+	public void setNick(String nick) {
+		this.nick = nick;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getName() {
         return name;
     }
 
@@ -54,5 +75,4 @@ public class Guest {
     public void setCityOfProvenance(String cityOfProvenance) {
         this.cityOfProvenance = cityOfProvenance;
     }
-
 }
