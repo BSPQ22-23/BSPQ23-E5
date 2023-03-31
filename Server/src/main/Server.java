@@ -10,9 +10,10 @@ import java.util.Map.Entry;
 import com.sun.net.httpserver.HttpServer;
 
 import api.*;
+import domain.Guest;
 
 public class Server {
-	private static final HashMap<String, Object> tokenList = new HashMap<String, Object>(); //TODO Change value type to User
+	private static final HashMap<String, Guest> tokenList = new HashMap<>();
 	public static void main(String[] args){
 		try {
 	        HttpServer server = HttpServer.create(new InetSocketAddress(8000), 0);
@@ -29,7 +30,7 @@ public class Server {
 	 * @param token Token of the account
 	 * @return The account associated
 	 */
-	public static Object getUser(String token) {
+	public static Guest getUser(String token) {
 		return tokenList.get(token);
 	}
 	/**
@@ -37,8 +38,8 @@ public class Server {
 	 * @param user
 	 * @return
 	 */
-	public static String createSession(Object user) {
-		for(Entry<String, Object> entry : tokenList.entrySet()) {
+	public static String createSession(Guest user) {
+		for(Entry<String, Guest> entry : tokenList.entrySet()) {
 			if(entry.getValue().equals(user))
 				return entry.getKey();
 		}
@@ -48,9 +49,11 @@ public class Server {
 		    byte[] digest = md.digest();
 		    String token = new String(digest, StandardCharsets.UTF_8);
 			tokenList.put(token, user);
+			System.out.println("Session created");
 			return token;
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
+			System.out.println("Invalid session");
 			return null;
 		}
 	    
