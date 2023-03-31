@@ -9,8 +9,9 @@ public class Guest {
     private String dni;
     private int age;
     private String cityOfProvenance;
+    private boolean isHotelOwner;
 
-    public Guest(String name, String surname,String nick, String password, String dni, int age, String cityOfProvenance) {
+    public Guest(String name, String surname,String nick, String password, String dni, int age, String cityOfProvenance, boolean isHotelOwner) {
         this.name = name;
         this.surname = surname;
         this.nick = nick;
@@ -18,9 +19,18 @@ public class Guest {
         this.dni = dni;
         this.age = age;
         this.cityOfProvenance = cityOfProvenance;
+        this.isHotelOwner = isHotelOwner;
     }
 
-    public String getNick() {
+    public boolean isHotelOwner() {
+		return isHotelOwner;
+	}
+
+	public void setHotelOwner(boolean isHotelOwner) {
+		this.isHotelOwner = isHotelOwner;
+	}
+
+	public String getNick() {
 		return nick;
 	}
 
