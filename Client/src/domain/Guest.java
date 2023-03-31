@@ -5,7 +5,7 @@ public class Guest {
 	private String name;
     private String surname;
 	private String nick;
-	private String pw;
+	private String password;
     private String dni;
     private int age;
     private String cityOfProvenance;
@@ -15,7 +15,7 @@ public class Guest {
         this.name = name;
         this.surname = surname;
         this.nick = nick;
-        this.pw = password;
+        this.password = password;
         this.dni = dni;
         this.age = age;
         this.cityOfProvenance = cityOfProvenance;
@@ -39,11 +39,11 @@ public class Guest {
 	}
 
 	public String getPassword() {
-		return pw;
+		return password;
 	}
 
 	public void setPassword(String password) {
-		this.pw = password;
+		this.password = password;
 	}
 
 	public String getName() {
