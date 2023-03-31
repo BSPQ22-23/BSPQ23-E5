@@ -30,12 +30,10 @@ public class ServiceLocator {
 	}
 	public HttpResponse<String> sendRequest(String method, Map<String, String> headers) throws URISyntaxException, InterruptedException, ExecutionException {
 		HttpRequest.Builder request = HttpRequest.newBuilder()
-				  .uri(new URI(destination + method))
-				  .GET();
-		for(Entry<String, String> e : headers.entrySet()) {
+				 .uri(new URI(destination + method));
+		for(Entry<String, String> e : headers.entrySet())
 			request.setHeader(e.getKey(), e.getValue());
-		}
-		HttpResponse<String> response = client.sendAsync(request.build(), BodyHandlers.ofString()).get();
+		HttpResponse<String> response = client.sendAsync(request.GET().build(), BodyHandlers.ofString()).get();
 		return response;
 	}
 }
