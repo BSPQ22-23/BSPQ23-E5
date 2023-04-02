@@ -14,21 +14,26 @@ public class LoginHandler  implements HttpHandler{
 
 	@Override
     public void handle(HttpExchange t) throws IOException {
-		String token = Base64.getEncoder().encodeToString(ServerAppService.login(
-			APIUtils.getStringHeader(t, "user", ""),
-			PasswordEncryption.encryptPassword(APIUtils.getStringHeader(t, "password", ""))
-		).getBytes());
-		if(token != null) {
+		System.out.println("Login reached");
+		String token = ServerAppService.login(
+				APIUtils.getStringHeader(t, "user", ""),
+				PasswordEncryption.encryptPassword(APIUtils.getStringHeader(t, "password", ""))
+			);
+		System.out.println("Token generated " +token);
+		if(token == null) {
+			String res = "User or password incorrect";
+			t.sendResponseHeaders(400, res.length());
+			OutputStream os = t.getResponseBody();
+			os.write(res.getBytes());
+			os.close();
+			return;
+		}
+		token = Base64.getEncoder().encodeToString(token.getBytes());
+		System.out.println("token= " +token);
 			t.sendResponseHeaders(200, token.length());
 			OutputStream os = t.getResponseBody();
 	 		os.write(token.getBytes());
 	 		os.close();
-		}else {
-			t.sendResponseHeaders(400, 26);
-			OutputStream os = t.getResponseBody();
-			os.write("User or password incorrect".getBytes());
-			os.close();
-		}
     }
 
 }

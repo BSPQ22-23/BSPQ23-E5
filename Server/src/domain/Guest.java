@@ -85,4 +85,11 @@ public class Guest {
     public void setCityOfProvenance(String cityOfProvenance) {
         this.cityOfProvenance = cityOfProvenance;
     }
+
+	@Override
+	public String toString() {
+		return "Guest [name=" + name + ", surname=" + surname + ", nick=" + nick + ", password=" + password + ", dni="
+				+ dni + ", age=" + age + ", cityOfProvenance=" + cityOfProvenance + ", isHotelOwner=" + isHotelOwner
+				+ "]";
+	}
 }

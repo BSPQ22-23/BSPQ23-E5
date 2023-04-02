@@ -4,6 +4,7 @@ import java.net.InetSocketAddress;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
@@ -39,6 +40,8 @@ public class Server {
 	 * @return
 	 */
 	public static String createSession(Guest user) {
+		if(user == null)
+			return null;
 		for(Entry<String, Guest> entry : tokenList.entrySet()) {
 			if(entry.getValue().equals(user))
 				return entry.getKey();
@@ -47,9 +50,9 @@ public class Server {
 			MessageDigest md = MessageDigest.getInstance("MD5");
 			md.update((""+Integer.toHexString(user.hashCode())).getBytes());
 		    byte[] digest = md.digest();
-		    String token = new String(digest, StandardCharsets.UTF_8);
+		    String token = new String(Base64.getEncoder().encode(digest), StandardCharsets.UTF_8);
 			tokenList.put(token, user);
-			System.out.println("Session created");
+			System.out.println("Session created " + token);
 			return token;
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();

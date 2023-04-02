@@ -37,7 +37,7 @@ public class RegisterHandler implements HttpHandler{
     		}else
     			throw new IllegalArgumentException("Unknown error occurred");
     	}catch(IllegalArgumentException e) {
-    		String response = Base64.getEncoder().encodeToString(e.getMessage().getBytes());
+    		String response = e.getMessage();
     		t.sendResponseHeaders(400, response.length());
     		OutputStream os = t.getResponseBody();
     		os.write(response.getBytes());

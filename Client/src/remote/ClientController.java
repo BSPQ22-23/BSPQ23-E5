@@ -36,10 +36,11 @@ public class ClientController {
 	public static void setServerHandler(ServiceLocator sv) {
 		handler = sv;
 	}
-	private static String token;
+	@SuppressWarnings("unused")
+	private static String token = null;
 	public static void main(String[] args) throws IOException, InterruptedException, ExecutionException {
 		setServerHandler(new ServiceLocator("127.0.0.1", 8000));
-		register(new Guest("name", "surname", "nick", "password", "dni", 1, "city", false));
+		System.out.println(register(new Guest("name", "surname", "nick", "password", "dni", 1, "city", false)).message.length());
 	}
 	private static ServiceLocator handler;
 	

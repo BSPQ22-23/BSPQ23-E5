@@ -15,7 +15,6 @@ import com.sun.net.httpserver.HttpExchange;
 
 public class APIUtils {
 	public static String getStringHeader(HttpExchange t, String name, String def) {
-		System.out.println("Header: " + name);
 		return new String(Base64.getDecoder().decode(t.getRequestHeaders().getOrDefault(name, List.of(def)).get(0)), StandardCharsets.UTF_8);
 	}
 	public static HashMap<String, String> objectToHeaders(Object o) {
@@ -32,7 +31,6 @@ public class APIUtils {
 				else
 					output.put(f.getName(), objectToJSON(o).toString());
 			} catch (IllegalArgumentException | IllegalAccessException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		return output;
@@ -64,7 +62,6 @@ public class APIUtils {
 					output.put(f.getName(), objectToJSON(o));
 			}
 		} catch (JSONException | IllegalArgumentException | IllegalAccessException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		return output;

@@ -12,8 +12,14 @@ public class ServerAppService {
 	 *  @throws IllegalArgumentException if there's a missing argument or an illegal value is sent
 	 */
 	public static String register(Guest user) {
-		System.out.println("Register");
-		return Server.createSession(user);//TODO Change username for the User class instance
+		System.out.println("Register user: " +user.toString());
+		if(user.getAge() == 0 || user.getCityOfProvenance() == "" || user.getDni() == "" || user.getName() == "" || user.getNick() == "" || user.getPassword() == "" || user.getSurname() == "") {
+			System.out.println("Invalid field");
+			throw new IllegalArgumentException("You must fill all fields");
+		}else {
+			System.out.println("a");
+			return Server.createSession(user);//TODO Change username for the User class instance
+		}
 	}
 	/**
 	 * Checks if a user can be logged in
@@ -22,7 +28,7 @@ public class ServerAppService {
 	 * @return The account token or null if the user credentials aren't correct
 	 */
 	public static String login(String username, String password) {
-		
+		System.out.println("Login user: username= " +username+ " password= " +password);
 		return Server.createSession(null);//TODO Create the token if the user it's succesfully logged in
 	}
 }

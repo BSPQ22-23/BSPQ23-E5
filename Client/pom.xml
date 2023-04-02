@@ -3,7 +3,6 @@
   <artifactId>Client</artifactId>
   <packaging>jar</packaging>
   <contributors>
-	  
   </contributors>
   <parent>
   	<groupId>BSPQ23-E5</groupId>
