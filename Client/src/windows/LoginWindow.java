@@ -20,16 +20,13 @@ public class LoginWindow extends JFrame{
     public LoginWindow() {
         super("Login");
 
-        // Create the username label and text field
         JLabel usernameLabel = new JLabel("Username:");
         usernameField = new JTextField(20);
 
-        // Create the password label and password field
         JLabel passwordLabel = new JLabel("Password:");
         passwordField = new JPasswordField(20);
         passwordField.setEchoChar('*');
 
-        // Create the show password checkbox
         showPasswordCheckbox = new JCheckBox("Show password");
         showPasswordCheckbox.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -41,7 +38,6 @@ public class LoginWindow extends JFrame{
             }
         });
 
-        // Create the login button
         JButton loginButton = new JButton("Login");
         loginButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -49,15 +45,12 @@ public class LoginWindow extends JFrame{
                 char[] passwordChars = passwordField.getPassword();
                 String password = new String(passwordChars);
 
-                // TODO: Authenticate the user
 
-                // For now, just print the username and password
                 System.out.println("Username: " + username);
                 System.out.println("Password: " + password);
             }
         });
 
-        // Create the panel to hold the components
         JPanel panel = new JPanel(new GridLayout(0, 1));
         panel.add(usernameLabel);
         panel.add(usernameField);
@@ -66,14 +59,11 @@ public class LoginWindow extends JFrame{
         panel.add(showPasswordCheckbox);
         panel.add(loginButton);
 
-        // Add the panel to the frame
         this.add(panel);
 
-        // Set the size and center the window
         this.setSize(300, 200);
         this.setLocationRelativeTo(null);
 
-        // Show the window
         this.setVisible(true);
     }
 
