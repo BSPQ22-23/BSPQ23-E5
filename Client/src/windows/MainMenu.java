@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -23,13 +24,13 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class MainMenu extends JFrame implements ActionListener {
-	 	private JLabel welcome, label, info;
+	 	private JLabel welcome, label, info, warningL, infoSettings;
 	 	private JTextField search;
-	    private JButton hotelButton, searchButton, accountButton, contactButton, advSettingsButton, infoButton, searchHotelButton, hotel1Button, hotel2Button, hotel3Button, hotel4Button, hotel5Button, hotel6Button;
+	    private JButton hotelButton, searchButton, accountButton, contactButton, advSettingsButton, infoButton, searchHotelButton, hotel1Button, hotel2Button, hotel3Button, hotel4Button, hotel5Button, hotel6Button, deleteAccButton, logOutButton, changeDataButton;
 	    private JMenuBar menuBar;
 	    private JMenu menu, menuH;
-	    private JMenuItem mItem, mItem2, mItem3, mItem4;
-	    private JPanel buttonPanel, welcomePanel, searchPanel, browserPanel, accountPanel, pCenter;
+	    private JMenuItem mItem, mItem3, mItem4;
+	    private JPanel buttonPanel, welcomePanel, searchPanel, browserPanel, accountPanel, pCenter, settingsPanel;
 	    
 	    public MainMenu() {
 	        super("Menu");
@@ -37,6 +38,8 @@ public class MainMenu extends JFrame implements ActionListener {
 	        welcome = new JLabel("Welcome to the Hotel Management App");
 	        label = new  JLabel("Search: ");
 	        info = new JLabel("User info such as nickname, stats, recently reserved hotels, etc...");
+	        infoSettings = new JLabel("Welcome to settings. Yo may edit your account information.");
+	        warningL = new JLabel("Warning! Your account and your data will be deleted forever.");
 	        
 	        search = new JTextField(20);
 	        
@@ -60,12 +63,14 @@ public class MainMenu extends JFrame implements ActionListener {
 	        hotel4Button = new JButton("HOTEL 4 INFO");
 	        hotel5Button = new JButton("HOTEL 5 INFO");
 	        hotel6Button = new JButton("HOTEL 6 INFO");
+	        changeDataButton = new JButton("Change account data");
+	        deleteAccButton = new JButton("Delete this account");
+	        logOutButton = new JButton("Log out");
 	        
 	        menuBar = new JMenuBar();
 	        menu = new JMenu("Account");
 	        menuH = new JMenu("Home");
 	        mItem = new JMenuItem("Log Out");
-	        mItem2 = new JMenuItem("Exit");
 	        mItem3 = new JMenuItem("Return Home");
 	        mItem4 = new JMenuItem("Exit");
 	        
@@ -82,7 +87,7 @@ public class MainMenu extends JFrame implements ActionListener {
 	        
 	        GridLayout gridLayout = new GridLayout(0, 2);
 	        gridLayout.setVgap(10);
-	        gridLayout.setHgap(40);
+	        gridLayout.setHgap(50);
 	        buttonPanel = new JPanel(gridLayout);
 	        buttonPanel.setBackground(new Color(255, 228, 181));
 	        buttonPanel.add(hotelButton);
@@ -118,15 +123,28 @@ public class MainMenu extends JFrame implements ActionListener {
 	        accountPanel.setBackground(new Color(135, 206, 250));
 	        accountPanel.add(info);
 	        
+	        GridLayout gridLayout3 = new GridLayout(0, 1);
+	        gridLayout3.setVgap(15);
+	        gridLayout3.setHgap(10);
+	        settingsPanel = new JPanel(gridLayout3);
+	        accountPanel.setBackground(new Color(135, 206, 250));
+	        settingsPanel.add(infoSettings);
+	        settingsPanel.add(changeDataButton);
+	        settingsPanel.add(logOutButton);
+	        settingsPanel.add(warningL);
+	        settingsPanel.add(deleteAccButton);
+
+	        
 	        pCenter.add(buttonPanel);
 	        pCenter.add(accountPanel);
 	        pCenter.add(browserPanel);
-	        
+	        pCenter.add(settingsPanel);
 	        
 	        getContentPane().setLayout(new BorderLayout());
 	        getContentPane().add(pCenter, BorderLayout.CENTER);
 		    accountPanel.setVisible(false);
 			browserPanel.setVisible(false);
+			settingsPanel.setVisible(false);
 			getContentPane().add(searchPanel, BorderLayout.NORTH);
 		    searchPanel.setVisible(false);
 	        getContentPane().add(welcomePanel, BorderLayout.SOUTH);
@@ -134,7 +152,6 @@ public class MainMenu extends JFrame implements ActionListener {
 	        menuH.add(mItem3);
 	        menuH.add(mItem4);
 	        menu.add(mItem);
-	        menu.add(mItem2);
 	        menuBar.add(menuH);
 	        menuBar.add(menu);
 	        setJMenuBar(menuBar);
@@ -142,7 +159,7 @@ public class MainMenu extends JFrame implements ActionListener {
 	        mItem3.addActionListener(this);
 	        mItem4.addActionListener(this);
 	        
-	        setSize(380, 360);
+	        setSize(400, 360);
 	        setLocationRelativeTo(null);
 	        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	        setVisible(true);
@@ -169,11 +186,17 @@ public class MainMenu extends JFrame implements ActionListener {
 				buttonPanel.setVisible(false);
 			    welcomePanel.setVisible(false);
 			    accountPanel.setVisible(true);
+			    
+			 } else if (e.getSource() == advSettingsButton) {
+					buttonPanel.setVisible(false);
+				    welcomePanel.setVisible(false);
+				    settingsPanel.setVisible(true);
 				
 		     } else if (e.getSource() == mItem3) {
 		    	 searchPanel.setVisible(false);
 				 browserPanel.setVisible(false);
 				 accountPanel.setVisible(false);
+				 settingsPanel.setVisible(false);
 		    	 welcomePanel.setVisible(true);
 		    	 buttonPanel.setVisible(true);
 		    	 
