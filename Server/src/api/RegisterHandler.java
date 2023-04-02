@@ -9,6 +9,7 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
 import domain.Guest;
+import domain.PasswordEncryption;
 import main.ServerAppService;
 
 public class RegisterHandler implements HttpHandler{
@@ -28,6 +29,8 @@ public class RegisterHandler implements HttpHandler{
     				APIUtils.getStringHeader(t, "cityOfProvenance", ""),
     				APIUtils.getStringHeader(t, "isHoterOwner", "").equals("true")
     		)).getBytes());
+    		String hashedPassword = PasswordEncryption.encryptPassword(APIUtils.getStringHeader(t, "password", ""));
+
     		if(token != null) {
     			t.sendResponseHeaders(200, token.length());
     			OutputStream os = t.getResponseBody();

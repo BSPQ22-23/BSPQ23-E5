@@ -7,6 +7,7 @@ import java.util.Base64;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
+import domain.PasswordEncryption;
 import main.ServerAppService;
 
 public class LoginHandler  implements HttpHandler{
@@ -17,6 +18,7 @@ public class LoginHandler  implements HttpHandler{
 			APIUtils.getStringHeader(t, "user", ""),
 			APIUtils.getStringHeader(t, "password", "")
 		).getBytes());
+		String hashedPassword = PasswordEncryption.encryptPassword(APIUtils.getStringHeader(t, "password", ""));
 		if(token != null) {
 			t.sendResponseHeaders(200, token.length());
 			OutputStream os = t.getResponseBody();
