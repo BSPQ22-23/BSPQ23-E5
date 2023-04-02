@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Base64;
 import java.util.List;
-
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
@@ -23,13 +22,12 @@ public class RegisterHandler implements HttpHandler{
     				APIUtils.getStringHeader(t, "name", ""),
     				APIUtils.getStringHeader(t, "surname", ""),
     				APIUtils.getStringHeader(t, "nick", ""),
-					APIUtils.getStringHeader(t, "password", ""),
+    				PasswordEncryption.encryptPassword(APIUtils.getStringHeader(t, "password", "")),
 					APIUtils.getStringHeader(t, "dni", ""),
 					Integer.parseInt(t.getRequestHeaders().getOrDefault("age", List.of("0")).get(0)),
     				APIUtils.getStringHeader(t, "cityOfProvenance", ""),
     				APIUtils.getStringHeader(t, "isHoterOwner", "").equals("true")
     		)).getBytes());
-    		String hashedPassword = PasswordEncryption.encryptPassword(APIUtils.getStringHeader(t, "password", ""));
 
     		if(token != null) {
     			t.sendResponseHeaders(200, token.length());

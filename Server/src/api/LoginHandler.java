@@ -16,9 +16,8 @@ public class LoginHandler  implements HttpHandler{
     public void handle(HttpExchange t) throws IOException {
 		String token = Base64.getEncoder().encodeToString(ServerAppService.login(
 			APIUtils.getStringHeader(t, "user", ""),
-			APIUtils.getStringHeader(t, "password", "")
+			PasswordEncryption.encryptPassword(APIUtils.getStringHeader(t, "password", ""))
 		).getBytes());
-		String hashedPassword = PasswordEncryption.encryptPassword(APIUtils.getStringHeader(t, "password", ""));
 		if(token != null) {
 			t.sendResponseHeaders(200, token.length());
 			OutputStream os = t.getResponseBody();
