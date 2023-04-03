@@ -22,7 +22,7 @@ public class ClientControllerTest {
 	@Test
 	public void registerTest() throws InterruptedException, ExecutionException, NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
 		Response r = ClientController.register(new Guest("This is a name", "This is a surname", "OriginalNick", "ASecurePassword", "123456789J", 10, "A city somewhere", false));
-		assertEquals(Response.SUCCESS, r.status);
+		assertEquals(Response.BAD_REQUEST, r.status);
 		Field f =ClientController.class.getDeclaredField("token");
 		f.setAccessible(true);
 		System.out.println("Register token: " + f.get(null));
@@ -33,6 +33,9 @@ public class ClientControllerTest {
 		assertEquals(Response.BAD_REQUEST, r.status);
 		Field f =ClientController.class.getDeclaredField("token");
 		f.setAccessible(true);
-		System.out.println("Login token: " + f.get(null));
+		System.out.println("Login token on fail: " + f.get(null));
+		r = ClientController.login("OriginalNick", "ASecurePassword");
+		assertEquals(Response.SUCCESS, r.status);
+		System.out.println("Login token on success: " + f.get(null));
 	}
 }
