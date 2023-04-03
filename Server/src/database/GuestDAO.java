@@ -120,14 +120,13 @@ public class GuestDAO extends DataAccessObjectBase implements IDataAccessObject<
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx = pm.currentTransaction();
 		
-		Guest result = null; 
+		long result = 0; 
 
 		try {
-			tx.begin();
-						
-			Query<?> query = pm.newQuery("SELECT FROM " + Guest.class.getName() + " WHERE nick == '" + user.replace("'", "''")+"'");
+			tx.begin();	
+			Query<?> query = pm.newQuery("SELECT COUNT(this) FROM " + Guest.class.getName() + " WHERE nick == '" + user.replace("'", "''")+"'");
 			query.setUnique(true);
-			result = (Guest) query.execute();
+			result = (long)query.execute();
 			
 			tx.commit();
 		} catch (Exception ex) {
@@ -140,6 +139,6 @@ public class GuestDAO extends DataAccessObjectBase implements IDataAccessObject<
 			pm.close();
 		}
 		System.out.println("result= " + result);
-		return result != null;
+		return result != 0;
 	}
 }
