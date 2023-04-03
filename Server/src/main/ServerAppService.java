@@ -1,5 +1,6 @@
 package main;
 
+import database.GuestDAO;
 import domain.Guest;
 
 public class ServerAppService {
@@ -17,7 +18,9 @@ public class ServerAppService {
 			System.out.println("Invalid field");
 			throw new IllegalArgumentException("You must fill all fields");
 		}else {
-			System.out.println("a");
+			if(GuestDAO.getInstance().exists(user.getNick()))
+				throw new IllegalArgumentException("User already exists");
+			GuestDAO.getInstance().save(user);
 			return Server.createSession(user);//TODO Change username for the User class instance
 		}
 	}
@@ -29,6 +32,6 @@ public class ServerAppService {
 	 */
 	public static String login(String username, String password) {
 		System.out.println("Login user: username= " +username+ " password= " +password);
-		return Server.createSession(null);//TODO Create the token if the user it's succesfully logged in
+		return Server.createSession(GuestDAO.getInstance().find(username, password));//TODO Create the token if the user it's succesfully logged in
 	}
 }

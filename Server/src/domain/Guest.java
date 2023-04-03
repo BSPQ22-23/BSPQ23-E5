@@ -1,12 +1,22 @@
 package domain;
 
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
+import javax.jdo.annotations.Unique;
+
+@PersistenceCapable(detachable="true")
 public class Guest {
 
+	@PrimaryKey
+	@Persistent
+    private String dni;
 	private String name;
     private String surname;
+    
+    @Unique
 	private String nick;
 	private String password;
-    private String dni;
     private int age;
     private String cityOfProvenance;
     private boolean isHotelOwner;
