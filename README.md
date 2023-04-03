@@ -1,2 +1,13 @@
-# BSPQ23-E5
-Remember to create valid Maven project source structure
+# Hotel Manager Tool
+Manage your hotels or reservations in an easy way.
+
+<h1>Building the project</h1>
+To compile the project run the next command in the part you want to compile
+
+> mvn install
+
+To run the project you can either run the following command
+
+>java -jar target/[Client/Server]-0.0.1-SNAPSHOT
+
+Or enter the target folder and double clicking the jar file (In the case of the Server it's not recommended as it does not have a GUI, if you want to kill the process afterwards you will have to kill the entire java proccess)
