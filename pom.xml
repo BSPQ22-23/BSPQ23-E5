@@ -59,26 +59,6 @@
 					<target>1.8</target>
 				</configuration>
 			</plugin>
-			
-			<plugin>
-				<groupId>org.datanucleus</groupId>
-				<artifactId>datanucleus-maven-plugin</artifactId>
-				<version>6.0.0-release</version>
-				<configuration>
-					<api>JDO</api>
-					<verbose>true</verbose>
-					<props>${config.files.dir}/datanucleus.properties</props>
-				</configuration>
-				<executions>
-					<execution>
-						<!-- links the enhance to the compile phase -->
-						<phase>compile</phase>
-						<goals>
-							<goal>enhance</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
