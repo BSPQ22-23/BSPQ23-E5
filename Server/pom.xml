@@ -10,26 +10,7 @@
   <build>
     <sourceDirectory>src</sourceDirectory>
     <plugins>
-    	<plugin>
-        	<groupId>org.apache.maven.plugins</groupId>
-        	<artifactId>maven-jar-plugin</artifactId>
-        	<version>3.3.0</version>
-        		<configuration>
-          			<archive>
-            			<manifest>
-            				<addClasspath>true</addClasspath>
-              				<mainClass>main.Server</mainClass>
-           				</manifest>
-          			</archive>
-        		</configuration>
-      	</plugin>
-      	<plugin>
-        	<artifactId>maven-compiler-plugin</artifactId>
-        	<version>3.8.1</version>
-        	<configuration>
-          		<release>11</release>
-        	</configuration>
-      	</plugin>
+      	
       	<plugin>
 			<groupId>org.datanucleus</groupId>
 			<artifactId>datanucleus-maven-plugin</artifactId>
@@ -50,17 +31,25 @@
 		</plugin>
     	<plugin>
 		  <groupId>org.apache.maven.plugins</groupId>
-		  <artifactId>maven-shade-plugin</artifactId>
-		  <version>3.2.4</version>
+		  <artifactId>maven-assembly-plugin</artifactId>
+		  <version>3.0.0</version>
+		  <configuration>
+		  	<descriptorRefs>
+              <descriptorRef>jar-with-dependencies</descriptorRef>
+         	</descriptorRefs>
+         	<archive>
+        		<manifest>
+        			<addClasspath>true</addClasspath>
+              		<mainClass>main.Server</mainClass>
+       			</manifest>
+      		</archive>
+		  </configuration>
 		  <executions>
 		    	<execution>
 		      		<phase>package</phase>
 		      		<goals>
-		        		<goal>shade</goal>
+		        		<goal>single</goal>
 		      		</goals>
-		      		<configuration>
-		        		<createDependencyReducedPom>false</createDependencyReducedPom>
-		      		</configuration>
     			</execution>
   			</executions>
 		</plugin>
