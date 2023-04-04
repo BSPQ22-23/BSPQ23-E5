@@ -20,7 +20,21 @@
 		<config.files.dir>${basedir}/src/main/resources</config.files.dir>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
+		<jersey.version>2.35</jersey.version>
 	</properties>
+	
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.glassfish.jersey</groupId>
+				<artifactId>jersey-bom</artifactId>
+				<version>${jersey.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+	
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
@@ -41,8 +55,9 @@
     		<groupId>org.json</groupId>
     		<artifactId>json</artifactId>
     		<version>20230227</version>
-		</dependency>
+		</dependency>	
 	</dependencies>
+	
 
 	<!--maven-->
 	
@@ -68,6 +83,12 @@
 					<nohelp>true</nohelp>
 				</configuration>
 			</plugin>
+			<plugin>
+<groupId>org.eclipse.jetty</groupId>
+<artifactId>jetty-maven-plugin</artifactId>
+<version>9.4.46.v20220331</version>
+</plugin>
+
 		</plugins>
 		
 		<resources>
