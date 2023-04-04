@@ -1,5 +1,5 @@
 # Hotel Manager Tool
-Manage your hotels or reservations in an easy way.
+Manage your hotels or reservations in an easy way...
 
 <h1>Building the project</h1>
 To compile the project run the next command in the part you want to compile
