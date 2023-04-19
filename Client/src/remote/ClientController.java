@@ -3,8 +3,9 @@ package remote;
 import java.net.URISyntaxException;
 import java.net.http.HttpResponse;
 import java.util.Base64;
-import java.util.HashMap;
 import java.util.concurrent.ExecutionException;
+
+import org.json.JSONObject;
 
 import domain.Guest;
 
@@ -42,7 +43,7 @@ public class ClientController {
 	
 	public static Response register(Guest g) throws InterruptedException, ExecutionException{
 		try {
-			HttpResponse<String> response = handler.sendRequest("register", APIUtils.objectToHeaders(g));
+			HttpResponse<String> response = handler.sendRequest("register", APIUtils.objectToJSON(g));
 			if(response.statusCode() != 200)
 				return new Response(response.statusCode(), response.body());
 			else {
@@ -56,10 +57,10 @@ public class ClientController {
 	}
 	public static Response login(String user, String password) throws InterruptedException, ExecutionException {
 		try {
-			HashMap<String, String> headers = new HashMap<>();
-			headers.put("user", Base64.getEncoder().encodeToString(user.getBytes()));
-			headers.put("password", Base64.getEncoder().encodeToString(password.getBytes()));
-			HttpResponse<String> response = handler.sendRequest("login", headers);
+			JSONObject body = new JSONObject();
+			body.put("user", Base64.getEncoder().encodeToString(user.getBytes()).toString());
+			body.put("password", Base64.getEncoder().encodeToString(password.getBytes()).toString());
+			HttpResponse<String> response = handler.sendRequest("login", body);
 			if(response.statusCode() != 200)
 				return new Response(response.statusCode(), response.body());
 			else {

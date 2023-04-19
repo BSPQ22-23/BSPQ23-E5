@@ -124,6 +124,7 @@ public class GuestDAO extends DataAccessObjectBase implements IDataAccessObject<
 
 		try {
 			tx.begin();	
+			System.out.println("SELECT COUNT(this) FROM " + Guest.class.getName() + " WHERE nick == '" + user.replace("'", "''")+"'");
 			Query<?> query = pm.newQuery("SELECT COUNT(this) FROM " + Guest.class.getName() + " WHERE nick == '" + user.replace("'", "''")+"'");
 			query.setUnique(true);
 			result = (long)query.execute();

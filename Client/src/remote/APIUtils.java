@@ -47,6 +47,7 @@ public class APIUtils {
 		JSONObject output = new JSONObject();
 		try {
 			for(Field f : o.getClass().getDeclaredFields()){
+				f.setAccessible(true);
 				 if(f.getType().equals(Collection.class))
 					output.put(f.getName(), listToJSONArray((Collection<?>)f.get(o)));
 				else if(f.getType().isPrimitive())

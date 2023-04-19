@@ -1,5 +1,8 @@
 package api;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.lang.reflect.Field;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
@@ -35,6 +38,20 @@ public class APIUtils {
 			}
 		return output;
 	}
+	public static String readBody(HttpExchange t) throws IOException{
+		InputStreamReader isr = new InputStreamReader(t.getRequestBody(), "utf-8");
+        BufferedReader br = new BufferedReader(isr);
+
+        int b;
+        StringBuilder buf = new StringBuilder();
+        while ((b = br.read()) != -1) {
+            buf.append((char) b);
+        }
+
+        br.close();
+        isr.close();
+    	return buf.toString();
+	}
 	public static JSONArray listToJSONArray(Collection<?> o) {
 		JSONArray array = new JSONArray();
 		for(Object obj : (Collection<?>)o)
@@ -52,6 +69,7 @@ public class APIUtils {
 		JSONObject output = new JSONObject();
 		try {
 			for(Field f : o.getClass().getDeclaredFields()){
+				f.setAccessible(true);
 				 if(f.getType().equals(Collection.class))
 					output.put(f.getName(), listToJSONArray((Collection<?>)f.get(o)));
 				else if(f.getType().isPrimitive())
@@ -65,5 +83,8 @@ public class APIUtils {
 			e1.printStackTrace();
 		}
 		return output;
+	}
+	public static String decode(String value) {
+		return new String(Base64.getDecoder().decode(value), StandardCharsets.UTF_8);
 	}
 }

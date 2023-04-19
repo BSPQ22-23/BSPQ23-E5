@@ -3,7 +3,9 @@ package api;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Base64;
-import java.util.List;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
@@ -15,20 +17,22 @@ public class RegisterHandler implements HttpHandler{
 	
     @Override
     public void handle(HttpExchange t) throws IOException {
+    	System.out.println("Registering user");
+    	JSONObject obj = new JSONObject(APIUtils.readBody(t));
     	try {
     		String token = Base64.getEncoder().encodeToString(
     			ServerAppService.register(
     				new Guest(
-    				APIUtils.getStringHeader(t, "name", ""),
-    				APIUtils.getStringHeader(t, "surname", ""),
-    				APIUtils.getStringHeader(t, "nick", ""),
-    				PasswordEncryption.encryptPassword(APIUtils.getStringHeader(t, "password", "")),
-					APIUtils.getStringHeader(t, "dni", ""),
-					Integer.parseInt(t.getRequestHeaders().getOrDefault("age", List.of("0")).get(0)),
-    				APIUtils.getStringHeader(t, "cityOfProvenance", ""),
-    				APIUtils.getStringHeader(t, "isHoterOwner", "").equals("true")
+    				APIUtils.decode(obj.getString("name")),
+    				APIUtils.decode(obj.getString("surname")),
+    				APIUtils.decode(obj.getString("nick")),
+    				PasswordEncryption.encryptPassword(APIUtils.decode(obj.getString("password"))),
+    				APIUtils.decode(obj.getString("dni")),
+					obj.getInt("age"),
+					APIUtils.decode(obj.getString("cityOfProvenance")),
+    				obj.getBoolean("isHotelOwner")
     		)).getBytes());
-
+    		System.out.println('r');
     		if(token != null) {
     			t.sendResponseHeaders(200, token.length());
     			OutputStream os = t.getResponseBody();
@@ -36,11 +40,13 @@ public class RegisterHandler implements HttpHandler{
    		 		os.close();
     		}else
     			throw new IllegalArgumentException("Unknown error occurred");
-    	}catch(IllegalArgumentException e) {
+    	}catch(IllegalArgumentException | JSONException e) {
+    		System.out.println('e');
     		String response = e.getMessage();
     		t.sendResponseHeaders(400, response.length());
     		OutputStream os = t.getResponseBody();
     		os.write(response.getBytes());
+    		System.out.println('o');
     		os.close();
     	}
     	t.sendResponseHeaders(400, 26);

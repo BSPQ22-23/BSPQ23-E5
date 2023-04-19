@@ -20,6 +20,7 @@ public class ServerAppService {
 		}else {
 			if(GuestDAO.getInstance().exists(user.getNick()))
 				throw new IllegalArgumentException("User already exists");
+			System.out.println("Registration authorized");
 			GuestDAO.getInstance().save(user);
 			return Server.createSession(user);//TODO Change username for the User class instance
 		}

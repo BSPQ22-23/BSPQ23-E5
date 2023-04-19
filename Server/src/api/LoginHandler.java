@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Base64;
 
+import org.json.JSONObject;
+
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
@@ -14,10 +16,14 @@ public class LoginHandler  implements HttpHandler{
 
 	@Override
     public void handle(HttpExchange t) throws IOException {
-		System.out.println("Login reached");
+		System.out.println("Logging user");
+		String body =APIUtils.readBody(t);
+		System.out.println(body);
+		JSONObject obj = new JSONObject(body);
 		String token = ServerAppService.login(
-				APIUtils.getStringHeader(t, "user", ""),
-				PasswordEncryption.encryptPassword(APIUtils.getStringHeader(t, "password", ""))
+				
+				APIUtils.decode(obj.getString("user")),
+				PasswordEncryption.encryptPassword(APIUtils.decode(obj.getString("password")))
 			);
 		System.out.println("Token generated " +token);
 		if(token == null) {
