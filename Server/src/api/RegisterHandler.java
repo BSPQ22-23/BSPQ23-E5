@@ -32,7 +32,6 @@ public class RegisterHandler implements HttpHandler{
 					APIUtils.decode(obj.getString("cityOfProvenance")),
     				obj.getBoolean("isHotelOwner")
     		)).getBytes());
-    		System.out.println('r');
     		if(token != null) {
     			t.sendResponseHeaders(200, token.length());
     			OutputStream os = t.getResponseBody();
@@ -41,7 +40,6 @@ public class RegisterHandler implements HttpHandler{
     		}else
     			throw new IllegalArgumentException("Unknown error occurred");
     	}catch(IllegalArgumentException | JSONException e) {
-    		System.out.println('e');
     		String response = e.getMessage();
     		t.sendResponseHeaders(400, response.length());
     		OutputStream os = t.getResponseBody();

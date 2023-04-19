@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Base64;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.sun.net.httpserver.HttpExchange;
@@ -20,11 +21,20 @@ public class LoginHandler  implements HttpHandler{
 		String body =APIUtils.readBody(t);
 		System.out.println(body);
 		JSONObject obj = new JSONObject(body);
-		String token = ServerAppService.login(
-				
+		String token = null;
+		try {
+			token = ServerAppService.login(
 				APIUtils.decode(obj.getString("user")),
 				PasswordEncryption.encryptPassword(APIUtils.decode(obj.getString("password")))
 			);
+		}catch(IllegalArgumentException | JSONException e) {
+    		String response = e.getMessage();
+    		t.sendResponseHeaders(400, response.length());
+    		OutputStream os = t.getResponseBody();
+    		os.write(response.getBytes());
+    		System.out.println('o');
+    		os.close();
+    	}
 		System.out.println("Token generated " +token);
 		if(token == null) {
 			String res = "User or password incorrect";
