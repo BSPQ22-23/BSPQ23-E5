@@ -9,8 +9,11 @@
   </parent>
   <build>
     <sourceDirectory>src</sourceDirectory>
+<!--////////////////////////////////////////////////////////////////////////
+								PLUGINS
+////////////////////////////////////////////////////////////////////////--> 
     <plugins>
-      	
+    	<!--                    datanucleus:enhance                    -->
       	<plugin>
 			<groupId>org.datanucleus</groupId>
 			<artifactId>datanucleus-maven-plugin</artifactId>
@@ -29,34 +32,39 @@
 				</execution>
 			</executions>
 		</plugin>
-    	<plugin>
-		  <groupId>org.apache.maven.plugins</groupId>
-		  <artifactId>maven-assembly-plugin</artifactId>
-		  <version>3.0.0</version>
-		  <configuration>
-		  	<descriptorRefs>
-              <descriptorRef>jar-with-dependencies</descriptorRef>
-         	</descriptorRefs>
-         	<archive>
-        		<manifest>
-        			<addClasspath>true</addClasspath>
-              		<mainClass>main.Server</mainClass>
-       			</manifest>
-      		</archive>
-		  </configuration>
-		  <executions>
-		    	<execution>
-		      		<phase>package</phase>
-		      		<goals>
-		        		<goal>single</goal>
-		      		</goals>
-    			</execution>
-  			</executions>
-		</plugin>
+		<!--                    exec:java                    -->
+		<plugin>
+        	<groupId>org.codehaus.mojo</groupId>
+        	<artifactId>exec-maven-plugin</artifactId>
+        	<version>3.1.0</version>
+        	<executions>
+          		<execution>
+            		<goals>
+            			<goal>java</goal>
+            		</goals>
+          		</execution>
+        	</executions>
+         	<configuration>
+          		<mainClass>main.Server</mainClass>
+          		<!--arguments>
+            		<argument>argument1</argument>
+            		...
+          		</arguments-->
+          		<!--systemProperties>
+            		<systemProperty>
+              			<key>myproperty</key>
+              			<value>myvalue</value>
+            		</systemProperty>
+            		...
+          		</systemProperties-->
+        	</configuration>
+      	</plugin>
     </plugins>
-  </build>
-  
-  	<dependencies>
+</build>
+<!--////////////////////////////////////////////////////////////////////////
+								DEPENDENCIES
+////////////////////////////////////////////////////////////////////////-->  
+<dependencies>
 		<dependency>
 			<groupId>org.datanucleus</groupId>
 			<artifactId>javax.jdo</artifactId>
