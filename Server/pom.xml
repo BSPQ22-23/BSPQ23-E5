@@ -1,70 +1,70 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <artifactId>Server</artifactId>
-  <packaging>jar</packaging>
-  <parent>
-  	<groupId>BSPQ23-E5</groupId>
- 	<artifactId>BSPQ23-E5</artifactId>
-  	<version>0.0.1-SNAPSHOT</version>
-  </parent>
-  <build>
-    <sourceDirectory>src</sourceDirectory>
+  	<modelVersion>4.0.0</modelVersion>
+  	<artifactId>Server</artifactId>
+  	<packaging>jar</packaging>
+  	<parent>
+  		<groupId>BSPQ23-E5</groupId>
+ 		<artifactId>BSPQ23-E5</artifactId>
+  		<version>0.0.1-SNAPSHOT</version>
+  	</parent>
+  	<build>
+    	<sourceDirectory>src</sourceDirectory>
 <!--////////////////////////////////////////////////////////////////////////
 								PLUGINS
 ////////////////////////////////////////////////////////////////////////--> 
-    <plugins>
-    	<!--                    datanucleus:enhance                    -->
-      	<plugin>
-			<groupId>org.datanucleus</groupId>
-			<artifactId>datanucleus-maven-plugin</artifactId>
-			<version>6.0.0-release</version>
-			<configuration>
-				<api>JDO</api>
-				<verbose>false</verbose>
-				<props>${base.dir}/resources/datanucleus.properties</props>
-			</configuration>
-			<executions>
-				<execution>
-					<phase>compile</phase>
-					<goals>
-						<goal>enhance</goal>
-					</goals>
-				</execution>
-			</executions>
-		</plugin>
-		<!--                    exec:java                    -->
-		<plugin>
-        	<groupId>org.codehaus.mojo</groupId>
-        	<artifactId>exec-maven-plugin</artifactId>
-        	<version>3.1.0</version>
-        	<executions>
-          		<execution>
-            		<goals>
-            			<goal>java</goal>
-            		</goals>
-          		</execution>
-        	</executions>
-         	<configuration>
-          		<mainClass>main.Server</mainClass>
-          		<!--arguments>
-            		<argument>argument1</argument>
-            		...
-          		</arguments-->
-          		<!--systemProperties>
-            		<systemProperty>
-              			<key>myproperty</key>
-              			<value>myvalue</value>
-            		</systemProperty>
-            		...
-          		</systemProperties-->
-        	</configuration>
-      	</plugin>
-    </plugins>
-</build>
+    	<plugins>
+    		<!--                    datanucleus:enhance                    -->
+      		<plugin>
+				<groupId>org.datanucleus</groupId>
+				<artifactId>datanucleus-maven-plugin</artifactId>
+				<version>6.0.0-release</version>
+				<configuration>
+					<api>JDO</api>
+					<verbose>false</verbose>
+					<props>${base.dir}/resources/datanucleus.properties</props>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>compile</phase>
+						<goals>
+							<goal>enhance</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<!--                    exec:java                    -->
+			<plugin>
+	        	<groupId>org.codehaus.mojo</groupId>
+	        	<artifactId>exec-maven-plugin</artifactId>
+	        	<version>3.1.0</version>
+	        	<executions>
+	          		<execution>
+	            		<goals>
+	            			<goal>java</goal>
+	            		</goals>
+	          		</execution>
+	        	</executions>
+	         	<configuration>
+	          		<mainClass>main.Server</mainClass>
+	          		<!--arguments>
+	            		<argument>argument1</argument>
+	            		...
+	          		</arguments-->
+	          		<!--systemProperties>
+	            		<systemProperty>
+	              			<key>myproperty</key>
+	              			<value>myvalue</value>
+	            		</systemProperty>
+	            		...
+ 	         		</systemProperties-->
+ 		       	</configuration>
+ 	     	</plugin>
+    	</plugins>
+	</build>
 <!--////////////////////////////////////////////////////////////////////////
 								DEPENDENCIES
 ////////////////////////////////////////////////////////////////////////-->  
-<dependencies>
+	<dependencies>
 		<dependency>
 			<groupId>org.datanucleus</groupId>
 			<artifactId>javax.jdo</artifactId>
