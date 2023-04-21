@@ -1,6 +1,6 @@
 package domain;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 public class Booking {
@@ -10,15 +10,14 @@ public class Booking {
     private Room room;
     private List<Guest> guests;
 
-    public Booking(int id, Date checkinDate, Date checkoutDate, Room room, List<Guest> guests) {
-        this.id = id;
+    public Booking(Date checkinDate, Date checkoutDate, Room room, List<Guest> guests) {
         this.checkinDate = checkinDate;
         this.checkoutDate = checkoutDate;
         this.room = room;
         this.guests = guests;
     }
 
-    public int getId() {
+	public int getId() {
         return id;
     }
 

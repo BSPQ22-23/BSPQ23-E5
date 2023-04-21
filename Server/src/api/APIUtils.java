@@ -32,7 +32,7 @@ public class APIUtils {
 				else if(o instanceof Collection<?>)
 					output.put(f.getName(), listToJSONArray((Collection<?>)o).toString());
 				else
-					output.put(f.getName(), objectToJSON(o).toString());
+					output.put(f.getName(), objectToJSON(f.get(o)).toString());
 			} catch (IllegalArgumentException | IllegalAccessException e) {
 				e.printStackTrace();
 			}
@@ -77,7 +77,7 @@ public class APIUtils {
 				else if(f.getType().equals(String.class))
 					output.put(f.getName(), new String(Base64.getEncoder().encode(f.get(o).toString().getBytes()), StandardCharsets.UTF_8));
 				else
-					output.put(f.getName(), objectToJSON(o));
+					output.put(f.getName(), objectToJSON(f.get(o)));
 			}
 		} catch (JSONException | IllegalArgumentException | IllegalAccessException e1) {
 			e1.printStackTrace();

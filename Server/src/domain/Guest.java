@@ -13,19 +13,13 @@ public class Guest {
     private String dni;
 	private String name;
     private String surname;
-    
-    @Unique
-	private String nick;
-	private String password;
     private int age;
     private String cityOfProvenance;
     private boolean isHotelOwner;
 
-    public Guest(String name, String surname,String nick, String password, String dni, int age, String cityOfProvenance, boolean isHotelOwner) {
+    public Guest(String name, String surname, String dni, int age, String cityOfProvenance, boolean isHotelOwner) {
         this.name = name;
         this.surname = surname;
-        this.nick = nick;
-        this.password = password;
         this.dni = dni;
         this.age = age;
         this.cityOfProvenance = cityOfProvenance;
@@ -38,22 +32,6 @@ public class Guest {
 
 	public void setHotelOwner(boolean isHotelOwner) {
 		this.isHotelOwner = isHotelOwner;
-	}
-
-	public String getNick() {
-		return nick;
-	}
-
-	public void setNick(String nick) {
-		this.nick = nick;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
 	}
 
 	public String getName() {
@@ -98,7 +76,7 @@ public class Guest {
 
 	@Override
 	public String toString() {
-		return "Guest [name=" + name + ", surname=" + surname + ", nick=" + nick + ", password=" + password + ", dni="
+		return "Guest [name=" + name + ", surname=" + surname + ", dni="
 				+ dni + ", age=" + age + ", cityOfProvenance=" + cityOfProvenance + ", isHotelOwner=" + isHotelOwner
 				+ "]";
 	}

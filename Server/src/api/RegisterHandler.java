@@ -11,6 +11,7 @@ import com.sun.net.httpserver.HttpHandler;
 
 import domain.Guest;
 import domain.PasswordEncryption;
+import domain.User;
 import main.ServerAppService;
 
 public class RegisterHandler implements HttpHandler{
@@ -19,19 +20,23 @@ public class RegisterHandler implements HttpHandler{
     public void handle(HttpExchange t) throws IOException {
     	System.out.println("Registering user");
     	JSONObject obj = new JSONObject(APIUtils.readBody(t));
+    	System.out.println(obj);
     	try {
     		String token = Base64.getEncoder().encodeToString(
     			ServerAppService.register(
-    				new Guest(
-    				APIUtils.decode(obj.getString("name")),
-    				APIUtils.decode(obj.getString("surname")),
-    				APIUtils.decode(obj.getString("nick")),
-    				PasswordEncryption.encryptPassword(APIUtils.decode(obj.getString("password"))),
-    				APIUtils.decode(obj.getString("dni")),
-					obj.getInt("age"),
-					APIUtils.decode(obj.getString("cityOfProvenance")),
-    				obj.getBoolean("isHotelOwner")
-    		)).getBytes());
+    				new User(
+						APIUtils.decode(obj.getString("nick")),
+						PasswordEncryption.encryptPassword(APIUtils.decode(obj.getString("password"))),
+						new Guest(
+							APIUtils.decode(obj.getJSONObject("legalInfo").getString("name")),
+							APIUtils.decode(obj.getJSONObject("legalInfo").getString("surname")),
+							APIUtils.decode(obj.getJSONObject("legalInfo").getString("dni")),
+							obj.getJSONObject("legalInfo").getInt("age"),
+							APIUtils.decode(obj.getJSONObject("legalInfo").getString("cityOfProvenance")),
+							obj.getJSONObject("legalInfo").getBoolean("isHotelOwner")
+						)
+					)
+    			).getBytes());
     		if(token != null) {
     			t.sendResponseHeaders(200, token.length());
     			OutputStream os = t.getResponseBody();

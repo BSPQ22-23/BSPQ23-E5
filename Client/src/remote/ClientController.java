@@ -8,6 +8,7 @@ import java.util.concurrent.ExecutionException;
 import org.json.JSONObject;
 
 import domain.Guest;
+import domain.User;
 
 public class ClientController {
 	public static class Response {
@@ -41,7 +42,7 @@ public class ClientController {
 	private static String token = null;
 	private static ServiceLocator handler;
 	
-	public static Response register(Guest g) throws InterruptedException, ExecutionException{
+	public static Response register(User g) throws InterruptedException, ExecutionException{
 		try {
 			HttpResponse<String> response = handler.sendRequest("register", APIUtils.objectToJSON(g));
 			if(response.statusCode() != 200)

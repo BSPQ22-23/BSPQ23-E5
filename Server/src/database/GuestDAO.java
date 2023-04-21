@@ -90,33 +90,7 @@ public class GuestDAO extends DataAccessObjectBase implements IDataAccessObject<
 
 		return result;
 	}
-	public Guest find(String user, String password) {
-		PersistenceManager pm = pmf.getPersistenceManager();
-		Transaction tx = pm.currentTransaction();
-		
-		Guest result = null; 
-
-		try {
-			tx.begin();
-						
-			Query<?> query = pm.newQuery("SELECT FROM " + Guest.class.getName() + " WHERE nick == '" + user.replace("'", "''")+"' && password == '" + password.replace("'", "''")+"'");
-			query.setUnique(true);
-			result = (Guest) query.execute();
-			
-			tx.commit();
-		} catch (Exception ex) {
-			System.out.println("  $ Error querying a Guest: " + ex.getMessage());
-		} finally {
-			if (tx != null && tx.isActive()) {
-				tx.rollback();
-			}
-
-			pm.close();
-		}
-
-		return result;
-	}
-	public boolean exists(String user) {
+	public boolean exists(String dni) {
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx = pm.currentTransaction();
 		
@@ -124,8 +98,8 @@ public class GuestDAO extends DataAccessObjectBase implements IDataAccessObject<
 
 		try {
 			tx.begin();	
-			System.out.println("SELECT COUNT(this) FROM " + Guest.class.getName() + " WHERE nick == '" + user.replace("'", "''")+"'");
-			Query<?> query = pm.newQuery("SELECT COUNT(this) FROM " + Guest.class.getName() + " WHERE nick == '" + user.replace("'", "''")+"'");
+			System.out.println("SELECT COUNT(this) FROM " + Guest.class.getName() + " WHERE dni == '" + dni.replace("'", "''")+"'");
+			Query<?> query = pm.newQuery("SELECT COUNT(this) FROM " + Guest.class.getName() + " WHERE dni == '" + dni.replace("'", "''")+"'");
 			query.setUnique(true);
 			result = (long)query.execute();
 			

@@ -13,13 +13,12 @@ import com.sun.net.httpserver.HttpHandler;
 import domain.PasswordEncryption;
 import main.ServerAppService;
 
-public class LoginHandler  implements HttpHandler{
+public class LoginHandler implements HttpHandler{
 
 	@Override
     public void handle(HttpExchange t) throws IOException {
 		System.out.println("Logging user");
 		String body =APIUtils.readBody(t);
-		System.out.println(body);
 		JSONObject obj = new JSONObject(body);
 		String token = null;
 		try {

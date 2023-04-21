@@ -11,15 +11,18 @@ import java.util.Map.Entry;
 import com.sun.net.httpserver.HttpServer;
 
 import api.*;
-import domain.Guest;
+import database.UserDAO;
+import domain.User;
 
 public class Server {
-	private static final HashMap<String, Guest> tokenList = new HashMap<>();
+	private static final HashMap<String, User> tokenList = new HashMap<>();
 	public static void main(String[] args){
+		UserDAO.getInstance();
 		try {
 	        HttpServer server = HttpServer.create(new InetSocketAddress(8000), 0);
 	        server.createContext("/register", new RegisterHandler());
 	        server.createContext("/login", new LoginHandler());
+	        server.createContext("/booking/create", new ReservationCreationHandler());
 	        server.setExecutor(null); // creates a default executor
 	        server.start();
 		}catch(Exception e) {
@@ -31,7 +34,7 @@ public class Server {
 	 * @param token Token of the account
 	 * @return The account associated
 	 */
-	public static Guest getUser(String token) {
+	public static User getUser(String token) {
 		return tokenList.get(token);
 	}
 	/**
@@ -39,10 +42,10 @@ public class Server {
 	 * @param user
 	 * @return
 	 */
-	public static String createSession(Guest user) {
+	public static String createSession(User user) {
 		if(user == null)
 			return null;
-		for(Entry<String, Guest> entry : tokenList.entrySet()) {
+		for(Entry<String, User> entry : tokenList.entrySet()) {
 			if(entry.getValue().equals(user))
 				return entry.getKey();
 		}

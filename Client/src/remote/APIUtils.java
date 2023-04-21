@@ -3,7 +3,9 @@ package remote;
 import java.lang.reflect.Field;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
+import java.util.Calendar;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 
 import org.json.JSONArray;
@@ -20,10 +22,14 @@ public class APIUtils {
 					output.put(f.getName(), f.get(o).toString());
 				else if(f.getType().equals(String.class))
 					output.put(f.getName(), new String(Base64.getEncoder().encode(f.get(o).toString().getBytes()), StandardCharsets.UTF_8));
-				else if(o instanceof Collection<?>)
+				else if(f.getType().equals(Date.class)) {
+					Calendar c = Calendar.getInstance();
+					c.setTime((Date)f.get(o));
+					output.put(f.getName(), Long.toString(c.get(Calendar.DAY_OF_YEAR) + c.get(Calendar.YEAR) * 365));
+				}else if(o instanceof Collection<?>)
 					output.put(f.getName(), listToJSONArray((Collection<?>)o).toString());
 				else
-					output.put(f.getName(), objectToJSON(o).toString());
+					output.put(f.getName(), objectToJSON(f.get(o)).toString());
 			} catch (IllegalArgumentException | IllegalAccessException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -37,7 +43,11 @@ public class APIUtils {
 				listToJSONArray((Collection<?>)obj);
 			else if(obj.getClass().equals(String.class))
 				array.put(new String(Base64.getEncoder().encode(obj.toString().getBytes()), StandardCharsets.UTF_8));
-			else if(obj.getClass().isPrimitive())
+			else if(obj.getClass().equals(Date.class)) {
+				Calendar c = Calendar.getInstance();
+				c.setTime((Date)obj);
+				array.put(c.get(Calendar.DAY_OF_YEAR)+c.get(Calendar.YEAR)*365);
+			} else if(obj.getClass().isPrimitive())
 				array.put(obj);
 			else
 				array.put(objectToJSON(obj));
@@ -52,15 +62,19 @@ public class APIUtils {
 					output.put(f.getName(), listToJSONArray((Collection<?>)f.get(o)));
 				else if(f.getType().isPrimitive())
 					output.put(f.getName(), f.get(o));
-				else if(f.getType().equals(String.class))
+				else if(f.getType().equals(Date.class)) {
+					Calendar c = Calendar.getInstance();
+					c.setTime((Date)f.get(o));
+					output.put(f.getName(), c.get(Calendar.DAY_OF_YEAR) + c.get(Calendar.YEAR) * 365);
+				}else if(f.getType().equals(String.class))
 					output.put(f.getName(), new String(Base64.getEncoder().encode(f.get(o).toString().getBytes()), StandardCharsets.UTF_8));
 				else
-					output.put(f.getName(), objectToJSON(o));
+					output.put(f.getName(), objectToJSON(f.get(o)));
 			}
 		} catch (JSONException | IllegalArgumentException | IllegalAccessException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+		System.out.println(output.toString());
 		return output;
 	}
 }

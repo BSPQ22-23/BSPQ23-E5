@@ -7,9 +7,11 @@ import java.lang.reflect.Field;
 import java.util.concurrent.ExecutionException;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import domain.Guest;
+import domain.User;
 import remote.ClientController.Response;
 
 public class ClientControllerTest {
@@ -21,8 +23,22 @@ public class ClientControllerTest {
 	
 	@Test
 	public void registerTest() throws InterruptedException, ExecutionException, NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
-		Response r = ClientController.register(new Guest("This is a name", "This is a surname", "OriginalNick", "ASecurePassword", "123456789J", 10, "A city somewhere", false));
+		Response r = ClientController.register(
+			new User(
+				"OriginalNick", 
+				"ASecurePassword",
+				new Guest(
+					"This is a name", 
+					"This is a surname",  
+					"123456789J", 
+					10, 
+					"A city somewhere", 
+					false
+				)
+			)
+		);
 		assertEquals(Response.BAD_REQUEST, r.status);
+		System.out.println(r.message);
 		Field f =ClientController.class.getDeclaredField("token");
 		f.setAccessible(true);
 		System.out.println("Register token: " + f.get(null));
