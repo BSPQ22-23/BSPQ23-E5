@@ -1,6 +1,7 @@
 package main;
 
-import database.GuestDAO;
+import java.util.List;
+
 import database.UserDAO;
 import domain.Booking;
 import domain.User;
@@ -37,11 +38,31 @@ public class ServerAppService {
 		System.out.println("Login user: username= " +username+ " password= " +password);
 		return Server.createSession(UserDAO.getInstance().find(username, password));//TODO Create the token if the user it's succesfully logged in
 	}
-	
+	/**
+	 * Adds a reservation to the database if all information it's correct
+	 * @param author Person generating the reservation
+	 * @param reservation Reservation to be made
+	 * @return
+	 */
 	public static boolean reservationCreate(User author, Booking reservation) {
 		//TODO Check from database if room is available
-		//     If true -> make reservation and return the result from mySQL
+		//     If true -> make reservation and return the result from mySQL (true or false)
 		//     Else    -> return false
 		return false;
+	}
+	
+	public static List<Booking> getReservationsByUser(User user){
+		//TODO Implement database to access user's bookings
+		return null;
+	}
+	
+	public static List<Booking> getReservationsByHotel(String hotelId){
+		//TODO Implement database to access hotel's bookings
+		return null;
+	}
+	
+	public static Booking getReservationById(String bookingID) {
+		//TODO Implement the unique get from the database
+		return null;
 	}
 }

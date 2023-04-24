@@ -3,11 +3,12 @@ package remote;
 import java.net.URISyntaxException;
 import java.net.http.HttpResponse;
 import java.util.Base64;
+import java.util.HashMap;
 import java.util.concurrent.ExecutionException;
 
 import org.json.JSONObject;
 
-import domain.Guest;
+import domain.Booking;
 import domain.User;
 
 public class ClientController {
@@ -72,5 +73,18 @@ public class ClientController {
 			e.printStackTrace();
 			return null;
 		}
+	}
+	public static Response createReservation(Booking b) {
+		HashMap<String, String> headers = new HashMap<>();
+		headers.put("token", token);
+		HttpResponse<String> response;
+		try {
+			response = handler.sendRequest("booking/create", headers, APIUtils.objectToJSON(b));
+			return new Response(response.statusCode(), response.body());
+		} catch (URISyntaxException | InterruptedException | ExecutionException e) {
+			e.printStackTrace();
+			return null;
+		}
+		
 	}
 }
