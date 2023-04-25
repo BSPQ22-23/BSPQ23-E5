@@ -4,8 +4,20 @@ import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
+import org.json.JSONObject;
+
+import api.APIUtils;
+
 @PersistenceCapable(detachable="true")
 public class User {
+	
+	public static User fromJSON(JSONObject obj) {
+		return new User(
+				APIUtils.decode(obj.getString("nick")),
+				PasswordEncryption.encryptPassword(APIUtils.decode(obj.getString("password"))),
+				Guest.fromJSON(obj.getJSONObject("legalInfo"))
+			);
+	}
 	@PrimaryKey
 	@Persistent
 	private String nick;

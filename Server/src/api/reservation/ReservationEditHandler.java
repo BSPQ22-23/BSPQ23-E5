@@ -2,6 +2,7 @@ package api.reservation;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.List;
 
 import org.json.JSONObject;
 
@@ -9,8 +10,10 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
 import api.APIUtils;
+import domain.Booking;
 import domain.User;
 import main.Server;
+import main.ServerAppService;
 
 public class ReservationEditHandler implements HttpHandler{
 
@@ -34,17 +37,25 @@ public class ReservationEditHandler implements HttpHandler{
 	 		os.close();
 	 		return;
     	}
-		JSONObject obj = new JSONObject(APIUtils.readBody(exchange));
 		switch (exchange.getRequestMethod()) {
 		case "DELETE":
-			
+			int id = Integer.parseInt(exchange.getRequestHeaders().getOrDefault("id", List.of("-1")).get(0));
+			if(id < 0) {
+				String response = "Invalid / Missing id";
+	    		exchange.sendResponseHeaders(400, response.length());
+	    		OutputStream os = exchange.getResponseBody();
+	    		os.write(response.getBytes());
+	    		os.close();
+				return;
+			}
+			ServerAppService.deleteReservation(author, id);
 			return;
 		case "POST":
-			
+			ServerAppService.editReservation(author, Booking.fromJSON(new JSONObject(APIUtils.readBody(exchange))));
 			return;
 		default:
-			String response = "Method "+exchange.getRequestMethod()+" not supported for this function";
-    		exchange.sendResponseHeaders(400, response.length());
+			String response = "Method "+exchange.getRequestMethod()+" not found for this function";
+    		exchange.sendResponseHeaders(404, response.length());
     		OutputStream os = exchange.getResponseBody();
     		os.write(response.getBytes());
     		os.close();

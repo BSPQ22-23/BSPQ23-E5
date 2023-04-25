@@ -27,11 +27,11 @@ public class ServiceLocator {
 		url.openConnection().connect();
 		destination = url.toString();
 	}
-	public HttpResponse<String> sendRequest(String method) throws URISyntaxException, InterruptedException, ExecutionException {
-		return sendRequest(method, Map.of());
+	public HttpResponse<String> sendGET(String method) throws URISyntaxException, InterruptedException, ExecutionException {
+		return sendGET(method, Map.of());
 		
 	}
-	public HttpResponse<String> sendRequest(String method, Map<String, String> headers) throws URISyntaxException, InterruptedException, ExecutionException {
+	public HttpResponse<String> sendGET(String method, Map<String, String> headers) throws URISyntaxException, InterruptedException, ExecutionException {
 		HttpRequest.Builder request = HttpRequest.newBuilder()
 				 .uri(new URI(destination + method));
 		for(Entry<String, String> e : headers.entrySet())
@@ -39,7 +39,7 @@ public class ServiceLocator {
 		HttpResponse<String> response = client.sendAsync(request.GET().build(), BodyHandlers.ofString()).get();
 		return response;
 	}
-	public HttpResponse<String> sendRequest(String method, Map<String, String> headers, JSONObject body) throws URISyntaxException, InterruptedException, ExecutionException {
+	public HttpResponse<String> sendPOST(String method, Map<String, String> headers, JSONObject body) throws URISyntaxException, InterruptedException, ExecutionException {
 		HttpRequest.Builder request = HttpRequest.newBuilder()
 				 .uri(new URI(destination + method))
 				 .setHeader("Content-Type", "application/json");
@@ -49,12 +49,20 @@ public class ServiceLocator {
 		HttpResponse<String> response = client.sendAsync(request.POST(bodyP).build(), BodyHandlers.ofString()).get();
 		return response;
 	}
-	public HttpResponse<String> sendRequest(String method, JSONObject body) throws URISyntaxException, InterruptedException, ExecutionException {
+	public HttpResponse<String> sendPOST(String method, JSONObject body) throws URISyntaxException, InterruptedException, ExecutionException {
 		HttpRequest.Builder request = HttpRequest.newBuilder()
 				 .uri(new URI(destination + method))
 				 .setHeader("Content-Type", "application/json");
 		BodyPublisher bodyP = BodyPublishers.ofString(body.toString());
 		HttpResponse<String> response = client.sendAsync(request.POST(bodyP).build(), BodyHandlers.ofString()).get();
+		return response;
+	}
+	public HttpResponse<String> sendDELETE(String method, Map<String, String> headers) throws URISyntaxException, InterruptedException, ExecutionException {
+		HttpRequest.Builder request = HttpRequest.newBuilder()
+				 .uri(new URI(destination + method));
+		for(Entry<String, String> e : headers.entrySet())
+			request.setHeader(e.getKey(), e.getValue());
+		HttpResponse<String> response = client.sendAsync(request.DELETE().build(), BodyHandlers.ofString()).get();
 		return response;
 	}
 }

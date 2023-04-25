@@ -3,11 +3,24 @@ package domain;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
-import javax.jdo.annotations.Unique;
+import org.json.JSONObject;
+
+import api.APIUtils;
 
 @PersistenceCapable(detachable="true")
 public class Guest {
-
+	
+	public static Guest fromJSON(JSONObject obj) {
+		return new Guest(
+				APIUtils.decode(obj.getString("name")),
+				APIUtils.decode(obj.getString("surname")),
+				APIUtils.decode(obj.getString("dni")),
+				obj.getInt("age"),
+				APIUtils.decode(obj.getString("cityOfProvenance")),
+				obj.getBoolean("isHotelOwner")
+			);
+	}
+	
 	@PrimaryKey
 	@Persistent
     private String dni;

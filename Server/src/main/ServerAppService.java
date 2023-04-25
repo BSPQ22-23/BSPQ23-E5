@@ -65,7 +65,7 @@ public class ServerAppService {
 		//TODO Implement the unique get from the database
 		return null;
 	}
-	public static boolean deleteReservation(User u, Booking b) {
+	public static boolean deleteReservation(User u, int bookingId) {
 		
 		return false;
 	}

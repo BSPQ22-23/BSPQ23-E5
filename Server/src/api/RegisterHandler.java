@@ -9,8 +9,6 @@ import org.json.JSONObject;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
-import domain.Guest;
-import domain.PasswordEncryption;
 import domain.User;
 import main.ServerAppService;
 
@@ -23,20 +21,7 @@ public class RegisterHandler implements HttpHandler{
     	System.out.println(obj);
     	try {
     		String token = Base64.getEncoder().encodeToString(
-    			ServerAppService.register(
-    				new User(
-						APIUtils.decode(obj.getString("nick")),
-						PasswordEncryption.encryptPassword(APIUtils.decode(obj.getString("password"))),
-						new Guest(
-							APIUtils.decode(obj.getJSONObject("legalInfo").getString("name")),
-							APIUtils.decode(obj.getJSONObject("legalInfo").getString("surname")),
-							APIUtils.decode(obj.getJSONObject("legalInfo").getString("dni")),
-							obj.getJSONObject("legalInfo").getInt("age"),
-							APIUtils.decode(obj.getJSONObject("legalInfo").getString("cityOfProvenance")),
-							obj.getJSONObject("legalInfo").getBoolean("isHotelOwner")
-						)
-					)
-    			).getBytes());
+    			ServerAppService.register(User.fromJSON(obj)).getBytes());
     		if(token != null) {
     			t.sendResponseHeaders(200, token.length());
     			OutputStream os = t.getResponseBody();

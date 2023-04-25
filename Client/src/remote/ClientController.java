@@ -45,7 +45,7 @@ public class ClientController {
 	
 	public static Response register(User g) throws InterruptedException, ExecutionException{
 		try {
-			HttpResponse<String> response = handler.sendRequest("register", APIUtils.objectToJSON(g));
+			HttpResponse<String> response = handler.sendPOST("register", APIUtils.objectToJSON(g));
 			if(response.statusCode() != 200)
 				return new Response(response.statusCode(), response.body());
 			else {
@@ -62,7 +62,7 @@ public class ClientController {
 			JSONObject body = new JSONObject();
 			body.put("user", Base64.getEncoder().encodeToString(user.getBytes()).toString());
 			body.put("password", Base64.getEncoder().encodeToString(password.getBytes()).toString());
-			HttpResponse<String> response = handler.sendRequest("login", body);
+			HttpResponse<String> response = handler.sendPOST("login", body);
 			if(response.statusCode() != 200)
 				return new Response(response.statusCode(), response.body());
 			else {
@@ -79,12 +79,37 @@ public class ClientController {
 		headers.put("token", token);
 		HttpResponse<String> response;
 		try {
-			response = handler.sendRequest("booking/create", headers, APIUtils.objectToJSON(b));
+			response = handler.sendPOST("booking/create", headers, APIUtils.objectToJSON(b));
 			return new Response(response.statusCode(), response.body());
 		} catch (URISyntaxException | InterruptedException | ExecutionException e) {
 			e.printStackTrace();
 			return null;
-		}
-		
+		}	
+	}
+	
+	public static Response editReservation(Booking b) {
+		HashMap<String, String> headers = new HashMap<>();
+		headers.put("token", token);
+		HttpResponse<String> response;
+		try {
+			response = handler.sendPOST("booking/edit", headers, APIUtils.objectToJSON(b));
+			return new Response(response.statusCode(), response.body());
+		} catch (URISyntaxException | InterruptedException | ExecutionException e) {
+			e.printStackTrace();
+			return null;
+		}	
+	}
+	public static Response deleteReservation(Booking b) {
+		HashMap<String, String> headers = new HashMap<>();
+		headers.put("token", token);
+		headers.put("id", Integer.toString(b.getId()));
+		HttpResponse<String> response;
+		try {
+			response = handler.sendDELETE("booking/edit", headers);
+			return new Response(response.statusCode(), response.body());
+		} catch (URISyntaxException | InterruptedException | ExecutionException e) {
+			e.printStackTrace();
+			return null;
+		}	
 	}
 }
