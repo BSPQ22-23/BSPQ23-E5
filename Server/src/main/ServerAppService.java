@@ -65,4 +65,12 @@ public class ServerAppService {
 		//TODO Implement the unique get from the database
 		return null;
 	}
+	public static boolean deleteReservation(User u, Booking b) {
+		
+		return false;
+	}
+	public static boolean editReservation(User u, Booking b) {
+		
+		return false;
+	}
 }

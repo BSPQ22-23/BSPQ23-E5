@@ -1,4 +1,4 @@
-package api;
+package api.reservation;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -8,6 +8,7 @@ import org.json.JSONException;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
+import api.APIUtils;
 import domain.Booking;
 import domain.User;
 import main.Server;

@@ -84,6 +84,7 @@ public class APIUtils {
 		}
 		return output;
 	}
+
 	public static String decode(String value) {
 		return new String(Base64.getDecoder().decode(value), StandardCharsets.UTF_8);
 	}

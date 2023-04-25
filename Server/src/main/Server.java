@@ -11,6 +11,7 @@ import java.util.Map.Entry;
 import com.sun.net.httpserver.HttpServer;
 
 import api.*;
+import api.reservation.*;
 import database.UserDAO;
 import domain.User;
 
@@ -23,6 +24,8 @@ public class Server {
 	        server.createContext("/register", new RegisterHandler());
 	        server.createContext("/login", new LoginHandler());
 	        server.createContext("/booking/create", new ReservationCreationHandler());
+	        server.createContext("/booking/get", new ReservationGetterHandler());
+	        server.createContext("/booking/edit", new ReservationEditHandler());
 	        server.setExecutor(null); // creates a default executor
 	        server.start();
 		}catch(Exception e) {
