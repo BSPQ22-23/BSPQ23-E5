@@ -4,6 +4,7 @@ import java.util.List;
 
 import database.UserDAO;
 import domain.Booking;
+import domain.Hotel;
 import domain.User;
 
 public class ServerAppService {
@@ -72,5 +73,18 @@ public class ServerAppService {
 	public static boolean editReservation(User u, Booking b) {
 		
 		return false;
+	}
+	
+	public static boolean createHotel(Hotel h) {
+		
+		return false;
+	}
+	public static List<Hotel> getHotels() {
+		
+		return null;
+	}
+	public static List<Hotel> getHotels(String query) {
+		
+		return null;
 	}
 }

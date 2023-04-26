@@ -9,20 +9,25 @@ public class Room {
     private String type;
     private int numMaxGuests;
     private int spaceInMeters;
+    private Hotel hotel;//Mapped by Hotel#rooms
+    private float prize;
     
     public static Room fromJSON(JSONObject object) {
     	return new Room(
-    				object.getInt("roomNumber"), 
-    				APIUtils.decode(object.getString("type")),
-    				object.getInt("numMaxHosts"),
-    				object.getInt("spaceInMeters")
-    			);
+			object.getInt("roomNumber"), 
+			APIUtils.decode(object.getString("type")),
+			object.getInt("numMaxHosts"),
+			object.getInt("spaceInMeters"),
+			object.getFloat("prize"),
+			object.keySet().contains("hotel")?Hotel.fromJSON(object.getJSONObject("hotel")):null
+		);
     }
-    public Room(int roomNumber, String type, int numMaxHosts, int spaceInMeters) {
+    public Room(int roomNumber, String type, int numMaxHosts, int spaceInMeters, float prize, Hotel hotel) {
         this.roomNumber = roomNumber;
         this.type = type;
         this.numMaxGuests = numMaxHosts;
         this.spaceInMeters = spaceInMeters;
+        this.hotel = hotel;
     }
 
     public int getRoomNumber() {
@@ -45,10 +50,18 @@ public class Room {
         return type;
     }
 
-    public void setTupe(String type) {
+    public Hotel getHotel() {
+		return hotel;
+	}
+	public void setType(String type) {
         this.type = type;
     }
-
+    public float getPrize() {
+    	return prize;
+    }
+    public void setPrize(float prize) {
+    	this.prize = prize;
+    }
     public int getNumMaxGuests() {
         return numMaxGuests;
     }

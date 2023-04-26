@@ -34,7 +34,11 @@ public class ClientController {
 		/**
 		 * The API doesn't have the method trying to reach or has been moved
 		 */
-		public static final int NOT_FOUND = 404;
+		public static final int METHOD_NOT_ALLOWED = 405;
+		/**
+		 * The server has an unexpected exception
+		 */
+		public static final int INTERNAL_SERVER_ERROR = 500;
 	}
 	public static void setServerHandler(ServiceLocator sv) {
 		handler = sv;

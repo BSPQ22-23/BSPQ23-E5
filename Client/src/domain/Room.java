@@ -5,12 +5,14 @@ public class Room {
     private String type;
     private int numMaxGuests;
     private int spaceInMeters;
+    private float prize;
 
-    public Room(int roomNumber, String type, int numMaxHosts, int spaceInMeters) {
+    public Room(int roomNumber, String type, int numMaxHosts, int spaceInMeters, float prize) {
         this.roomNumber = roomNumber;
         this.type = type;
         this.numMaxGuests = numMaxHosts;
         this.spaceInMeters = spaceInMeters;
+        this.prize = prize;
     }
 
     public int getRoomNumber() {
@@ -36,7 +38,12 @@ public class Room {
     public void setType(String type) {
         this.type = type;
     }
-
+    public float getPrize() {
+    	return prize;
+    }
+    public void setPrize(float prize) {
+    	this.prize = prize;
+    }
     public int getNumMaxGuests() {
         return numMaxGuests;
     }

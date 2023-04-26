@@ -8,14 +8,14 @@ public class Hotel {
     private String city;
     private List<Room> rooms;
     private List<Service> services;
-    private List<Guest> guests;
+    private List<Booking> bookings;
 
     public Hotel(String name, String city) {
         this.name = name;
         this.city = city;
         this.rooms = new ArrayList<>();
         this.services = new ArrayList<>();
-        this.guests = new ArrayList<>();
+        this.bookings = new ArrayList<>();
     }
 
     public String getName() {
@@ -65,21 +65,20 @@ public class Hotel {
     public void removeService(Service service) {
         services.remove(service);
     }
-
-    public List<Guest> getGuests() {
-        return guests;
+    public List<Booking> getBookings() {
+        return bookings;
     }
 
-    public void setGuests(List<Guest> guests) {
-        this.guests = guests;
+    public void setBookings(List<Booking> bookings) {
+        this.bookings = bookings;
     }
 
-    public void addGuest(Guest guest) {
-        guests.add(guest);
+    public void addBooking(Booking guest) {
+        bookings.add(guest);
     }
 
-    public void removeGuest(Guest guest) {
-        guests.remove(guest);
+    public void removeBooking(Booking guest) {
+        bookings.remove(guest);
     }
 }
 

@@ -3,19 +3,40 @@ package domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONObject;
+
+import api.APIUtils;
+
 public class Hotel {
     private String name;
     private String city;
+    private Guest owner;
     private List<Room> rooms;
     private List<Service> services;
-    private List<Guest> guests;
+    private List<Booking> bookings;
 
-    public Hotel(String name, String city) {
+    public static Hotel fromJSON(JSONObject obj) {
+    	Hotel result = new Hotel(
+    			APIUtils.decode(obj.getString("name")),
+    			APIUtils.decode(obj.getString("city")),
+    			obj.keySet().contains("owner")?Guest.fromJSON(obj.getJSONObject("owner")):null
+    		);
+    	if(obj.keySet().contains("rooms"))
+    		for(Object o : obj.getJSONArray("rooms"))    result.addRoom(Room.fromJSON((JSONObject)o));
+    	if(obj.keySet().contains("services"))
+    		for(Object o : obj.getJSONArray("services")) result.addService(Service.fromJSON((JSONObject)o));
+    	if(obj.keySet().contains("bookings"))
+    		for(Object o : obj.getJSONArray("bookings")) result.addBooking(Booking.fromJSON((JSONObject)o));
+    	return result;
+    }
+
+	public Hotel(String name, String city, Guest owner) {
         this.name = name;
         this.city = city;
+        this.owner = owner;
         this.rooms = new ArrayList<>();
         this.services = new ArrayList<>();
-        this.guests = new ArrayList<>();
+        this.bookings = new ArrayList<>();
     }
 
     public String getName() {
@@ -66,20 +87,28 @@ public class Hotel {
         services.remove(service);
     }
 
-    public List<Guest> getGuests() {
-        return guests;
+    public List<Booking> getBookings() {
+        return bookings;
     }
 
-    public void setGuests(List<Guest> guests) {
-        this.guests = guests;
+    public void setBookings(List<Booking> bookings) {
+        this.bookings = bookings;
     }
 
-    public void addGuest(Guest guest) {
-        guests.add(guest);
+    public void addBooking(Booking guest) {
+        bookings.add(guest);
     }
 
-    public void removeGuest(Guest guest) {
-        guests.remove(guest);
+    public void removeBooking(Booking guest) {
+        bookings.remove(guest);
     }
+    
+    public Guest getOwner() {
+		return owner;
+	}
+
+	public void setOwner(Guest owner) {
+		this.owner = owner;
+	}
 }
 

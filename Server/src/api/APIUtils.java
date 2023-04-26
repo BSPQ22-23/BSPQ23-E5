@@ -3,6 +3,7 @@ package api;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.lang.reflect.Field;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
@@ -84,7 +85,21 @@ public class APIUtils {
 		}
 		return output;
 	}
-
+	public static void respondACK(HttpExchange t) throws IOException {
+		rawResponse(200, t, "ACK");
+	}
+	public static void respondInternalError(HttpExchange t, String response) throws IOException {
+		rawResponse(500, t, response);
+	}
+	public static void rawResponse(int code, HttpExchange t, String response) throws IOException {
+		t.sendResponseHeaders(code, response.length());
+		OutputStream os = t.getResponseBody();
+		os.write(response.getBytes());
+		os.close();
+	}
+	public static void respondError(HttpExchange t, String response) throws IOException {
+		rawResponse(400, t, response);
+	}
 	public static String decode(String value) {
 		return new String(Base64.getDecoder().decode(value), StandardCharsets.UTF_8);
 	}
