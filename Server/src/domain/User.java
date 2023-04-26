@@ -9,6 +9,7 @@ import javax.jdo.annotations.Unique;
 import org.json.JSONObject;
 
 import api.APIUtils;
+import database.GuestDAO;
 
 @PersistenceCapable(detachable="true")
 public class User {
@@ -26,6 +27,7 @@ public class User {
 	private String nick;
 	private String password;
 	@Unique
+	private String dni;
 	@Transactional
 	private Guest legalInfo;
 	private boolean isHotelOwner;
@@ -42,10 +44,13 @@ public class User {
 		this.password = password;
 	}
 	public Guest getLegalInfo() {
+		if(legalInfo == null && dni != null)
+			return (legalInfo = GuestDAO.getInstance().find(dni));
 		return legalInfo;
 	}
 	public void setLegalInfo(Guest legalInfo) {
 		this.legalInfo = legalInfo;
+		this.dni = legalInfo.getDni();
 	}
 	public boolean isHotelOwner() {
 		return isHotelOwner;
@@ -61,6 +66,7 @@ public class User {
 	public User(String nick, String password, Guest legalInfo, boolean isHotelOwner) {
 		super();
 		this.nick = nick;
+		this.dni = legalInfo.getDni();
 		this.password = password;
 		this.legalInfo = legalInfo;
 		this.isHotelOwner = isHotelOwner;

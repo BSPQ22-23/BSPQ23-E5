@@ -23,6 +23,7 @@ public class UserDAO extends DataAccessObjectBase implements IDataAccessObject<U
 	private UserDAO() {}
 	@Override
 	public void save(User object) {
+		GuestDAO.getInstance().save(object.getLegalInfo());
 		saveObject(object);
 		
 	}

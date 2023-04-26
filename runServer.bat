@@ -1,3 +1,3 @@
 cd Server
-mvn compile datanucleus:enhance exec:java
+mvn compile exec:java
 pause
