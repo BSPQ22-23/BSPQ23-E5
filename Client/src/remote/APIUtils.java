@@ -74,7 +74,6 @@ public class APIUtils {
 		} catch (JSONException | IllegalArgumentException | IllegalAccessException e1) {
 			e1.printStackTrace();
 		}
-		System.out.println(output.toString());
 		return output;
 	}
 }

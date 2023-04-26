@@ -18,15 +18,15 @@ public class RegisterHandler implements HttpHandler{
     public void handle(HttpExchange t) throws IOException {
     	System.out.println("Registering user");
     	JSONObject obj = new JSONObject(APIUtils.readBody(t));
-    	System.out.println(obj);
     	try {
-    		String token = Base64.getEncoder().encodeToString(
-    			ServerAppService.register(User.fromJSON(obj)).getBytes());
+    		String token = ServerAppService.register(User.fromJSON(obj));
     		if(token != null) {
+    			token =Base64.getEncoder().encodeToString(token.getBytes());
     			t.sendResponseHeaders(200, token.length());
     			OutputStream os = t.getResponseBody();
    		 		os.write(token.getBytes());
    		 		os.close();
+   		 		return;
     		}else
     			throw new IllegalArgumentException("Unknown error occurred");
     	}catch(IllegalArgumentException | JSONException e) {
@@ -34,12 +34,8 @@ public class RegisterHandler implements HttpHandler{
     		t.sendResponseHeaders(400, response.length());
     		OutputStream os = t.getResponseBody();
     		os.write(response.getBytes());
-    		System.out.println('o');
     		os.close();
+    		return;
     	}
-    	t.sendResponseHeaders(400, 26);
-		OutputStream os = t.getResponseBody();
-		os.write("User or password incorrect".getBytes());
-		os.close();
     }
 }

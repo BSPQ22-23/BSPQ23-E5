@@ -39,7 +39,9 @@ public class ReservationEditHandler implements HttpHandler{
     	}
 		switch (exchange.getRequestMethod()) {
 		case "DELETE":
+			System.out.println("Deleting reservation");
 			int id = Integer.parseInt(exchange.getRequestHeaders().getOrDefault("id", List.of("-1")).get(0));
+			System.out.println(id);
 			if(id < 0) {
 				String response = "Invalid / Missing id";
 	    		exchange.sendResponseHeaders(400, response.length());
@@ -51,6 +53,8 @@ public class ReservationEditHandler implements HttpHandler{
 			ServerAppService.deleteReservation(author, id);
 			return;
 		case "POST":
+			System.out.println("Editing reservation");
+			System.out.println(APIUtils.readBody(exchange));
 			ServerAppService.editReservation(author, Booking.fromJSON(new JSONObject(APIUtils.readBody(exchange))));
 			return;
 		default:

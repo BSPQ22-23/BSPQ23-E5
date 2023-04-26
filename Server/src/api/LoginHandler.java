@@ -45,10 +45,10 @@ public class LoginHandler implements HttpHandler{
 		}
 		token = Base64.getEncoder().encodeToString(token.getBytes());
 		System.out.println("token= " +token);
-			t.sendResponseHeaders(200, token.length());
-			OutputStream os = t.getResponseBody();
-	 		os.write(token.getBytes());
-	 		os.close();
+		t.sendResponseHeaders(200, token.length());
+		OutputStream os = t.getResponseBody();
+ 		os.write(token.getBytes());
+ 		os.close();
     }
 
 }

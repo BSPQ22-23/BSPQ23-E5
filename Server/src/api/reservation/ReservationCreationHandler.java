@@ -26,6 +26,7 @@ public class ReservationCreationHandler implements HttpHandler{
 	public void handle(HttpExchange t) throws IOException {
 		System.out.println("Creating reservation");
     	JSONObject obj = new JSONObject(APIUtils.readBody(t));
+    	System.out.println(obj.toString());
     	String token = APIUtils.getStringHeader(t, "token", "");
     	if(token == "") {
     		String resp = "No token provided";
