@@ -16,8 +16,7 @@ public class Guest {
 				APIUtils.decode(obj.getString("surname")),
 				APIUtils.decode(obj.getString("dni")),
 				obj.getInt("age"),
-				APIUtils.decode(obj.getString("cityOfProvenance")),
-				obj.getBoolean("isHotelOwner")
+				APIUtils.decode(obj.getString("cityOfProvenance"))
 			);
 	}
 	
@@ -28,24 +27,14 @@ public class Guest {
     private String surname;
     private int age;
     private String cityOfProvenance;
-    private boolean isHotelOwner;
 
-    public Guest(String name, String surname, String dni, int age, String cityOfProvenance, boolean isHotelOwner) {
+    public Guest(String name, String surname, String dni, int age, String cityOfProvenance) {
         this.name = name;
         this.surname = surname;
         this.dni = dni;
         this.age = age;
         this.cityOfProvenance = cityOfProvenance;
-        this.isHotelOwner = isHotelOwner;
     }
-
-    public boolean isHotelOwner() {
-		return isHotelOwner;
-	}
-
-	public void setHotelOwner(boolean isHotelOwner) {
-		this.isHotelOwner = isHotelOwner;
-	}
 
 	public String getName() {
         return name;
@@ -90,7 +79,7 @@ public class Guest {
 	@Override
 	public String toString() {
 		return "Guest [name=" + name + ", surname=" + surname + ", dni="
-				+ dni + ", age=" + age + ", cityOfProvenance=" + cityOfProvenance + ", isHotelOwner=" + isHotelOwner
+				+ dni + ", age=" + age + ", cityOfProvenance=" + cityOfProvenance
 				+ "]";
 	}
 }

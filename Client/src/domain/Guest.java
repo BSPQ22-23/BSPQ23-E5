@@ -7,24 +7,14 @@ public class Guest {
     private String dni;
     private int age;
     private String cityOfProvenance;
-    private boolean isHotelOwner;
 
-    public Guest(String name, String surname, String dni, int age, String cityOfProvenance, boolean isHotelOwner) {
+    public Guest(String name, String surname, String dni, int age, String cityOfProvenance) {
         this.name = name;
         this.surname = surname;
         this.dni = dni;
         this.age = age;
         this.cityOfProvenance = cityOfProvenance;
-        this.isHotelOwner = isHotelOwner;
     }
-
-    public boolean isHotelOwner() {
-		return isHotelOwner;
-	}
-
-	public void setHotelOwner(boolean isHotelOwner) {
-		this.isHotelOwner = isHotelOwner;
-	}
 
 	public String getName() {
         return name;

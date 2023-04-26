@@ -15,15 +15,17 @@ public class User {
 		return new User(
 				APIUtils.decode(obj.getString("nick")),
 				PasswordEncryption.encryptPassword(APIUtils.decode(obj.getString("password"))),
-				Guest.fromJSON(obj.getJSONObject("legalInfo"))
+				Guest.fromJSON(obj.getJSONObject("legalInfo")),
+				obj.getBoolean("isHotelOwner")
 			);
 	}
 	@PrimaryKey
 	@Persistent
 	private String nick;
 	private String password;
-	@Persistent
+	@Persistent(defaultFetchGroup = "true")
 	private Guest legalInfo;
+	private boolean isHotelOwner;
 	public String getNick() {
 		return nick;
 	}
@@ -42,10 +44,19 @@ public class User {
 	public void setLegalInfo(Guest legalInfo) {
 		this.legalInfo = legalInfo;
 	}
-	public User(String nick, String password, Guest legalInfo) {
+	public boolean isHotelOwner() {
+		return isHotelOwner;
+	}
+
+	public void setHotelOwner(boolean isHotelOwner) {
+		this.isHotelOwner = isHotelOwner;
+	}
+
+	public User(String nick, String password, Guest legalInfo, boolean isHotelOwner) {
 		super();
 		this.nick = nick;
 		this.password = password;
 		this.legalInfo = legalInfo;
+		this.isHotelOwner = isHotelOwner;
 	}
 }
