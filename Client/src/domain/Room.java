@@ -33,7 +33,7 @@ public class Room {
         return type;
     }
 
-    public void setTupe(String type) {
+    public void setType(String type) {
         this.type = type;
     }
 
