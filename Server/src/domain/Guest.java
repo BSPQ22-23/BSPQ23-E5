@@ -75,6 +75,11 @@ public class Guest {
     public void setCityOfProvenance(String cityOfProvenance) {
         this.cityOfProvenance = cityOfProvenance;
     }
+    
+    public boolean equals(Object o) {
+    	System.out.println(o instanceof Guest && ((Guest)o).dni.equals(dni));
+    	return o instanceof Guest && ((Guest)o).dni.equals(dni);
+    }
 
 	@Override
 	public String toString() {

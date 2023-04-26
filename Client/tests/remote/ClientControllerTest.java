@@ -31,9 +31,9 @@ public class ClientControllerTest {
 					"This is a surname",  
 					"123456789J", 
 					10, 
-					"A city somewhere", 
-					false
-				)
+					"A city somewhere"
+				),
+				false
 			)
 		);
 		assertEquals(Response.BAD_REQUEST, r.status);

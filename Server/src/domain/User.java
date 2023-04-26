@@ -1,8 +1,11 @@
 package domain;
 
+import javax.jdo.annotations.ForeignKey;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
+import javax.jdo.annotations.Transactional;
+import javax.jdo.annotations.Unique;
 
 import org.json.JSONObject;
 
@@ -23,7 +26,8 @@ public class User {
 	@Persistent
 	private String nick;
 	private String password;
-	@Persistent(defaultFetchGroup = "true")
+	@Unique
+	@Transactional
 	private Guest legalInfo;
 	private boolean isHotelOwner;
 	public String getNick() {
@@ -50,6 +54,9 @@ public class User {
 
 	public void setHotelOwner(boolean isHotelOwner) {
 		this.isHotelOwner = isHotelOwner;
+	}
+	public boolean equals(Object o) {
+		return o instanceof User && ((User)o).nick.equals(nick);
 	}
 
 	public User(String nick, String password, Guest legalInfo, boolean isHotelOwner) {

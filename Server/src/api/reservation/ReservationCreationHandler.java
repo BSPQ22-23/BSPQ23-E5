@@ -48,7 +48,7 @@ public class ReservationCreationHandler implements HttpHandler{
     		List<Guest> guests= new ArrayList<>();
     		for (Object _o : obj.getJSONArray("guests")) {
     			JSONObject o = (JSONObject)_o;
-    			guests.add(new Guest(o.getString("name"), o.getString("surname"), o.getString("dni"), o.getInt("age"), o.getString("cityOfProvenance"), false));
+    			guests.add(new Guest(o.getString("name"), o.getString("surname"), o.getString("dni"), o.getInt("age"), o.getString("cityOfProvenance")));
     		}
     		Calendar c = Calendar.getInstance();
     		long checkinDate = obj.getLong("checkinDate");
