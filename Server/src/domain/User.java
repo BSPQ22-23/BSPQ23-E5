@@ -14,6 +14,11 @@ import database.GuestDAO;
 @PersistenceCapable(detachable="true")
 public class User {
 	
+	@Override
+	public String toString() {
+		return "User [nick=" + nick + ", password=" + password + ", dni=" + dni + ", legalInfo=" + legalInfo
+				+ ", isHotelOwner=" + isHotelOwner + "]";
+	}
 	public static User fromJSON(JSONObject obj) {
 		return new User(
 				APIUtils.decode(obj.getString("nick")),

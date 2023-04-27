@@ -1,13 +1,9 @@
 package database;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.jdo.Extent;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
-import javax.jdo.Transaction;
-
 import domain.Guest;
 
 /**
@@ -33,87 +29,25 @@ public class GuestDAO extends DataAccessObjectBase implements IDataAccessObject<
 		
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Guest> getAll() {				
 		PersistenceManager pm = pmf.getPersistenceManager();
-		Transaction tx = pm.currentTransaction();
-
-		List<Guest> articles = new ArrayList<>();
-		
-		try {
-			tx.begin();
-			
-			Extent<Guest> extent = pm.getExtent(Guest.class, true);
-
-			for (Guest category : extent) {
-				articles.add(category);
-			}
-
-			tx.commit();
-		} catch (Exception ex) {
-			System.out.println("  $ Error retrieving all the Guests: " + ex.getMessage());
-		} finally {
-			if (tx != null && tx.isActive()) {
-				tx.rollback();
-			}
-
-			pm.close();
-		}
-
-		return articles;
+		Query<Guest> q = pm.newQuery(Guest.class);
+		return (List<Guest>)q.execute(20);
 	}
 
 	@Override
 	public Guest find(String dni) {
 		PersistenceManager pm = pmf.getPersistenceManager();
-		Transaction tx = pm.currentTransaction();
-		
-		Guest result = null; 
-
-		try {
-			tx.begin();
-						
-			Query<?> query = pm.newQuery("SELECT FROM " + Guest.class.getName() + " WHERE dni == '" + dni.replace("'", "''")+"'");
-			query.setUnique(true);
-			result = (Guest) query.execute();
-			
-			tx.commit();
-		} catch (Exception ex) {
-			System.out.println("  $ Error querying a Guest: " + ex.getMessage());
-		} finally {
-			if (tx != null && tx.isActive()) {
-				tx.rollback();
-			}
-
-			pm.close();
-		}
-
-		return result;
+		Query<Guest> q = pm.newQuery(Guest.class, "dni == '" + dni.replace("'", "''")+"'");
+		q.setUnique(true);
+		return (Guest)q.execute(20);
 	}
+	@SuppressWarnings("unchecked")
 	public boolean exists(String dni) {
 		PersistenceManager pm = pmf.getPersistenceManager();
-		Transaction tx = pm.currentTransaction();
-		
-		long result = 0; 
-
-		try {
-			tx.begin();	
-			System.out.println("SELECT COUNT(this) FROM " + Guest.class.getName() + " WHERE dni == '" + dni.replace("'", "''")+"'");
-			Query<?> query = pm.newQuery("SELECT COUNT(this) FROM " + Guest.class.getName() + " WHERE dni == '" + dni.replace("'", "''")+"'");
-			query.setUnique(true);
-			result = (long)query.execute();
-			
-			tx.commit();
-		} catch (Exception ex) {
-			System.out.println("  $ Error querying a Guest: " + ex.getMessage());
-		} finally {
-			if (tx != null && tx.isActive()) {
-				tx.rollback();
-			}
-
-			pm.close();
-		}
-		System.out.println("result= " + result);
-		return result != 0;
+		Query<Guest> q = pm.newQuery(Guest.class, "dni == '" + dni.replace("'", "''")+"'");
+		return ((List<Guest>)q.execute(20)).size() != 0;
 	}
 }
