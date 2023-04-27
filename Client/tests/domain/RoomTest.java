@@ -15,7 +15,7 @@ public class RoomTest {
 
     @Before
     public void setUp() {
-        room = new Room(101, "double", 2, 20);
+        room = new Room(101, "double", 2, 20, 1);
     }
 
     @Test

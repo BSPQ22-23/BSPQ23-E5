@@ -39,7 +39,6 @@ public class HotelCreationHandler implements HttpHandler{
 	    	}
 	    	Hotel h = Hotel.fromJSON(new JSONObject(APIUtils.readBody(exchange)));
 	    	h.setOwner(author.getLegalInfo());
-	    	h.getBookings().clear();
 	    	if(ServerAppService.createHotel(h)) {
 	    		APIUtils.respondACK(exchange);
 	    	}else {

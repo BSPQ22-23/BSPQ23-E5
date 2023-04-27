@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.List;
+
 import org.json.JSONObject;
 
 import api.APIUtils;
@@ -11,16 +13,21 @@ public class Room {
     private int spaceInMeters;
     private Hotel hotel;//Mapped by Hotel#rooms
     private float prize;
+    private List<Booking> bookings;
     
     public static Room fromJSON(JSONObject object) {
-    	return new Room(
+    	Room res = new Room(
 			object.getInt("roomNumber"), 
 			APIUtils.decode(object.getString("type")),
 			object.getInt("numMaxHosts"),
 			object.getInt("spaceInMeters"),
 			object.getFloat("prize"),
-			object.keySet().contains("hotel")?Hotel.fromJSON(object.getJSONObject("hotel")):null
+			Hotel.fromJSON(object.getJSONObject("hotel"))
 		);
+    	if(object.keySet().contains("bookings"))
+    		for(Object o : object.getJSONArray("bookings"))
+    			res.addBooking(Booking.fromJSON((JSONObject)o));
+    	return res;
     }
     public Room(int roomNumber, String type, int numMaxHosts, int spaceInMeters, float prize, Hotel hotel) {
         this.roomNumber = roomNumber;
@@ -58,6 +65,15 @@ public class Room {
     }
     public float getPrize() {
     	return prize;
+    }
+    public void setBookings(List<Booking> bookings) {
+    	this.bookings = bookings;
+    }
+    public void addBooking(Booking booking) {
+    	this.bookings.add(booking);
+    }
+    public List<Booking> getBookings(){
+    	return bookings;
     }
     public void setPrize(float prize) {
     	this.prize = prize;

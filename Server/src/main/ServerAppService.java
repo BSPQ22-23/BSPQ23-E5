@@ -45,7 +45,7 @@ public class ServerAppService {
 	 * @param reservation Reservation to be made
 	 * @return
 	 */
-	public static boolean reservationCreate(User author, Booking reservation) {
+	public static boolean reservationCreate(Booking reservation) {
 		//TODO Check from database if room is available
 		//     If true -> make reservation and return the result from mySQL (true or false)
 		//     Else    -> return false

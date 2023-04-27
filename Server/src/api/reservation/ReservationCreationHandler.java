@@ -16,6 +16,7 @@ import com.sun.net.httpserver.HttpHandler;
 import api.APIUtils;
 import domain.Booking;
 import domain.Guest;
+import domain.Room;
 import domain.User;
 import main.Server;
 import main.ServerAppService;
@@ -61,7 +62,9 @@ public class ReservationCreationHandler implements HttpHandler{
 	    		c.set(Calendar.DAY_OF_YEAR, (int)(checkoutDate%365));
 	    		c.set(Calendar.YEAR, (int)(checkoutDate/365));
 	    		Date outDate = c.getTime();
-	    		if(ServerAppService.reservationCreate(author, new Booking(inDate, outDate, null, guests))) {
+	    		Booking b = Booking.fromJSON(obj);
+	    		b.setAuthor(author.getLegalInfo());
+	    		if(ServerAppService.reservationCreate(b)) {
 	    			APIUtils.respondACK(t);
 	    		}else {
 	    			APIUtils.respondError(t, "The reservation couldn't be done");

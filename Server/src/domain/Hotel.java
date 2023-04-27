@@ -13,7 +13,6 @@ public class Hotel {
     private Guest owner;
     private List<Room> rooms;
     private List<Service> services;
-    private List<Booking> bookings;
 
     public static Hotel fromJSON(JSONObject obj) {
     	Hotel result = new Hotel(
@@ -25,8 +24,6 @@ public class Hotel {
     		for(Object o : obj.getJSONArray("rooms"))    result.addRoom(Room.fromJSON((JSONObject)o));
     	if(obj.keySet().contains("services"))
     		for(Object o : obj.getJSONArray("services")) result.addService(Service.fromJSON((JSONObject)o));
-    	if(obj.keySet().contains("bookings"))
-    		for(Object o : obj.getJSONArray("bookings")) result.addBooking(Booking.fromJSON((JSONObject)o));
     	return result;
     }
 
@@ -36,7 +33,6 @@ public class Hotel {
         this.owner = owner;
         this.rooms = new ArrayList<>();
         this.services = new ArrayList<>();
-        this.bookings = new ArrayList<>();
     }
 
     public String getName() {
@@ -85,22 +81,6 @@ public class Hotel {
 
     public void removeService(Service service) {
         services.remove(service);
-    }
-
-    public List<Booking> getBookings() {
-        return bookings;
-    }
-
-    public void setBookings(List<Booking> bookings) {
-        this.bookings = bookings;
-    }
-
-    public void addBooking(Booking guest) {
-        bookings.add(guest);
-    }
-
-    public void removeBooking(Booking guest) {
-        bookings.remove(guest);
     }
     
     public Guest getOwner() {

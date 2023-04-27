@@ -26,20 +26,23 @@ public class Booking {
 		List<Guest> guests = new LinkedList<>();
 		for(Object o : object.getJSONArray("guests")) 
 			guests.add(Guest.fromJSON((JSONObject)o));
-		return new Booking(sd, ed, r, guests);
+		return new Booking(sd, ed, r, guests, object.keySet().contains("author")?Guest.fromJSON(object.getJSONObject("author")):null);
     }
 	
 	private int id;
     private Date checkinDate;
     private Date checkoutDate;
     private Room room;
-    private List<Guest> guests;
+    private Guest author;
+
+	private List<Guest> guests;
     
-    public Booking(Date checkinDate, Date checkoutDate, Room room, List<Guest> guests) {
+    public Booking(Date checkinDate, Date checkoutDate, Room room, List<Guest> guests, Guest author) {
         this.checkinDate = checkinDate;
         this.checkoutDate = checkoutDate;
         this.room = room;
         this.guests = guests;
+        this.author = author;
     }
 
 	public int getId() {
@@ -81,7 +84,15 @@ public class Booking {
     public void setGuests(List<Guest> guests) {
         this.guests = guests;
     }
-
+    
+    public void setAuthor(Guest author) {
+    	this.author = author;
+    }
+    
+    public Guest getAuthor() {
+		return author;
+	}
+    
     public void addGuest(Guest guest) {
         guests.add(guest);
     }

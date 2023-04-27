@@ -1,11 +1,15 @@
 package domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Room {
 	private int roomNumber;
     private String type;
     private int numMaxGuests;
     private int spaceInMeters;
     private float prize;
+    private List<Booking> bookings;
 
     public Room(int roomNumber, String type, int numMaxHosts, int spaceInMeters, float prize) {
         this.roomNumber = roomNumber;
@@ -13,6 +17,22 @@ public class Room {
         this.numMaxGuests = numMaxHosts;
         this.spaceInMeters = spaceInMeters;
         this.prize = prize;
+        this.bookings = new ArrayList<>();
+    }
+    public List<Booking> getBookings() {
+        return bookings;
+    }
+
+    public void setBookings(List<Booking> bookings) {
+        this.bookings = bookings;
+    }
+
+    public void addBooking(Booking guest) {
+        bookings.add(guest);
+    }
+
+    public void removeBooking(Booking guest) {
+        bookings.remove(guest);
     }
 
     public int getRoomNumber() {
