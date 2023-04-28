@@ -17,7 +17,6 @@ public class Hotel {
 
     public static Hotel fromJSON(JSONObject obj) {
     	Hotel result = new Hotel(
-    			obj.getInt("id"),
     			APIUtils.decode(obj.getString("name")),
     			APIUtils.decode(obj.getString("city")),
     			obj.keySet().contains("owner")?Guest.fromJSON(obj.getJSONObject("owner")):null
@@ -29,8 +28,7 @@ public class Hotel {
     	return result;
     }
 
-	public Hotel(int id, String name, String city, Guest owner) {
-		this.id = id;
+	public Hotel(String name, String city, Guest owner) {
         this.name = name;
         this.city = city;
         this.owner = owner;

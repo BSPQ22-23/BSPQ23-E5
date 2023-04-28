@@ -1,6 +1,5 @@
 package database;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.jdo.PersistenceManager;
@@ -107,7 +106,7 @@ public class HotelDAO  extends DataAccessObjectBase implements IDataAccessObject
 	@Override
 	public List<Hotel> findByName(String name) {
 	    PersistenceManager pm = pmf.getPersistenceManager();
-	    Query<Hotel> q = pm.newQuery(Hotel.class, "name == hotelName");
+	    Query<Hotel> q = pm.newQuery(Hotel.class, "name.contains(hotelName)");
 	    q.declareParameters("String hotelName");
 	    
 	    try {
