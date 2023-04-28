@@ -21,6 +21,20 @@ import org.json.JSONObject;
 import com.sun.net.httpserver.HttpExchange;
 
 public class APIUtils {
+	public static String readBody(HttpExchange t) throws IOException{
+		InputStreamReader isr = new InputStreamReader(t.getRequestBody(), "utf-8");
+        BufferedReader br = new BufferedReader(isr);
+
+        int b;
+        StringBuilder buf = new StringBuilder();
+        while ((b = br.read()) != -1) {
+            buf.append((char) b);
+        }
+
+        br.close();
+        isr.close();
+    	return buf.toString();
+	}
 	public static String getStringHeader(HttpExchange t, String name, String def) {
 		String v = t.getRequestHeaders().getOrDefault(name, List.of(def)).get(0);
 		if(v != def)
@@ -52,20 +66,6 @@ public class APIUtils {
 			}
 		return output;
 	}
-	public static String readBody(HttpExchange t) throws IOException{
-		InputStreamReader isr = new InputStreamReader(t.getRequestBody(), "utf-8");
-        BufferedReader br = new BufferedReader(isr);
-
-        int b;
-        StringBuilder buf = new StringBuilder();
-        while ((b = br.read()) != -1) {
-            buf.append((char) b);
-        }
-
-        br.close();
-        isr.close();
-    	return buf.toString();
-	}
 	public static JSONArray listToJSONArray(Collection<?> o) {
 		JSONArray array = new JSONArray();
 		for(Object obj : o)
@@ -87,7 +87,6 @@ public class APIUtils {
 		JSONObject output = new JSONObject();
 		try {
 			for(Field f : o.getClass().getDeclaredFields()){
-				System.out.println(f);
 				f.setAccessible(true);
 				if(Modifier.isTransient(f.getModifiers()) || Modifier.isStatic(f.getModifiers()))
 					continue;

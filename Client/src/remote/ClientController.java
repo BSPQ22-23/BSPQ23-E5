@@ -1,14 +1,15 @@
 package remote;
 
-import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.http.HttpResponse;
 import java.util.Base64;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import domain.Booking;
@@ -135,17 +136,52 @@ public class ClientController {
 		HttpResponse<String> response;
 		try {
 			response = handler.sendGET("booking/get", Map.of("token", token));
-			System.out.println(response.statusCode());
-			System.out.println(response.body());
-			return null;
+			JSONArray resp = new JSONArray(response.body());
+			List<Booking> output = new LinkedList<>();
+			resp.forEach(v -> output.add(Booking.fromJSON((JSONObject)v)));
+			return output;
 		} catch (URISyntaxException | InterruptedException | ExecutionException e) {
 			e.printStackTrace();
 			return null;
 		}
 	}
-	public static void main(String[] args) throws InterruptedException, ExecutionException, IOException {
-		ClientController.setServerHandler(new ServiceLocator("localhost", 8000));
-		login("OriginalNick", "ASecurePassword");
-		getReservations();
+	public static List<Booking> getReservations(Hotel h){
+		HttpResponse<String> response;
+		try {
+			response = handler.sendGET("booking/get", Map.of("token", token, "q", "hotel", "name", ""+h.getId()));
+			JSONArray resp = new JSONArray(response.body());
+			List<Booking> output = new LinkedList<>();
+			resp.forEach(v -> output.add(Booking.fromJSON((JSONObject)v)));
+			return output;
+		} catch (URISyntaxException | InterruptedException | ExecutionException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	public static List<Hotel> getHotels(){
+		HttpResponse<String> response;
+		try {
+			response = handler.sendGET("hotel/get", Map.of("token", token));
+			JSONArray resp = new JSONArray(response.body());
+			List<Hotel> output = new LinkedList<>();
+			resp.forEach(v -> output.add(Hotel.fromJSON((JSONObject)v)));
+			return output;
+		} catch (URISyntaxException | InterruptedException | ExecutionException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	public static List<Hotel> getHotels(String name){
+		HttpResponse<String> response;
+		try {
+			response = handler.sendGET("hotel/get", Map.of("token", token, "query", name));
+			JSONArray resp = new JSONArray(response.body());
+			List<Hotel> output = new LinkedList<>();
+			resp.forEach(v -> output.add(Hotel.fromJSON((JSONObject)v)));
+			return output;
+		} catch (URISyntaxException | InterruptedException | ExecutionException e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 }

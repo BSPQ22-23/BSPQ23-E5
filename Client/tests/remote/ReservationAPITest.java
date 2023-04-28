@@ -43,7 +43,7 @@ public class ReservationAPITest {
 			2, 
 			new Date(System.currentTimeMillis()), 
 			new Date(System.currentTimeMillis() + TimeUnit.DAYS.toMillis(1)), 
-			new Room(1, "Double", 2, 10, 15.5f, new Hotel("Name", "City")), 
+			new Room(1, "Double", 2, 10, 15.5f, new Hotel(1, "Name", "City")), 
 			List.of(
 				new Guest("Erik", "Torsten", "12314", 38, "Estocolmo"),
 				new Guest("Tayane", "Alves", "987654321", 27, "Salvador")

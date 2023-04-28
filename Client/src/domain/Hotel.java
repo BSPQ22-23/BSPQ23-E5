@@ -8,6 +8,7 @@ import org.json.JSONObject;
 import remote.APIUtils;
 
 public class Hotel {
+	private int id;
     private String name;
     private String city;
     private List<Room> rooms;
@@ -15,6 +16,7 @@ public class Hotel {
 
     public static Hotel fromJSON(JSONObject obj) {
     	Hotel result = new Hotel(
+    			obj.getInt("id"),
     			APIUtils.decode(obj.getString("name")),
     			APIUtils.decode(obj.getString("city"))
     		);
@@ -24,7 +26,8 @@ public class Hotel {
     		for(Object o : obj.getJSONArray("services")) result.addService(Service.fromJSON((JSONObject)o));
     	return result;
     }
-    public Hotel(String name, String city) {
+    public Hotel(int id, String name, String city) {
+    	this.id = id;
         this.name = name;
         this.city = city;
         this.rooms = new ArrayList<>();
@@ -32,7 +35,10 @@ public class Hotel {
         
     }
 
-    public String getName() {
+    public int getId() {
+		return id;
+	}
+	public String getName() {
         return name;
     }
 

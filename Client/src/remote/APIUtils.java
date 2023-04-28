@@ -19,20 +19,7 @@ import org.json.JSONObject;
 import com.sun.net.httpserver.HttpExchange;
 
 public class APIUtils {
-	public static String readBody(HttpExchange t) throws IOException{
-		InputStreamReader isr = new InputStreamReader(t.getRequestBody(), "utf-8");
-        BufferedReader br = new BufferedReader(isr);
-
-        int b;
-        StringBuilder buf = new StringBuilder();
-        while ((b = br.read()) != -1) {
-            buf.append((char) b);
-        }
-
-        br.close();
-        isr.close();
-    	return buf.toString();
-	}
+	
 	public static HashMap<String, String> objectToHeaders(Object o) {
 		HashMap<String, String> output = new HashMap<>();
 		for(Field f : o.getClass().getDeclaredFields())

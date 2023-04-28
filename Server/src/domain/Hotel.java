@@ -8,6 +8,7 @@ import org.json.JSONObject;
 import api.APIUtils;
 
 public class Hotel {
+	private int id;
     private String name;
     private String city;
     private Guest owner;
@@ -16,6 +17,7 @@ public class Hotel {
 
     public static Hotel fromJSON(JSONObject obj) {
     	Hotel result = new Hotel(
+    			obj.getInt("id"),
     			APIUtils.decode(obj.getString("name")),
     			APIUtils.decode(obj.getString("city")),
     			obj.keySet().contains("owner")?Guest.fromJSON(obj.getJSONObject("owner")):null
@@ -27,7 +29,8 @@ public class Hotel {
     	return result;
     }
 
-	public Hotel(String name, String city, Guest owner) {
+	public Hotel(int id, String name, String city, Guest owner) {
+		this.id = id;
         this.name = name;
         this.city = city;
         this.owner = owner;
@@ -35,7 +38,11 @@ public class Hotel {
         this.services = new ArrayList<>();
     }
 
-    public String getName() {
+    public int getId() {
+		return id;
+	}
+
+	public String getName() {
         return name;
     }
 
