@@ -2,6 +2,7 @@ package database;
 
 import java.util.List;
 
+
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 import domain.Guest;
@@ -49,5 +50,10 @@ public class GuestDAO extends DataAccessObjectBase implements IDataAccessObject<
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Query<Guest> q = pm.newQuery(Guest.class, "dni == '" + dni.replace("'", "''")+"'");
 		return ((List<Guest>)q.execute(20)).size() != 0;
+	}
+	@Override
+	public List<Guest> findByName(String param) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

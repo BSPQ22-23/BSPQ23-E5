@@ -2,6 +2,7 @@ package database;
 
 import java.util.List;
 
+
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
@@ -58,5 +59,10 @@ public class UserDAO extends DataAccessObjectBase implements IDataAccessObject<U
 		Query<User> q = pm.newQuery(User.class, "nick == '" + user.replace("'", "''")+"'");
 		q.setUnique(true);
 		return ((List<User>)q.execute(20)).size() != 0;
+	}
+	@Override
+	public List<User> findByName(String param) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
