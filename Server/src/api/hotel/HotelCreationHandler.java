@@ -45,6 +45,7 @@ public class HotelCreationHandler implements HttpHandler{
 	    		APIUtils.respondError(exchange, "Something went wrong");
 	    	}
 		} catch(Exception e) {
+			e.printStackTrace();
 			APIUtils.respondInternalError(exchange, e.getMessage());
 		}
 	}

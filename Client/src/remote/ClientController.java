@@ -125,7 +125,7 @@ public class ClientController {
 	public static Response createHotel(Hotel h) {
 		HttpResponse<String> response;
 		try {
-			response = handler.sendPOST("booking/edit", Map.of("token", token), APIUtils.objectToJSON(h));
+			response = handler.sendPOST("hotel/create", Map.of("token", token), APIUtils.objectToJSON(h));
 			return new Response(response.statusCode(), response.body());
 		} catch (URISyntaxException | InterruptedException | ExecutionException e) {
 			e.printStackTrace();

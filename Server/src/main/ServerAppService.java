@@ -80,7 +80,7 @@ public class ServerAppService {
 		if(h.getName().equals("") || h.getCity().equals("") || h.getRooms().size() == 0)
 			return false;
 		else
-			HotelDAO.getInstance().save(h);
+			HotelDAO.getInstance().addHotel(h);
 		return true;
 	}
 	public static List<Hotel> getHotels() {
