@@ -37,7 +37,7 @@ public class APIUtils {
 	}
 	public static String getStringHeader(HttpExchange t, String name, String def) {
 		String v = t.getRequestHeaders().getOrDefault(name, List.of(def)).get(0);
-		if(v != def)
+		if(v != def && v.strip().length() > 0)
 			return new String(Base64.getDecoder().decode(v), StandardCharsets.UTF_8);
 		else
 			return v;

@@ -22,7 +22,7 @@ public class Room {
 			object.getInt("numMaxHosts"),
 			object.getInt("spaceInMeters"),
 			object.getFloat("prize"),
-			Hotel.fromJSON(object.getJSONObject("hotel"))
+			object.keySet().contains("hotel")?Hotel.fromJSON(object.getJSONObject("hotel")):null
 		);
     	if(object.keySet().contains("bookings"))
     		for(Object o : object.getJSONArray("bookings"))
@@ -59,6 +59,9 @@ public class Room {
 
     public Hotel getHotel() {
 		return hotel;
+	}
+    public void setHotel(Hotel hotel) {
+		this.hotel = hotel;
 	}
 	public void setType(String type) {
         this.type = type;

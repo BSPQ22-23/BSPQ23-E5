@@ -1,8 +1,5 @@
 package remote;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.nio.charset.StandardCharsets;
@@ -15,8 +12,6 @@ import java.util.HashMap;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import com.sun.net.httpserver.HttpExchange;
 
 public class APIUtils {
 	
@@ -37,7 +32,7 @@ public class APIUtils {
 					output.put(f.getName(), Long.toString(c.get(Calendar.DAY_OF_YEAR) + c.get(Calendar.YEAR) * 365));
 				}else if(o instanceof Collection)
 					output.put(f.getName(), listToJSONArray((Collection<?>)o).toString());
-				else
+				else if(f.get(o) != null)
 					output.put(f.getName(), objectToJSON(f.get(o)).toString());
 			} catch (IllegalArgumentException | IllegalAccessException e) {
 				// TODO Auto-generated catch block
@@ -82,7 +77,7 @@ public class APIUtils {
 					output.put(f.getName(), c.get(Calendar.DAY_OF_YEAR) + c.get(Calendar.YEAR) * 365);
 				}else if(f.getType().equals(String.class))
 					output.put(f.getName(), new String(Base64.getEncoder().encode(f.get(o).toString().getBytes()), StandardCharsets.UTF_8));
-				else
+				else if(f.get(o) != null)
 					output.put(f.getName(), objectToJSON(f.get(o)));
 			}
 		} catch (JSONException | IllegalArgumentException | IllegalAccessException e1) {
