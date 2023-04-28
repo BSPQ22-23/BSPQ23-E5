@@ -76,10 +76,8 @@ public class ServerAppService {
 		return false;
 	}
 	
-	public static boolean createHotel(User author, Hotel h) {
-		if(!author.isHotelOwner())
-			throw new IllegalArgumentException("You must be a hotel manager to use this API method");
-		else if(h.getName().equals("") || h.getCity().equals("") || h.getRooms().size() == 0)
+	public static boolean createHotel(Hotel h) {
+		if(h.getName().equals("") || h.getCity().equals("") || h.getRooms().size() == 0)
 			return false;
 		else
 			HotelDAO.getInstance().save(h);
