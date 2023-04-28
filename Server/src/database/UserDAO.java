@@ -57,8 +57,7 @@ public class UserDAO extends DataAccessObjectBase implements IDataAccessObject<U
 	public boolean exists(String user) {
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Query<User> q = pm.newQuery(User.class, "nick == '" + user.replace("'", "''")+"'");
-		q.setUnique(true);
-		return ((List<User>)q.execute(20)).size() != 0;
+		return ((List<User>)q.execute()).size() != 0;
 	}
 	@Override
 	public List<User> findByName(String param) {
