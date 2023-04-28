@@ -11,6 +11,7 @@ import org.junit.Test;
 
 import domain.Booking;
 import domain.Guest;
+import domain.Hotel;
 import domain.Room;
 import domain.User;
 import remote.ClientController.Response;
@@ -42,7 +43,7 @@ public class ReservationAPITest {
 			2, 
 			new Date(System.currentTimeMillis()), 
 			new Date(System.currentTimeMillis() + TimeUnit.DAYS.toMillis(1)), 
-			new Room(1, "Double", 2, 10, 15.5f), 
+			new Room(1, "Double", 2, 10, 15.5f, new Hotel("Name", "City")), 
 			List.of(
 				new Guest("Erik", "Torsten", "12314", 38, "Estocolmo"),
 				new Guest("Tayane", "Alves", "987654321", 27, "Salvador")

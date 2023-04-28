@@ -1,10 +1,13 @@
 package main;
 
+import java.util.Date;
 import java.util.List;
 
 import database.UserDAO;
 import domain.Booking;
+import domain.Guest;
 import domain.Hotel;
+import domain.Room;
 import domain.User;
 
 public class ServerAppService {

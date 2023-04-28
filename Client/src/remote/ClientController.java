@@ -1,14 +1,18 @@
 package remote;
 
+import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.http.HttpResponse;
 import java.util.Base64;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 import org.json.JSONObject;
 
 import domain.Booking;
+import domain.Hotel;
 import domain.User;
 
 public class ClientController {
@@ -115,5 +119,33 @@ public class ClientController {
 			e.printStackTrace();
 			return null;
 		}	
+	}
+	
+	public static Response createHotel(Hotel h) {
+		HttpResponse<String> response;
+		try {
+			response = handler.sendPOST("booking/edit", Map.of("token", token), APIUtils.objectToJSON(h));
+			return new Response(response.statusCode(), response.body());
+		} catch (URISyntaxException | InterruptedException | ExecutionException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	public static List<Booking> getReservations(){
+		HttpResponse<String> response;
+		try {
+			response = handler.sendGET("booking/get", Map.of("token", token));
+			System.out.println(response.statusCode());
+			System.out.println(response.body());
+			return null;
+		} catch (URISyntaxException | InterruptedException | ExecutionException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	public static void main(String[] args) throws InterruptedException, ExecutionException, IOException {
+		ClientController.setServerHandler(new ServiceLocator("localhost", 8000));
+		login("OriginalNick", "ASecurePassword");
+		getReservations();
 	}
 }

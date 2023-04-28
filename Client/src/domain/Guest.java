@@ -1,5 +1,9 @@
 package domain;
 
+import org.json.JSONObject;
+
+import remote.APIUtils;
+
 public class Guest {
 
 	private String name;
@@ -8,6 +12,16 @@ public class Guest {
     private int age;
     private String cityOfProvenance;
 
+    public static Guest fromJSON(JSONObject obj) {
+		return new Guest(
+				APIUtils.decode(obj.getString("name")),
+				APIUtils.decode(obj.getString("surname")),
+				APIUtils.decode(obj.getString("dni")),
+				obj.getInt("age"),
+				APIUtils.decode(obj.getString("cityOfProvenance"))
+			);
+	}
+    
     public Guest(String name, String surname, String dni, int age, String cityOfProvenance) {
         this.name = name;
         this.surname = surname;

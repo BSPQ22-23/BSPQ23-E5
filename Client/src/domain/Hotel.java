@@ -3,13 +3,27 @@ package domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONObject;
+
+import remote.APIUtils;
+
 public class Hotel {
     private String name;
     private String city;
     private List<Room> rooms;
     private List<Service> services;
 
-
+    public static Hotel fromJSON(JSONObject obj) {
+    	Hotel result = new Hotel(
+    			APIUtils.decode(obj.getString("name")),
+    			APIUtils.decode(obj.getString("city"))
+    		);
+    	if(obj.keySet().contains("rooms"))
+    		for(Object o : obj.getJSONArray("rooms"))    result.addRoom(Room.fromJSON((JSONObject)o));
+    	if(obj.keySet().contains("services"))
+    		for(Object o : obj.getJSONArray("services")) result.addService(Service.fromJSON((JSONObject)o));
+    	return result;
+    }
     public Hotel(String name, String city) {
         this.name = name;
         this.city = city;

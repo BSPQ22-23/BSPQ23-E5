@@ -38,11 +38,13 @@ public class ReservationGetterHandler implements HttpHandler{
 		 		return;
 	    	}
 	    	try {
-		    	String queryType = APIUtils.getStringHeader(exchange, "queryType", "user");
+		    	String queryType = APIUtils.getStringHeader(exchange, "q", "user");
 		    	String parameter = APIUtils.getStringHeader(exchange, "value", "");
+		    	System.out.println(queryType);
 		    	switch (queryType) {
 				case "user":
 					String body = APIUtils.listToJSONArray(ServerAppService.getReservationsByUser(author)).toString();
+					System.out.println('b' + body);
 					exchange.sendResponseHeaders(200, body.length());
 		    		OutputStream os = exchange.getResponseBody();
 			 		os.write(body.getBytes());

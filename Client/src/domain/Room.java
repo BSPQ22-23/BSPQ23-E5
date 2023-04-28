@@ -3,6 +3,10 @@ package domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONObject;
+
+import remote.APIUtils;
+
 public class Room {
 	private int roomNumber;
     private String type;
@@ -10,14 +14,31 @@ public class Room {
     private int spaceInMeters;
     private float prize;
     private List<Booking> bookings;
+    private Hotel hotel;
 
-    public Room(int roomNumber, String type, int numMaxHosts, int spaceInMeters, float prize) {
+    public static Room fromJSON(JSONObject object) {
+    	Room res = new Room(
+			object.getInt("roomNumber"), 
+			APIUtils.decode(object.getString("type")),
+			object.getInt("numMaxHosts"),
+			object.getInt("spaceInMeters"),
+			object.getFloat("prize"),
+			Hotel.fromJSON(object.getJSONObject("hotel"))
+		);
+    	if(object.keySet().contains("bookings"))
+    		for(Object o : object.getJSONArray("bookings"))
+    			res.addBooking(Booking.fromJSON((JSONObject)o));
+    	return res;
+    }
+    
+    public Room(int roomNumber, String type, int numMaxHosts, int spaceInMeters, float prize, Hotel hotel) {
         this.roomNumber = roomNumber;
         this.type = type;
         this.numMaxGuests = numMaxHosts;
         this.spaceInMeters = spaceInMeters;
         this.prize = prize;
         this.bookings = new ArrayList<>();
+        this.hotel = hotel;
     }
     public List<Booking> getBookings() {
         return bookings;
@@ -71,5 +92,13 @@ public class Room {
     public void setNumMaxGuests(int numMaxHosts) {
         this.numMaxGuests = numMaxHosts;
     }
+
+	public Hotel getHotel() {
+		return hotel;
+	}
+
+	public void setHotel(Hotel hotel) {
+		this.hotel = hotel;
+	}
 
 }

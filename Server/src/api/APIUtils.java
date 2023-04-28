@@ -5,9 +5,12 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
+import java.util.Calendar;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -19,20 +22,30 @@ import com.sun.net.httpserver.HttpExchange;
 
 public class APIUtils {
 	public static String getStringHeader(HttpExchange t, String name, String def) {
-		return new String(Base64.getDecoder().decode(t.getRequestHeaders().getOrDefault(name, List.of(def)).get(0)), StandardCharsets.UTF_8);
+		String v = t.getRequestHeaders().getOrDefault(name, List.of(def)).get(0);
+		if(v != def)
+			return new String(Base64.getDecoder().decode(v), StandardCharsets.UTF_8);
+		else
+			return v;
 	}
 	public static HashMap<String, String> objectToHeaders(Object o) {
 		HashMap<String, String> output = new HashMap<>();
 		for(Field f : o.getClass().getDeclaredFields())
 			try {
 				f.setAccessible(true);
+				if(Modifier.isTransient(f.getModifiers()) || Modifier.isStatic(f.getModifiers()))
+					continue;
 				if(f.getType().isPrimitive())
 					output.put(f.getName(), f.get(o).toString());
 				else if(f.getType().equals(String.class))
 					output.put(f.getName(), new String(Base64.getEncoder().encode(f.get(o).toString().getBytes()), StandardCharsets.UTF_8));
-				else if(o instanceof Collection<?>)
+				else if(f.getType().equals(Date.class)) {
+					Calendar c = Calendar.getInstance();
+					c.setTime((Date)f.get(o));
+					output.put(f.getName(), Long.toString(c.get(Calendar.DAY_OF_YEAR) + c.get(Calendar.YEAR) * 365));
+				}else if(f.get(o) instanceof Collection)
 					output.put(f.getName(), listToJSONArray((Collection<?>)o).toString());
-				else
+				else if(f.get(o) != null)
 					output.put(f.getName(), objectToJSON(f.get(o)).toString());
 			} catch (IllegalArgumentException | IllegalAccessException e) {
 				e.printStackTrace();
@@ -55,12 +68,16 @@ public class APIUtils {
 	}
 	public static JSONArray listToJSONArray(Collection<?> o) {
 		JSONArray array = new JSONArray();
-		for(Object obj : (Collection<?>)o)
-			if(obj instanceof Collection<?>)
+		for(Object obj : o)
+			if(obj instanceof Collection)
 				listToJSONArray((Collection<?>)obj);
 			else if(obj.getClass().equals(String.class))
 				array.put(new String(Base64.getEncoder().encode(obj.toString().getBytes()), StandardCharsets.UTF_8));
-			else if(obj.getClass().isPrimitive())
+			else if(obj instanceof Date) {
+				Calendar c = Calendar.getInstance();
+				c.setTime((Date)obj);
+				array.put(Long.toString(c.get(Calendar.DAY_OF_YEAR) + c.get(Calendar.YEAR) * 365));
+			}else if(obj.getClass().isPrimitive())
 				array.put(obj);
 			else
 				array.put(objectToJSON(obj));
@@ -70,14 +87,21 @@ public class APIUtils {
 		JSONObject output = new JSONObject();
 		try {
 			for(Field f : o.getClass().getDeclaredFields()){
+				System.out.println(f);
 				f.setAccessible(true);
-				 if(f.getType().equals(Collection.class))
+				if(Modifier.isTransient(f.getModifiers()) || Modifier.isStatic(f.getModifiers()))
+					continue;
+				 if(f.get(o) instanceof Collection)
 					output.put(f.getName(), listToJSONArray((Collection<?>)f.get(o)));
 				else if(f.getType().isPrimitive())
 					output.put(f.getName(), f.get(o));
-				else if(f.getType().equals(String.class))
+				else if(f.getType().equals(Date.class)) {
+					Calendar c = Calendar.getInstance();
+					c.setTime((Date)f.get(o));
+					output.put(f.getName(), Long.toString(c.get(Calendar.DAY_OF_YEAR) + c.get(Calendar.YEAR) * 365));
+				}else if(f.getType().equals(String.class))
 					output.put(f.getName(), new String(Base64.getEncoder().encode(f.get(o).toString().getBytes()), StandardCharsets.UTF_8));
-				else
+				else if(f.get(o) != null)
 					output.put(f.getName(), objectToJSON(f.get(o)));
 			}
 		} catch (JSONException | IllegalArgumentException | IllegalAccessException e1) {
