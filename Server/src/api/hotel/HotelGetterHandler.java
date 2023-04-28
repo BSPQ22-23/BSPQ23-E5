@@ -17,10 +17,13 @@ public class HotelGetterHandler implements HttpHandler{
 		String name = APIUtils.getStringHeader(exchange, "query", "");
     	try {
     		String body = null;
-    		if(name == "")
+    		if(name == "") {
+    			System.out.println("Get all hotels");
     			body = APIUtils.listToJSONArray(ServerAppService.getHotels()).toString();
-    		else
+    		}else {
+    			System.out.println("Get some hotels");
     			body = APIUtils.listToJSONArray(ServerAppService.getHotels(name)).toString();
+    		}
 			exchange.sendResponseHeaders(200, body.length());
     		OutputStream os = exchange.getResponseBody();
 	 		os.write(body.getBytes());

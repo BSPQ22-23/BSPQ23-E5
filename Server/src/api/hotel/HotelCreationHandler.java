@@ -18,6 +18,7 @@ public class HotelCreationHandler implements HttpHandler{
 
 	@Override
 	public void handle(HttpExchange exchange) throws IOException {
+		System.out.println("Create hotel");
 		try {
 			String token = APIUtils.getStringHeader(exchange, "token", "");
 			if(token == "") {
@@ -38,6 +39,7 @@ public class HotelCreationHandler implements HttpHandler{
 		 		return;
 	    	}
 	    	Hotel h = Hotel.fromJSON(new JSONObject(APIUtils.readBody(exchange)));
+	    	h.getRooms().forEach(v->v.setHotel(h));
 	    	h.setOwner(author.getLegalInfo());
 	    	if(ServerAppService.createHotel(h)) {
 	    		APIUtils.respondACK(exchange);
