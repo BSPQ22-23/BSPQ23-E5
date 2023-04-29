@@ -23,7 +23,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class MainMenu extends JFrame implements ActionListener {
+public class MainMenuClient extends JFrame implements ActionListener {
 	 	private JLabel welcome, label, info, warningL, infoSettings;
 	 	private JTextField search;
 	    private JButton hotelButton, searchButton, accountButton, contactButton, advSettingsButton, infoButton, searchHotelButton, hotel1Button, hotel2Button, hotel3Button, hotel4Button, hotel5Button, hotel6Button, deleteAccButton, logOutButton, changeDataButton;
@@ -32,7 +32,7 @@ public class MainMenu extends JFrame implements ActionListener {
 	    private JMenuItem mItem, mItem3, mItem4;
 	    private JPanel buttonPanel, welcomePanel, searchPanel, browserPanel, accountPanel, pCenter, settingsPanel;
 	    
-	    public MainMenu() {
+	    public MainMenuClient() {
 	        super("Menu");
 	        
 	        welcome = new JLabel("Welcome to the Hotel Management App");
@@ -206,7 +206,7 @@ public class MainMenu extends JFrame implements ActionListener {
 		}
 		
 		     public static void main(String[] args) {
-		         MainMenu menuW = new MainMenu();
+		         MainMenuClient menuW = new MainMenuClient();
 		     }
 
 }
