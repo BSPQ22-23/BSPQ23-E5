@@ -59,9 +59,5 @@ public class UserDAO extends DataAccessObjectBase implements IDataAccessObject<U
 		Query<User> q = pm.newQuery(User.class, "nick == '" + user.replace("'", "''")+"'");
 		return ((List<User>)q.execute()).size() != 0;
 	}
-	@Override
-	public List<User> findByName(String param) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 }

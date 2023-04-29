@@ -11,6 +11,6 @@ public interface IDataAccessObject<DomainObject> {
 	public void delete(DomainObject object);
 	public List<DomainObject> getAll();
 	public DomainObject find(String param);
-	public List<DomainObject> findByName(String param);
+	
 	
 }
