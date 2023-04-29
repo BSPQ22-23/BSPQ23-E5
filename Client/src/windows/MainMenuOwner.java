@@ -21,13 +21,13 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class MainMenuOwner extends JFrame implements ActionListener {
-	 	private JLabel welcome, label, info, warningL, infoSettings;
-	 	private JTextField search;
-	    private JButton hotelEditButton, addHotelButton, searchButton, accountButton, searchHotelButton, deleteAccButton, logOutButton, changeDataButton;
+	 	private JLabel welcome, label, info, warningL, infoSettings, hotelNameL, hotelChainL, hotelRoomsL, hotelCityL;
+	 	private JTextField search, hotelName, hotelChain, hotelRooms, hotelCity;
+	    private JButton hotelEditButton, addHotelButton, searchButton, accountButton, searchHotelButton, deleteAccButton, logOutButton, changeDataButton, submitHotelButton, clearHotelButton;
 	    private JMenuBar menuBar;
 	    private JMenu menu, menuH;
 	    private JMenuItem mItem, mItem3, mItem4;
-	    private JPanel buttonPanel, welcomePanel, searchPanel, browserPanel, accountPanel, pCenter, settingsPanel;
+	    private JPanel buttonPanel, welcomePanel, searchPanel, browserPanel, accountPanel, pCenter, addPanel;
 	    
 	    public MainMenuOwner() {
 	        super("Menu for Owner");
@@ -37,8 +37,16 @@ public class MainMenuOwner extends JFrame implements ActionListener {
 	        info = new JLabel("User info such as nickname, stats, recently reserved hotels, etc...");
 	        infoSettings = new JLabel("Welcome to settings. Yo may edit your account information.");
 	        warningL = new JLabel("Warning! Your account and your data will be deleted forever.");
+	        hotelNameL = new JLabel("Hotel Name: ");
+	        hotelChainL = new JLabel("Hotel Chain: ");
+	        hotelRoomsL = new JLabel("Room quantity: ");
+	        hotelCityL = new JLabel("Location: ");
 	        
 	        search = new JTextField(20);
+	        hotelName = new JTextField(15);
+	        hotelChain = new JTextField(15);
+	        hotelRooms = new JTextField(5);
+	        hotelCity = new JTextField(15);
 	        
 	        ImageIcon icon = new ImageIcon("../photos/pencil.png");
 	        ImageIcon icon2 = new ImageIcon("../photos/search.png");
@@ -54,6 +62,8 @@ public class MainMenuOwner extends JFrame implements ActionListener {
 	        changeDataButton = new JButton("Change account data");
 	        deleteAccButton = new JButton("Delete this account");
 	        logOutButton = new JButton("Log out");
+	        submitHotelButton = new JButton("Submit Hotel");
+	        clearHotelButton = new JButton("Clear Info");
 	        
 	        menuBar = new JMenuBar();
 	        menu = new JMenu("Account");
@@ -66,6 +76,8 @@ public class MainMenuOwner extends JFrame implements ActionListener {
 	        addHotelButton.addActionListener(this);
 	        searchButton.addActionListener(this);
 	        accountButton.addActionListener(this);
+	        submitHotelButton.addActionListener(this);
+	        clearHotelButton.addActionListener(this);
 	        
 	        pCenter = new JPanel();
 	        pCenter.setBackground(new Color(255, 228, 181));
@@ -97,32 +109,44 @@ public class MainMenuOwner extends JFrame implements ActionListener {
 	        searchPanel.add(search);
 	        searchPanel.add(searchHotelButton);
 	        
-	        accountPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-	        accountPanel.setBackground(new Color(135, 206, 250));
-	        accountPanel.add(info);
+	        GridLayout gridLayout4 = new GridLayout(0, 2);
+	        gridLayout4.setVgap(20);
+	        gridLayout4.setHgap(20);
+	        addPanel = new JPanel(gridLayout4);
+	        addPanel.setBackground(new Color(255, 228, 181));
+	        addPanel.add(hotelNameL);
+	        addPanel.add(hotelName);
+	        addPanel.add(hotelChainL);
+	        addPanel.add(hotelChain);
+	        addPanel.add(hotelRoomsL);
+	        addPanel.add(hotelRooms);
+	        addPanel.add(hotelCityL);
+	        addPanel.add(hotelCity);
+	        addPanel.add(submitHotelButton);
+	        addPanel.add(clearHotelButton);
 	        
 	        GridLayout gridLayout3 = new GridLayout(0, 1);
 	        gridLayout3.setVgap(15);
 	        gridLayout3.setHgap(10);
-	        settingsPanel = new JPanel(gridLayout3);
+	        accountPanel = new JPanel(gridLayout3);
 	        accountPanel.setBackground(new Color(135, 206, 250));
-	        settingsPanel.add(infoSettings);
-	        settingsPanel.add(changeDataButton);
-	        settingsPanel.add(logOutButton);
-	        settingsPanel.add(warningL);
-	        settingsPanel.add(deleteAccButton);
+	        accountPanel.add(infoSettings);
+	        accountPanel.add(changeDataButton);
+	        accountPanel.add(logOutButton);
+	        accountPanel.add(warningL);
+	        accountPanel.add(deleteAccButton);
 
 	        
 	        pCenter.add(buttonPanel);
-	        pCenter.add(accountPanel);
 	        pCenter.add(browserPanel);
-	        pCenter.add(settingsPanel);
+	        pCenter.add(accountPanel);
+	        pCenter.add(addPanel);
 	        
 	        getContentPane().setLayout(new BorderLayout());
 	        getContentPane().add(pCenter, BorderLayout.CENTER);
 		    accountPanel.setVisible(false);
 			browserPanel.setVisible(false);
-			settingsPanel.setVisible(false);
+			addPanel.setVisible(false);
 			getContentPane().add(searchPanel, BorderLayout.NORTH);
 		    searchPanel.setVisible(false);
 	        getContentPane().add(welcomePanel, BorderLayout.SOUTH);
@@ -166,15 +190,25 @@ public class MainMenuOwner extends JFrame implements ActionListener {
 			    accountPanel.setVisible(true);
 			    
 			 } else if (e.getSource() == addHotelButton) {
-				 //
+				buttonPanel.setVisible(false);
+				welcomePanel.setVisible(false);
+				addPanel.setVisible(true);
+				
+			 } else if (e.getSource() == submitHotelButton) {
+				 
+				 
+			 } else if (e.getSource() == clearHotelButton) {
+				 hotelName.setText("");
+				 hotelChain.setText("");
+				 hotelRooms.setText("");
+				 hotelCity.setText("");
 				
 		     } else if (e.getSource() == mItem3) {
-		    	 searchPanel.setVisible(false);
-				 browserPanel.setVisible(false);
-				 accountPanel.setVisible(false);
-				 settingsPanel.setVisible(false);
-		    	 welcomePanel.setVisible(true);
-		    	 buttonPanel.setVisible(true);
+		    	searchPanel.setVisible(false);
+		    	browserPanel.setVisible(false);
+				accountPanel.setVisible(false);
+		    	welcomePanel.setVisible(true);
+		    	buttonPanel.setVisible(true);
 		    	 
 		     } else if (e.getSource() == mItem4) {
 		    	 this.dispose();
