@@ -1,12 +1,21 @@
 package domain;
 
 import java.util.Calendar;
+
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.json.JSONObject;
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
 
+import org.json.JSONObject;
+import api.APIUtils;
+import javax.jdo.annotations.PersistenceCapable;
+
+
+@PersistenceCapable(detachable="true")
 public class Booking {
 	
 	public static Booking fromJSON(JSONObject object) {
@@ -29,6 +38,8 @@ public class Booking {
 		return new Booking(sd, ed, r, guests, object.keySet().contains("author")?Guest.fromJSON(object.getJSONObject("author")):null);
     }
 	
+	@PrimaryKey
+	@Persistent
 	private int id;
     private Date checkinDate;
     private Date checkoutDate;
