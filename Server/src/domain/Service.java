@@ -4,18 +4,27 @@ import org.json.JSONObject;
 
 import api.APIUtils;
 
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
+
+@PersistenceCapable(detachable = "true")
 public class Service {
+
+    @PrimaryKey
+    @Persistent
     private String name;
     private String description;
     private double price;
 
-    public static Service fromJSON(JSONObject o) {
-    	return new Service(
-    			APIUtils.decode(o.getString("name")), 
-    			APIUtils.decode(o.getString("description")),
-    			o.getDouble("price")
-    		);
+    public static Service fromJSON(JSONObject object) {
+        return new Service(
+                APIUtils.decode(object.getString("name")),
+                APIUtils.decode(object.getString("description")),
+                object.getDouble("price")
+        );
     }
+
     public Service(String name, String description, double price) {
         this.name = name;
         this.description = description;
@@ -45,5 +54,4 @@ public class Service {
     public void setPrice(double price) {
         this.price = price;
     }
-
 }
