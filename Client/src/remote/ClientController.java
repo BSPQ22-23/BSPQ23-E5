@@ -17,10 +17,12 @@ import domain.Hotel;
 import domain.User;
 
 public class ClientController {
-	public static class Response {
+	public static class Response extends RuntimeException {
+		private static final long serialVersionUID = 519375302527407530L;
 		public final String message;
 		public final int status;
 		public Response(int status, String message) {
+			super(message);
 			this.message = message;
 			this.status = status;
 		}
@@ -136,10 +138,13 @@ public class ClientController {
 		HttpResponse<String> response;
 		try {
 			response = handler.sendGET("booking/get", Map.of("token", token));
-			JSONArray resp = new JSONArray(response.body());
-			List<Booking> output = new LinkedList<>();
-			resp.forEach(v -> output.add(Booking.fromJSON((JSONObject)v)));
-			return output;
+			if(response.statusCode() == 200) {
+				JSONArray resp = new JSONArray(response.body());
+				List<Booking> output = new LinkedList<>();
+				resp.forEach(v -> output.add(Booking.fromJSON((JSONObject)v)));
+				return output;
+			}
+			throw new Response(response.statusCode(), response.body());
 		} catch (URISyntaxException | InterruptedException | ExecutionException e) {
 			e.printStackTrace();
 			return null;
@@ -148,11 +153,28 @@ public class ClientController {
 	public static List<Booking> getReservations(Hotel h){
 		HttpResponse<String> response;
 		try {
-			response = handler.sendGET("booking/get", Map.of("token", token, "q", "hotel", "name", ""+h.getId()));
-			JSONArray resp = new JSONArray(response.body());
-			List<Booking> output = new LinkedList<>();
-			resp.forEach(v -> output.add(Booking.fromJSON((JSONObject)v)));
-			return output;
+			response = handler.sendGET("booking/get", Map.of("token", token, "q", "hotel", "value", ""+h.getId()));
+			if(response.statusCode() == 200) {
+				JSONArray resp = new JSONArray(response.body());
+				List<Booking> output = new LinkedList<>();
+				resp.forEach(v -> output.add(Booking.fromJSON((JSONObject)v)));
+				return output;
+			}
+			throw new Response(response.statusCode(), response.body());
+		} catch (URISyntaxException | InterruptedException | ExecutionException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	public static Booking getReservation(int id) {
+		HttpResponse<String> response;
+		try {
+			response = handler.sendGET("booking/get", Map.of("token", token, "q", "single", "value", ""+id));
+			if(response.statusCode() == 200) {
+				JSONObject resp = new JSONObject(response.body());
+				return Booking.fromJSON(resp);
+			}
+			throw new Response(response.statusCode(), response.body());
 		} catch (URISyntaxException | InterruptedException | ExecutionException e) {
 			e.printStackTrace();
 			return null;
@@ -162,10 +184,13 @@ public class ClientController {
 		HttpResponse<String> response;
 		try {
 			response = handler.sendGET("hotel/get", Map.of("token", token));
-			JSONArray resp = new JSONArray(response.body());
-			List<Hotel> output = new LinkedList<>();
-			resp.forEach(v -> output.add(Hotel.fromJSON((JSONObject)v)));
-			return output;
+			if(response.statusCode() == 200) {
+				JSONArray resp = new JSONArray(response.body());
+				List<Hotel> output = new LinkedList<>();
+				resp.forEach(v -> output.add(Hotel.fromJSON((JSONObject)v)));
+				return output;
+			}
+			throw new Response(response.statusCode(), response.body());
 		} catch (URISyntaxException | InterruptedException | ExecutionException e) {
 			e.printStackTrace();
 			return null;
@@ -175,10 +200,13 @@ public class ClientController {
 		HttpResponse<String> response;
 		try {
 			response = handler.sendGET("hotel/get", Map.of("token", token, "query", name));
-			JSONArray resp = new JSONArray(response.body());
-			List<Hotel> output = new LinkedList<>();
-			resp.forEach(v -> output.add(Hotel.fromJSON((JSONObject)v)));
-			return output;
+			if(response.statusCode() == 200) {
+				JSONArray resp = new JSONArray(response.body());
+				List<Hotel> output = new LinkedList<>();
+				resp.forEach(v -> output.add(Hotel.fromJSON((JSONObject)v)));
+				return output;
+			}
+			throw new Response(response.statusCode(), response.body());
 		} catch (URISyntaxException | InterruptedException | ExecutionException e) {
 			e.printStackTrace();
 			return null;

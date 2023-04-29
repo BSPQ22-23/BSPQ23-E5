@@ -1,11 +1,16 @@
 package remote;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThrows;
+import static org.junit.Assert.assertTrue;
+
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -38,7 +43,7 @@ public class ReservationAPITest {
 			ClientController.login("OriginalNick", "ASecurePassword");
 	}
 	@Test
-	public void testReservation() {
+	public void testReservation() throws InterruptedException, ExecutionException {
 		Booking b = new Booking(
 			2, 
 			new Date(System.currentTimeMillis()), 
@@ -49,11 +54,51 @@ public class ReservationAPITest {
 				new Guest("Tayane", "Alves", "987654321", 27, "Salvador")
 			)
 		);
+		
+		//Create reservation + getReservations
 		ClientController.createReservation(b);
-		b.setCheckinDate(new Date(System.currentTimeMillis() + TimeUnit.DAYS.toMillis(1)));
-		System.out.println("Modify");
+		List<Booking> result = ClientController.getReservations();
+		assertEquals(1, result.size());
+		
+		//Modify reservation
+		
+		b = result.get(0);//Get the id assigned by the server
+		Date newDate = new Date(System.currentTimeMillis() + TimeUnit.DAYS.toMillis(1));
+		b.setCheckinDate(newDate);
 		ClientController.editReservation(b);
-		System.out.println("Delete");
+		assertEquals(newDate, ClientController.getReservation(b.getId()).getCheckinDate());
+		
+		//Unauthorized use of getReservationsByHotel
+		final Booking _b = b;
+		Response r =assertThrows(Response.class, () -> ClientController.getReservations(_b.getRoom().getHotel()));
+		assertEquals(r.status, Response.UNATHORIZED);
+		
+		//Delete of reservation
+		
 		ClientController.deleteReservation(b);
+		assertEquals(0, ClientController.getReservations().size());
+	}
+	@After
+	public void lastTest() throws InterruptedException, ExecutionException {
+		User hm = new User(
+			"hotelManager", 
+			"AnotherPassword", 
+			new Guest("Benjamin", "Dover", "305MWW", 29, "Miami, Florida"), 
+			true
+		);
+		if(ClientController.register(hm).status != Response.SUCCESS)
+			ClientController.login(hm.getNick(), hm.getPassword());
+		Hotel h = new Hotel(
+				0, 
+				"Hotel Lakua", 
+				"Vitoria"
+		
+		);
+		h.addRoom(new Room(100, "Single", 1, 1, 1, null));
+		ClientController.createHotel(h);
+		h = ClientController.getHotels("Hotel Lakua").get(0);
+		final Hotel _h = h;
+		//If it doesn't throw an exception it returns a list
+		assertTrue(ClientController.getReservations(_h) instanceof List);
 	}
 }
