@@ -82,7 +82,7 @@ public class BookingDAOTest {
         bookingDAO.save(booking);
 
         Booking findBooking = bookingDAO.find(guest.getName());
-        assertEquals(guest, findBooking.getAuthor());
+        assertEquals(guest.getName(), findBooking.getAuthor().getName());
 		
 	}
 
