@@ -13,7 +13,11 @@ import org.junit.Test;
 import database.HotelDAO;
 import domain.Guest;
 import domain.Hotel;
-
+/**
+ * JUnit Test DAO for Hotel class
+ * @author gorkademiguel
+ *
+ */
 public class HotelDAOTest {
     private HotelDAO hotelDAO;
     private Hotel hotel;

@@ -3,18 +3,26 @@ package domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
+
 import org.json.JSONObject;
 
 import api.APIUtils;
 
+@PersistenceCapable(detachable="true")
 public class Hotel {
+	
+	@PrimaryKey
+	@Persistent
 	private int id;
     private String name;
     private String city;
     private Guest owner;
     private List<Room> rooms;
     private List<Service> services;
-
+    
     public static Hotel fromJSON(JSONObject obj) {
     	Hotel result = new Hotel(
     			APIUtils.decode(obj.getString("name")),
@@ -26,6 +34,7 @@ public class Hotel {
     	if(obj.keySet().contains("services"))
     		for(Object o : obj.getJSONArray("services")) result.addService(Service.fromJSON((JSONObject)o));
     	return result;
+    	
     }
 
 	public Hotel(String name, String city, Guest owner) {
