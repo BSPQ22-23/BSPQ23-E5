@@ -1,7 +1,9 @@
 package main;
 
+import java.util.Date;
 import java.util.List;
 
+import database.BookingDAO;
 import database.HotelDAO;
 import database.UserDAO;
 import domain.Booking;
@@ -46,15 +48,16 @@ public class ServerAppService {
 	 * @param reservation Reservation to be made
 	 * @return
 	 */
+	@SuppressWarnings("deprecation")
 	public static boolean reservationCreate(Booking reservation) {
-		//TODO Check from database if room is available
-		//     If true -> make reservation and return the result from mySQL (true or false)
-		//     Else    -> return false
-		return false;
+		for(Date d = (Date)reservation.getCheckinDate().clone(); !d.after(reservation.getCheckoutDate()); d.setDate(d.getDate() + 1))
+			if(BookingDAO.getInstance().hasReservationInRoomOnDate(reservation.getRoom(), d))
+				return false;
+		BookingDAO.getInstance().save(reservation);
+		return true;
 	}
 	
 	public static List<Booking> getReservationsByUser(User user){
-		//TODO Implement database to access user's bookings
 		return null;
 	}
 	
@@ -64,15 +67,21 @@ public class ServerAppService {
 	}
 	
 	public static Booking getReservationById(String bookingID) {
-		//TODO Implement the unique get from the database
-		return null;
+		return BookingDAO.getInstance().find(bookingID);
 	}
 	public static boolean deleteReservation(User u, int bookingId) {
-		
-		return false;
+		Booking b = BookingDAO.getInstance().find(Integer.toString(bookingId));
+		if(!b.getAuthor().equals(u.getLegalInfo()))
+			return false;
+		BookingDAO.getInstance().delete(b);
+		return true;
 	}
 	public static boolean editReservation(User u, Booking b) {
-		
+		Booking toUpdate = BookingDAO.getInstance().find(Integer.toString(b.getId()));
+		toUpdate.setCheckinDate(b.getCheckinDate());
+		toUpdate.setCheckoutDate(b.getCheckoutDate());
+		toUpdate.setGuests(b.getGuests());
+		BookingDAO.getInstance().save(b);
 		return false;
 	}
 	

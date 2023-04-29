@@ -64,12 +64,19 @@ public class ReservationGetterHandler implements HttpHandler{
 			    		os = exchange.getResponseBody();
 			    		os.write(response.getBytes());
 			    		os.close();
-					} else {
+					} else if(res.getAuthor().equals(author.getLegalInfo()) || author.isHotelOwner() && res.getRoom().getHotel().getOwner().equals(author.getLegalInfo())){
 						body = APIUtils.objectToJSON(res).toString();
 						exchange.sendResponseHeaders(200, body.length());
 			    		os = exchange.getResponseBody();
 				 		os.write(body.getBytes());
 				 		os.close();
+					} else {
+						String resp = "Invalid token";
+			    		exchange.sendResponseHeaders(401, resp.length());
+			    		os = exchange.getResponseBody();
+				 		os.write(resp.getBytes());
+				 		os.close();
+				 		return;
 					}
 					return;
 				default:
