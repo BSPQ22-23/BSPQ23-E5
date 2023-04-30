@@ -6,7 +6,7 @@ The client can be compiled into a jar to later run it via Java while the server 
 
 To pack the client you can either run the `buildClient.bat` located in the root folder or type the  following command in the Client folder:
 
->mvn install
+>mvn install -DskipTests
 
 To run the project you can run the following command
 
@@ -14,7 +14,13 @@ To run the project you can run the following command
 
 To run the server, you can either run the `runServer.bat` or run the following command in the Server folder:
 
->mvn datanucleus:enhance exec:java
+>mvn compile datanucleus:enhance exec:java -DskipTests
+
+To run the JUnits found in each module of the project you can just run
+
+>mvn test
+
+and you'll find the corresponding result in `[Client/Server]*/target/jacoco.exec`
 
 
 
