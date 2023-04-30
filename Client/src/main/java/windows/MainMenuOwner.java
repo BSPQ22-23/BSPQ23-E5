@@ -69,8 +69,8 @@ public class MainMenuOwner extends JFrame implements ActionListener {
 	        menu = new JMenu("Account");
 	        menuH = new JMenu("Home");
 	        mItem = new JMenuItem("Log Out");
-	        mItem3 = new JMenuItem("Return Home");
-	        mItem4 = new JMenuItem("Exit");
+	       
+	        mItem3 = new JMenuItem("Exit");
 	        
 	        hotelEditButton.addActionListener(this);
 	        addHotelButton.addActionListener(this);
@@ -152,14 +152,14 @@ public class MainMenuOwner extends JFrame implements ActionListener {
 	        getContentPane().add(welcomePanel, BorderLayout.SOUTH);
 	        
 	        menuH.add(mItem3);
-	        menuH.add(mItem4);
+
 	        menu.add(mItem);
 	        menuBar.add(menuH);
 	        menuBar.add(menu);
 	        setJMenuBar(menuBar);
 	        
 	        mItem3.addActionListener(this);
-	        mItem4.addActionListener(this);
+	      
 	        
 	        setSize(400, 360);
 	        setLocationRelativeTo(null);
@@ -204,14 +204,8 @@ public class MainMenuOwner extends JFrame implements ActionListener {
 				 hotelCity.setText("");
 				
 		     } else if (e.getSource() == mItem3) {
-		    	searchPanel.setVisible(false);
-		    	browserPanel.setVisible(false);
-				accountPanel.setVisible(false);
-		    	welcomePanel.setVisible(true);
-		    	buttonPanel.setVisible(true);
+		    	dispose();
 		    	 
-		     } else if (e.getSource() == mItem4) {
-		    	 this.dispose();
 		     }
 		}
 		

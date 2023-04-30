@@ -29,7 +29,7 @@ public class MainMenuClient extends JFrame implements ActionListener {
 	    private JButton hotelButton, searchButton, accountButton, contactButton, advSettingsButton, infoButton, searchHotelButton, hotel1Button, hotel2Button, hotel3Button, hotel4Button, hotel5Button, hotel6Button, deleteAccButton, logOutButton, changeDataButton;
 	    private JMenuBar menuBar;
 	    private JMenu menu, menuH;
-	    private JMenuItem mItem, mItem3, mItem4;
+	    private JMenuItem mItem, mItem3;
 	    private JPanel buttonPanel, welcomePanel, searchPanel, browserPanel, accountPanel, pCenter, settingsPanel;
 	    
 	    public MainMenuClient() {
@@ -71,8 +71,7 @@ public class MainMenuClient extends JFrame implements ActionListener {
 	        menu = new JMenu("Account");
 	        menuH = new JMenu("Home");
 	        mItem = new JMenuItem("Log Out");
-	        mItem3 = new JMenuItem("Return Home");
-	        mItem4 = new JMenuItem("Exit");
+	        mItem3 = new JMenuItem("Exit");
 	        
 	        hotelButton.addActionListener(this);
 	        searchButton.addActionListener(this);
@@ -150,14 +149,14 @@ public class MainMenuClient extends JFrame implements ActionListener {
 	        getContentPane().add(welcomePanel, BorderLayout.SOUTH);
 	        
 	        menuH.add(mItem3);
-	        menuH.add(mItem4);
+	        
 	        menu.add(mItem);
 	        menuBar.add(menuH);
 	        menuBar.add(menu);
 	        setJMenuBar(menuBar);
 	        
 	        mItem3.addActionListener(this);
-	        mItem4.addActionListener(this);
+	      
 	        
 	        setSize(400, 360);
 	        setLocationRelativeTo(null);
@@ -192,15 +191,7 @@ public class MainMenuClient extends JFrame implements ActionListener {
 				    welcomePanel.setVisible(false);
 				    settingsPanel.setVisible(true);
 				
-		     } else if (e.getSource() == mItem3) {
-		    	 searchPanel.setVisible(false);
-				 browserPanel.setVisible(false);
-				 accountPanel.setVisible(false);
-				 settingsPanel.setVisible(false);
-		    	 welcomePanel.setVisible(true);
-		    	 buttonPanel.setVisible(true);
-		    	 
-		     } else if (e.getSource() == mItem4) {
+		     }  else if (e.getSource() == mItem3) {
 		    	 this.dispose();
 		     }
 		}
