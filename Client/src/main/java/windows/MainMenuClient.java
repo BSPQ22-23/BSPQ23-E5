@@ -36,7 +36,7 @@ public class MainMenuClient extends JFrame implements ActionListener {
 	        super("Menu");
 	        
 	        welcome = new JLabel("Welcome to the Hotel Management App");
-	        label = new  JLabel("Search: ");
+	        label = new  JLabel("Search my reservations: ");
 	        info = new JLabel("User info such as nickname, stats, recently reserved hotels, etc...");
 	        infoSettings = new JLabel("Welcome to settings. Yo may edit your account information.");
 	        warningL = new JLabel("Warning! Your account and your data will be deleted forever.");
@@ -173,13 +173,17 @@ public class MainMenuClient extends JFrame implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			
-			if (e.getSource() == searchButton) {
+			if (e.getSource() == hotelButton) {
+
 				buttonPanel.setVisible(false);
 				welcomePanel.setVisible(false);
 				searchPanel.setVisible(true);
 				browserPanel.setVisible(true);
 				browserPanel.revalidate();
 				browserPanel.repaint();
+				
+			} else if (e.getSource() == searchButton) {
+				//open hotel browser window
 				
 			 } else if (e.getSource() == accountButton) {
 				buttonPanel.setVisible(false);

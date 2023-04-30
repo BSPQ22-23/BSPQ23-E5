@@ -33,7 +33,7 @@ public class MainMenuOwner extends JFrame implements ActionListener {
 	        super("Menu for Owner");
 	        
 	        welcome = new JLabel("Welcome to the Hotel Management App for Owners");
-	        label = new  JLabel("Search: ");
+	        label = new  JLabel("My hotel list: ");
 	        info = new JLabel("User info such as nickname, stats, recently reserved hotels, etc...");
 	        infoSettings = new JLabel("Welcome to settings. Yo may edit your account information.");
 	        warningL = new JLabel("Warning! Your account and your data will be deleted forever.");
@@ -183,6 +183,7 @@ public class MainMenuOwner extends JFrame implements ActionListener {
 				browserPanel.setVisible(true);
 				browserPanel.revalidate();
 				browserPanel.repaint();
+
 				
 			 } else if (e.getSource() == accountButton) {
 				buttonPanel.setVisible(false);
@@ -204,8 +205,7 @@ public class MainMenuOwner extends JFrame implements ActionListener {
 				 hotelCity.setText("");
 				
 		     } else if (e.getSource() == mItem3) {
-		    	dispose();
-		    	 
+		    	dispose(); 
 		     }
 		}
 		

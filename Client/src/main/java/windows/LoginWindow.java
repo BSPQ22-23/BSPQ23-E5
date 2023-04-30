@@ -48,6 +48,17 @@ public class LoginWindow extends JFrame{
 
                 System.out.println("Username: " + username);
                 System.out.println("Password: " + password);
+                /*
+                if(loginResult == "client") {
+                	MainMenuClient menuW = new MainMenuClient();
+                	this.dispose();
+                } else if (loginResult == "owner") {
+                	MainMenuOwner menuOw = new MainMenuOwner();
+                	this.dispose();
+                } else {
+                	System.out.println("Login failed");
+                }
+                */
             }
         });
 
