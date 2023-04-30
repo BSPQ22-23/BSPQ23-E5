@@ -1,5 +1,10 @@
 package database;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -120,6 +125,37 @@ public class HotelDAO  extends DataAccessObjectBase implements IDataAccessObject
 	        return null;  // No se encontró ningún hotel
 	    }
 	}
+	 private void searchHotels(String query) {
+	        // Configura la conexión a la base de datos (actualiza con tus propias credenciales y detalles de la base de datos)
+	        String url = "jdbc:mysql://loclhost:3306/HotelManagementDB";
+	        String username = "spq";
+	        String password = "spq";
+
+	        try ( Connection connection = DriverManager.getConnection(url, username, password)){
+	        	String sql = "SELECT hotel FROM hoteles WHERE name LIKE '%" + query + "%'";
+
+	            
+	            Statement statement = connection.createStatement();
+	            ResultSet resultSet = statement.executeQuery(sql);
+
+	            // Procesa los resultados de la consulta
+	            StringBuilder resultBuilder = new StringBuilder();
+	            while (resultSet.next()) {
+	                String hotelName = resultSet.getString("name");
+	                resultBuilder.append("- ").append(hotelName).append("\n");
+	            }
+
+	            // Cierra la conexión y los recursos relacionados
+	            resultSet.close();
+	            statement.close();
+	            connection.close();
+
+	            
+	            String result = "The query result is: " + query;
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	    }
 	
 }
 

@@ -4,6 +4,11 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -79,12 +84,5 @@ public class HotelDAOTest {
         boolean exists = hotelDAO.ownerExists("gorka");
         assertTrue(exists);
     }
-   /* 
-    @Test
-    public void testFindByName() {
-        hotelDAO.save(hotel);
-        List<Hotel> hotels = hotelDAO.findByName("Test Hotel");
-        assertTrue(hotels.contains(hotel));
-    }
-    */
+  
 }

@@ -1,28 +1,36 @@
 package windows;
 import javax.swing.*;
+
+import domain.Hotel;
+import remote.ClientController;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.net.Socket;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 
-public class HotelBrowserWindow extends JFrame {
+public class HotelBrowserWindow extends JFrame  {
     private JTextField searchField;
     private JTextArea hotelListArea;
     private JButton viewHotelButton, homeButton,searchButton;
+    public  ClientController controller;
     
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                new HotelBrowserWindow();
+                //new HotelBrowserWindow(ClientController controller);
             }
         });
     }
 
-    public HotelBrowserWindow() {
+    public HotelBrowserWindow(ClientController controller) {
         setTitle("HOTEL BROWSER");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         getContentPane().setLayout(new BorderLayout());
@@ -39,7 +47,8 @@ public class HotelBrowserWindow extends JFrame {
         searchButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String query = searchField.getText();
-                searchHotels(query);
+                List<Hotel>hotels= ClientController.getHotels(query);
+                hotelListArea.setText(hotels.toString());
             }
         });
 
@@ -84,36 +93,6 @@ public class HotelBrowserWindow extends JFrame {
 
 
 
-    private void searchHotels(String query) {
-        // Configura la conexión a la base de datos (actualiza con tus propias credenciales y detalles de la base de datos)
-        String url = "jdbc:mysql://loclhost:3306/HotelManagementDB";
-        String username = "localhost";
-        String password = "spq";
-
-        try ( Connection connection = DriverManager.getConnection(url, username, password)){
-        	String sql = "SELECT hotel FROM hoteles WHERE name LIKE '%" + query + "%'";
-
-            
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(sql);
-
-            // Procesa los resultados de la consulta
-            StringBuilder resultBuilder = new StringBuilder();
-            while (resultSet.next()) {
-                String hotelName = resultSet.getString("name");
-                resultBuilder.append("- ").append(hotelName).append("\n");
-            }
-
-            // Cierra la conexión y los recursos relacionados
-            resultSet.close();
-            statement.close();
-            connection.close();
-
-            //update the textarea
-            hotelListArea.setText("Search results:\n" + resultBuilder.toString());
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
+   
    
 }
