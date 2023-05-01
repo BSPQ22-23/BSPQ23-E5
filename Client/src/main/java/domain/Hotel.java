@@ -7,12 +7,12 @@ import org.json.JSONObject;
 
 import remote.APIUtils;
 
-public class Hotel {
-	private int id;
-    private String name;
-    private String city;
-    private List<Room> rooms;
-    private List<Service> services;
+	public class Hotel {
+		private int id;
+	    private String name;
+	    private String city;
+	    private List<Room> rooms;
+	    private List<Service> services;
 
     public static Hotel fromJSON(JSONObject obj) {
     	Hotel result = new Hotel(
