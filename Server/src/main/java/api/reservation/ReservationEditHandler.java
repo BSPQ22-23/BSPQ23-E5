@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.json.JSONObject;
 
 import com.sun.net.httpserver.HttpExchange;
@@ -19,9 +21,12 @@ public class ReservationEditHandler implements HttpHandler{
 
 	@Override
 	public void handle(HttpExchange exchange) throws IOException {
+		Logger l = LogManager.getLogger();
+		l.debug("▓".repeat(78)+"\n" + " ".repeat(31) + (exchange.getRequestMethod().equals("DELETE")?"Deleting":"Editing")+" reservation" + " ".repeat(31) + "\n" + "▓".repeat(78)+"\n");
 		try {
 			String token = APIUtils.getStringHeader(exchange, "token", "");
 			if(token == "") {
+				l.info("Illegal use of API: No token provided");
 				String resp = "No token provided";
 	    		exchange.sendResponseHeaders(401, resp.length());
 	    		OutputStream os = exchange.getResponseBody();
@@ -31,6 +36,7 @@ public class ReservationEditHandler implements HttpHandler{
 			}
 			User author = Server.getUser(token);
 	    	if(author == null) {
+	    		l.info("Unauthorized use of API: Invalid token");
 	    		String resp = "Invalid token";
 	    		exchange.sendResponseHeaders(401, resp.length());
 	    		OutputStream os = exchange.getResponseBody();
@@ -40,10 +46,10 @@ public class ReservationEditHandler implements HttpHandler{
 	    	}
 			switch (exchange.getRequestMethod()) {
 				case "DELETE":
-					System.out.println("Deleting reservation");
 					int id = Integer.parseInt(exchange.getRequestHeaders().getOrDefault("id", List.of("-1")).get(0));
-					System.out.println(id);
+					l.info("Deleting reservation with id: " + id);
 					if(id < 0) {
+						l.info("Deletion rejected: Invalid ID");
 						String response = "Invalid / Missing id";
 			    		exchange.sendResponseHeaders(400, response.length());
 			    		OutputStream os = exchange.getResponseBody();
@@ -51,14 +57,14 @@ public class ReservationEditHandler implements HttpHandler{
 			    		os.close();
 						return;
 					}
+					l.info("Deletion aproved");
 					ServerAppService.deleteReservation(author, id);
 					return;
 				case "POST":
-					System.out.println("Editing reservation");
-					System.out.println(APIUtils.readBody(exchange));
 					ServerAppService.editReservation(author, Booking.fromJSON(new JSONObject(APIUtils.readBody(exchange))));
 					return;
 				default:
+					l.info("Illegal use of API: Unknown method");
 					String response = "Method "+exchange.getRequestMethod()+" not valid for this function";
 		    		exchange.sendResponseHeaders(405, response.length());
 		    		OutputStream os = exchange.getResponseBody();
@@ -67,6 +73,7 @@ public class ReservationEditHandler implements HttpHandler{
 					return;
 			}
 		}catch(IOException e) {
+			l.error("Error editing reservation: " + e.toString());
 			APIUtils.respondInternalError(exchange, e.getMessage());
 		}
 	}

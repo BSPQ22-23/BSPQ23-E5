@@ -8,6 +8,9 @@ import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.sun.net.httpserver.HttpServer;
 
 import api.*;
@@ -19,7 +22,9 @@ import domain.User;
 public class Server {
 	private static final HashMap<String, User> tokenList = new HashMap<>();
 	public static void main(String[] args){
+		Logger l = LogManager.getLogger();
 		UserDAO.getInstance();
+		l.info("Datanucleus started correctly");
 		try {
 	        HttpServer server = HttpServer.create(new InetSocketAddress(8000), 0);
 	        server.createContext("/register", new RegisterHandler());
@@ -31,7 +36,9 @@ public class Server {
 	        server.createContext("/hotel/get", new HotelGetterHandler());
 	        server.setExecutor(null); // creates a default executor
 	        server.start();
+	        l.info("Server started at 127.0.0.1:8000");
 		}catch(Exception e) {
+			l.error("Error starting the server: " + e.getMessage());
 			e.printStackTrace();
 		}
     }

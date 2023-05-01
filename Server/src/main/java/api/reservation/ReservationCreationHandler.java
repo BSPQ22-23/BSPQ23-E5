@@ -7,6 +7,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -25,12 +27,13 @@ public class ReservationCreationHandler implements HttpHandler{
 
 	@Override
 	public void handle(HttpExchange t) throws IOException {
+		Logger l = LogManager.getLogger();
+		l.debug("▓".repeat(78)+"\n" + " ".repeat(31) + "Creating reservation" + " ".repeat(31) + "\n" + "▓".repeat(78)+"\n");
 		try {
-			System.out.println("Creating reservation");
 	    	JSONObject obj = new JSONObject(APIUtils.readBody(t));
-	    	System.out.println(obj.toString());
 	    	String token = APIUtils.getStringHeader(t, "token", "");
 	    	if(token == "") {
+	    		l.info("Illegal use of API: No token provided");
 	    		String resp = "No token provided";
 	    		t.sendResponseHeaders(401, resp.length());
 	    		OutputStream os = t.getResponseBody();
@@ -40,6 +43,7 @@ public class ReservationCreationHandler implements HttpHandler{
 	    	}
 	    	User author = Server.getUser(token);
 	    	if(author == null) {
+	    		l.info("Unauthorized use of API: Invalid token");
 	    		String resp = "Invalid token";
 	    		t.sendResponseHeaders(401, resp.length());
 	    		OutputStream os = t.getResponseBody();
@@ -65,14 +69,18 @@ public class ReservationCreationHandler implements HttpHandler{
 	    		Booking b = Booking.fromJSON(obj);
 	    		b.setAuthor(author.getLegalInfo());
 	    		if(ServerAppService.reservationCreate(b)) {
+	    			l.info("Reservation done correctly");
 	    			APIUtils.respondACK(t);
 	    		}else {
+	    			l.info("Reservation rejected");
 	    			APIUtils.respondError(t, "The reservation couldn't be done");
 	    		}
 	      	}catch(IllegalArgumentException | JSONException e) {
+	      		l.info("Illegal use of API: " + e.toString());
 	      		APIUtils.respondError(t, e.getMessage());
 	    	}
 		}catch(IOException e) {
+			l.error("Error creating reservation: " + e.toString());
 			APIUtils.respondInternalError(t, e.getMessage());
 		}
     	
