@@ -60,6 +60,14 @@ public class LoginWindow extends JFrame {
                 }
             }
         });
+        
+        JButton registerButton = new JButton("Register");
+        registerButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	RegistrationWindow registrationWindow = new RegistrationWindow();
+            	closeW();
+            }
+        });
 
         JPanel panel = new JPanel(new GridLayout(0, 1));
         panel.add(usernameLabel);
@@ -68,6 +76,7 @@ public class LoginWindow extends JFrame {
         panel.add(passwordField);
         panel.add(showPasswordCheckbox);
         panel.add(loginButton);
+        panel.add(registerButton);
 
         this.add(panel);
 
@@ -85,6 +94,10 @@ public class LoginWindow extends JFrame {
 	    	MainMenuClient menuClient = new MainMenuClient();
 	    	menuClient.setVisible(true);
     	}
+    	closeW();
+    }
+    
+    private void closeW() {
     	this.dispose();
     }
 

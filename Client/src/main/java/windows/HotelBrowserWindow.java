@@ -26,13 +26,14 @@ public class HotelBrowserWindow extends JFrame  {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 //new HotelBrowserWindow(ClientController controller);
+            	
             }
         });
     }
 
     public HotelBrowserWindow(ClientController controller) {
         setTitle("HOTEL BROWSER");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new BorderLayout());
         setPreferredSize(new Dimension(600, 400));
 

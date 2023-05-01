@@ -23,6 +23,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import remote.ClientController;
+
 public class MainMenuClient extends JFrame implements ActionListener {
 	 	private JLabel welcome, label, info, warningL, infoSettings;
 	 	private JTextField search;
@@ -177,13 +179,18 @@ public class MainMenuClient extends JFrame implements ActionListener {
 
 				buttonPanel.setVisible(false);
 				welcomePanel.setVisible(false);
-				searchPanel.setVisible(true);
-				browserPanel.setVisible(true);
-				browserPanel.revalidate();
-				browserPanel.repaint();
+				pCenter.setVisible(false);
+				//searchPanel.setVisible(true);
+				//browserPanel.setVisible(true);
+				//browserPanel.revalidate();
+				//browserPanel.repaint();
+				setSize(700, 400);
+				ReservationWindow rW = new ReservationWindow();
+				getContentPane().add(rW);
+				rW.setVisible(true);
 				
 			} else if (e.getSource() == searchButton) {
-				//open hotel browser window
+				HotelBrowserWindow hotelBrowser = new HotelBrowserWindow(null);
 				
 			 } else if (e.getSource() == accountButton) {
 				buttonPanel.setVisible(false);
