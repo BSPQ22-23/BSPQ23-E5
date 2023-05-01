@@ -1,7 +1,13 @@
 package windows;
 import javax.swing.*;
+
+import domain.Guest;
+import domain.User;
+import remote.ClientController;
+
 import java.awt.*;
 import java.awt.event.*;
+import java.util.concurrent.ExecutionException;
 
 public class RegistrationWindow extends JFrame implements ActionListener {
 	 private JLabel nicknameLabel, passwordLabel, nameLabel, lastNameLabel, idLabel, ageLabel, cityLabel;
@@ -80,6 +86,19 @@ public class RegistrationWindow extends JFrame implements ActionListener {
 	            String city = cityTextField.getText();
 	            JOptionPane.showMessageDialog(this, "Thank you for registering, " + name + "!\n" +
 	                    "Your nickname is " + nickname + " and your password is " + password);
+	            
+	            int ageI = Integer.parseInt(age);
+	            Guest guest = new Guest(name, lastName, id, ageI, city);
+	            User user = new User(nickname, password, guest, false);
+	            
+	            try {
+					ClientController.register(user);
+					openMenu(user.isHotelOwner());
+
+				} catch (InterruptedException | ExecutionException e1) {
+					e1.printStackTrace();
+				}
+	            
 	        } else if (e.getSource() == clearButton) {
 	        	 nicknameTextField.setText("");
 	             passwordTextField.setText("");
@@ -91,6 +110,17 @@ public class RegistrationWindow extends JFrame implements ActionListener {
 	         }
 	     }
 
+	    private void openMenu(boolean isOwner) {
+	    	if(isOwner) {
+	    		MainMenuOwner menuOwner = new MainMenuOwner();
+		    	menuOwner.setVisible(true);
+	    	} else {
+		    	MainMenuClient menuClient = new MainMenuClient();
+		    	menuClient.setVisible(true);
+	    	}
+	    	this.dispose();
+	    }
+	    
 	     public static void main(String[] args) {
 	         RegistrationWindow registrationForm = new RegistrationWindow();
 	     }

@@ -3,7 +3,9 @@ package windows;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.concurrent.ExecutionException;
 
+import remote.ClientController;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
@@ -12,7 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-public class LoginWindow extends JFrame{
+public class LoginWindow extends JFrame {
 	private JTextField usernameField;
     private JPasswordField passwordField;
     private JCheckBox showPasswordCheckbox;
@@ -45,20 +47,17 @@ public class LoginWindow extends JFrame{
                 char[] passwordChars = passwordField.getPassword();
                 String password = new String(passwordChars);
 
-
-                System.out.println("Username: " + username);
-                System.out.println("Password: " + password);
-                /*
-                if(loginResult == "client") {
-                	MainMenuClient menuW = new MainMenuClient();
-                	this.dispose();
-                } else if (loginResult == "owner") {
-                	MainMenuOwner menuOw = new MainMenuOwner();
-                	this.dispose();
-                } else {
-                	System.out.println("Login failed");
+                try {
+                	if(!username.equals("") && !password.equals("")) {
+                		ClientController.login(username, password);
+                		openMenu(true);
+                		
+                	} else {
+                		System.out.println("No info");
+                	}
+                }  catch (Exception e1) {
+					e1.printStackTrace();
                 }
-                */
             }
         });
 
@@ -77,8 +76,19 @@ public class LoginWindow extends JFrame{
 
         this.setVisible(true);
     }
+    
+    private void openMenu(boolean isOwner) {
+    	if(isOwner) {
+    		MainMenuOwner menuOwner = new MainMenuOwner();
+	    	menuOwner.setVisible(true);
+    	} else {
+	    	MainMenuClient menuClient = new MainMenuClient();
+	    	menuClient.setVisible(true);
+    	}
+    	this.dispose();
+    }
 
     public static void main(String[] args) {
-        new LoginWindow();
+        LoginWindow loginWindow = new LoginWindow();
     }
 }
