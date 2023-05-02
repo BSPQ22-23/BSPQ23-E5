@@ -1,5 +1,6 @@
 package windows;
 
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -70,6 +71,7 @@ public class LoginWindow extends JFrame {
         });
 
         JPanel panel = new JPanel(new GridLayout(0, 1));
+        panel.setBackground(new Color(255, 228, 181));
         panel.add(usernameLabel);
         panel.add(usernameField);
         panel.add(passwordLabel);

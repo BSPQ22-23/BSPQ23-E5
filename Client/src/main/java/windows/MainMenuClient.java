@@ -1,7 +1,6 @@
 package windows;
 
 import java.awt.BorderLayout;
-import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
@@ -9,8 +8,6 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -23,16 +20,15 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import remote.ClientController;
-
 public class MainMenuClient extends JFrame implements ActionListener {
 	 	private JLabel welcome, label, info, warningL, infoSettings;
 	 	private JTextField search;
 	    private JButton hotelButton, searchButton, accountButton, contactButton, advSettingsButton, infoButton, searchHotelButton, hotel1Button, hotel2Button, hotel3Button, hotel4Button, hotel5Button, hotel6Button, deleteAccButton, logOutButton, changeDataButton;
 	    private JMenuBar menuBar;
 	    private JMenu menu, menuH;
-	    private JMenuItem mItem, mItem3;
+	    private JMenuItem mItem, mItem2, mItem3;
 	    private JPanel buttonPanel, welcomePanel, searchPanel, browserPanel, accountPanel, pCenter, settingsPanel;
+	    private ReservationWindow reservationWindow;
 	    
 	    public MainMenuClient() {
 	        super("Menu");
@@ -73,6 +69,7 @@ public class MainMenuClient extends JFrame implements ActionListener {
 	        menu = new JMenu("Account");
 	        menuH = new JMenu("Home");
 	        mItem = new JMenuItem("Log Out");
+	        mItem2 = new JMenuItem("Return Home");
 	        mItem3 = new JMenuItem("Exit");
 	        
 	        hotelButton.addActionListener(this);
@@ -114,6 +111,10 @@ public class MainMenuClient extends JFrame implements ActionListener {
 	        browserPanel.add(hotel5Button);
 	        browserPanel.add(hotel6Button);
 	        
+			reservationWindow = new ReservationWindow();
+			getContentPane().add(reservationWindow);
+			reservationWindow.setVisible(false);
+	        
 	        searchPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 	        searchPanel.setBackground(new Color(135, 206, 250));
 	        searchPanel.add(label);
@@ -150,6 +151,9 @@ public class MainMenuClient extends JFrame implements ActionListener {
 		    searchPanel.setVisible(false);
 	        getContentPane().add(welcomePanel, BorderLayout.SOUTH);
 	        
+
+	        
+	        menuH.add(mItem2);
 	        menuH.add(mItem3);
 	        
 	        menu.add(mItem);
@@ -157,8 +161,9 @@ public class MainMenuClient extends JFrame implements ActionListener {
 	        menuBar.add(menu);
 	        setJMenuBar(menuBar);
 	        
+	        mItem2.addActionListener(this);
 	        mItem3.addActionListener(this);
-	      
+			mItem2.setEnabled(false);
 	        
 	        setSize(400, 360);
 	        setLocationRelativeTo(null);
@@ -180,27 +185,36 @@ public class MainMenuClient extends JFrame implements ActionListener {
 				buttonPanel.setVisible(false);
 				welcomePanel.setVisible(false);
 				pCenter.setVisible(false);
-				//searchPanel.setVisible(true);
-				//browserPanel.setVisible(true);
-				//browserPanel.revalidate();
-				//browserPanel.repaint();
-				setSize(700, 400);
-				ReservationWindow rW = new ReservationWindow();
-				getContentPane().add(rW);
-				rW.setVisible(true);
+				setSize(700, 600);
+				reservationWindow.setVisible(true);
+				mItem2.setEnabled(true);
 				
 			} else if (e.getSource() == searchButton) {
 				HotelBrowserWindow hotelBrowser = new HotelBrowserWindow(null);
 				
 			 } else if (e.getSource() == accountButton) {
-				buttonPanel.setVisible(false);
-			    welcomePanel.setVisible(false);
-			    accountPanel.setVisible(true);
+				 buttonPanel.setVisible(false);
+			     welcomePanel.setVisible(false);
+			     accountPanel.setVisible(true);
+				 mItem2.setEnabled(true);
 			    
 			 } else if (e.getSource() == advSettingsButton) {
-					buttonPanel.setVisible(false);
-				    welcomePanel.setVisible(false);
-				    settingsPanel.setVisible(true);
+				 buttonPanel.setVisible(false);
+				 welcomePanel.setVisible(false);
+				 settingsPanel.setVisible(true);
+				 mItem2.setEnabled(true);
+				    
+		     } else if (e.getSource() == mItem2) {
+		    	 searchPanel.setVisible(false);
+				 browserPanel.setVisible(false);
+				 accountPanel.setVisible(false);
+				 settingsPanel.setVisible(false);
+				 reservationWindow.setVisible(false);
+				 setSize(400, 360);
+				 pCenter.setVisible(true);
+		    	 welcomePanel.setVisible(true);
+		    	 buttonPanel.setVisible(true);
+				 mItem2.setEnabled(false);
 				
 		     }  else if (e.getSource() == mItem3) {
 		    	 this.dispose();

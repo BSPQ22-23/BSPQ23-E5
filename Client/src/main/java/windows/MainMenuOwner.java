@@ -21,12 +21,12 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class MainMenuOwner extends JFrame implements ActionListener {
-	 	private JLabel welcome, label, info, warningL, infoSettings, hotelNameL, hotelChainL, hotelRoomsL, hotelCityL;
+	 	private JLabel welcome, label, warningL, infoSettings, hotelNameL, hotelChainL, hotelRoomsL, hotelCityL;
 	 	private JTextField search, hotelName, hotelChain, hotelRooms, hotelCity;
 	    private JButton hotelEditButton, addHotelButton, searchButton, accountButton, searchHotelButton, deleteAccButton, logOutButton, changeDataButton, submitHotelButton, clearHotelButton;
 	    private JMenuBar menuBar;
 	    private JMenu menu, menuH;
-	    private JMenuItem mItem, mItem3, mItem4;
+	    private JMenuItem mItem, mItem3, mItem2;
 	    private JPanel buttonPanel, welcomePanel, searchPanel, browserPanel, accountPanel, pCenter, addPanel;
 	    
 	    public MainMenuOwner() {
@@ -34,7 +34,6 @@ public class MainMenuOwner extends JFrame implements ActionListener {
 	        
 	        welcome = new JLabel("Welcome to the Hotel Management App for Owners");
 	        label = new  JLabel("My hotel list: ");
-	        info = new JLabel("User info such as nickname, stats, recently reserved hotels, etc...");
 	        infoSettings = new JLabel("Welcome to settings. Yo may edit your account information.");
 	        warningL = new JLabel("Warning! Your account and your data will be deleted forever.");
 	        hotelNameL = new JLabel("Hotel Name: ");
@@ -69,7 +68,7 @@ public class MainMenuOwner extends JFrame implements ActionListener {
 	        menu = new JMenu("Account");
 	        menuH = new JMenu("Home");
 	        mItem = new JMenuItem("Log Out");
-	       
+	        mItem2 = new JMenuItem("Return Home");
 	        mItem3 = new JMenuItem("Exit");
 	        
 	        hotelEditButton.addActionListener(this);
@@ -151,6 +150,7 @@ public class MainMenuOwner extends JFrame implements ActionListener {
 		    searchPanel.setVisible(false);
 	        getContentPane().add(welcomePanel, BorderLayout.SOUTH);
 	        
+	        menuH.add(mItem2);
 	        menuH.add(mItem3);
 
 	        menu.add(mItem);
@@ -158,8 +158,9 @@ public class MainMenuOwner extends JFrame implements ActionListener {
 	        menuBar.add(menu);
 	        setJMenuBar(menuBar);
 	        
+	        mItem2.addActionListener(this);
 	        mItem3.addActionListener(this);
-	      
+			mItem2.setEnabled(false);
 	        
 	        setSize(400, 360);
 	        setLocationRelativeTo(null);
@@ -183,26 +184,39 @@ public class MainMenuOwner extends JFrame implements ActionListener {
 				browserPanel.setVisible(true);
 				browserPanel.revalidate();
 				browserPanel.repaint();
+				mItem2.setEnabled(true);
 
 				
 			 } else if (e.getSource() == accountButton) {
 				buttonPanel.setVisible(false);
 			    welcomePanel.setVisible(false);
 			    accountPanel.setVisible(true);
+				mItem2.setEnabled(true);
 			    
 			 } else if (e.getSource() == addHotelButton) {
 				buttonPanel.setVisible(false);
 				welcomePanel.setVisible(false);
 				addPanel.setVisible(true);
+				mItem2.setEnabled(true);
 				
 			 } else if (e.getSource() == submitHotelButton) {
-				 
+
 				 
 			 } else if (e.getSource() == clearHotelButton) {
 				 hotelName.setText("");
 				 hotelChain.setText("");
 				 hotelRooms.setText("");
 				 hotelCity.setText("");
+				 
+		     } else if (e.getSource() == mItem2) {
+		    	 searchPanel.setVisible(false);
+				 browserPanel.setVisible(false);
+				 addPanel.setVisible(false);
+				 accountPanel.setVisible(false);
+		    	 welcomePanel.setVisible(true);
+		    	 buttonPanel.setVisible(true);
+				 mItem2.setEnabled(false);
+				
 				
 		     } else if (e.getSource() == mItem3) {
 		    	dispose(); 
