@@ -3,6 +3,9 @@ package domain;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+
+import com.domain.Guest;
+
 import org.junit.Before;
 import org.junit.Test;
 

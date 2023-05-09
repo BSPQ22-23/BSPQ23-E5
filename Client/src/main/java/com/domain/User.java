@@ -1,4 +1,6 @@
-package domain;
+package com.domain;
+
+import domain.Guest;
 
 public class User {
 

@@ -1,8 +1,8 @@
-package windows;
+package com.windows;
 import javax.swing.*;
 
-import domain.Hotel;
-import remote.ClientController;
+import com.domain.Hotel;
+import com.remote.ClientController;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;

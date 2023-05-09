@@ -1,9 +1,9 @@
-package windows;
+package com.windows;
 import javax.swing.*;
 
-import domain.Guest;
-import domain.User;
-import remote.ClientController;
+import com.domain.Guest;
+import com.domain.User;
+import com.remote.ClientController;
 
 import java.awt.*;
 import java.awt.event.*;

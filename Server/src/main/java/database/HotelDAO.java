@@ -1,18 +1,20 @@
 package database;
 
 import java.sql.Connection;
+
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
+
 import java.util.List;
 
+import javax.jdo.JDOHelper;
 import javax.jdo.PersistenceManager;
-
+import javax.jdo.PersistenceManagerFactory;
 import javax.jdo.Query;
 import javax.jdo.Transaction;
-
+import domain.Hotel;
 import domain.Guest;
 
 /**
@@ -25,7 +27,7 @@ import domain.Hotel;
 
 public class HotelDAO  extends DataAccessObjectBase implements IDataAccessObject<Hotel> {
 	private static final HotelDAO INSTANCE = new HotelDAO();
-	
+	 private static  PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
 	public static HotelDAO getInstance() {
 		return INSTANCE;
 	}
@@ -33,8 +35,7 @@ public class HotelDAO  extends DataAccessObjectBase implements IDataAccessObject
 	@Override
 	public void save(Hotel object) {
 		// TODO Auto-generated method stub
-		HotelDAO.getInstance().save(object);
-		save(object);
+		super.saveObject(object);
 	}
 	/**
 	 * Delete a hotel
@@ -156,6 +157,8 @@ public class HotelDAO  extends DataAccessObjectBase implements IDataAccessObject
 	            e.printStackTrace();
 	        }
 	    }
-	
+	 public void setPersistenceManagerFactory(PersistenceManagerFactory factory) {
+	        pmf = factory;
+	    }
 }
 

@@ -2,8 +2,9 @@ package database;
 
 import java.util.List;
 
-
+import javax.jdo.JDOHelper;
 import javax.jdo.PersistenceManager;
+import javax.jdo.PersistenceManagerFactory;
 import javax.jdo.Query;
 import domain.Guest;
 
@@ -14,6 +15,7 @@ import domain.Guest;
  */
 public class GuestDAO extends DataAccessObjectBase implements IDataAccessObject<Guest>{
 	private static final GuestDAO INSTANCE = new GuestDAO();
+	 private static  PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
 	public static GuestDAO getInstance() {
 		return INSTANCE;
 	}
@@ -51,5 +53,8 @@ public class GuestDAO extends DataAccessObjectBase implements IDataAccessObject<
 		Query<Guest> q = pm.newQuery(Guest.class, "dni == '" + dni.replace("'", "''")+"'");
 		return ((List<Guest>)q.execute(20)).size() != 0;
 	}
+	 public void setPersistenceManagerFactory(PersistenceManagerFactory factory) {
+	        pmf = factory;
+	    }
 	
 }

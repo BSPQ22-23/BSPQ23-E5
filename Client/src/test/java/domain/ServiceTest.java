@@ -4,6 +4,8 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import com.domain.Service;
+
 import org.junit.Before;
 
 

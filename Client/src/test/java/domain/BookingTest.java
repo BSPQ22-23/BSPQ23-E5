@@ -1,6 +1,11 @@
 package domain;
 
 import org.junit.Test;
+
+import domain.Booking;
+import domain.Guest;
+import domain.Room;
+
 import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.Date;

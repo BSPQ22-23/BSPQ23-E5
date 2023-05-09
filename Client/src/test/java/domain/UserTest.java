@@ -4,6 +4,9 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import com.domain.Guest;
+import com.domain.User;
+
 import static org.junit.Assert.*;
 
 import org.junit.Before;

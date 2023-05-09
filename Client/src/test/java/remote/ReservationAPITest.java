@@ -19,7 +19,9 @@ import domain.Guest;
 import domain.Hotel;
 import domain.Room;
 import domain.User;
-import remote.ClientController.Response;
+import com.remote.ClientController;
+import com.remote.ServiceLocator;
+import com.remote.ClientController.Response;
 
 public class ReservationAPITest {
 	

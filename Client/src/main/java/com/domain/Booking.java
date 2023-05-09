@@ -1,4 +1,4 @@
-package domain;
+package com.domain;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -7,6 +7,9 @@ import java.util.List;
 
 import org.json.JSONObject;
 
+import domain.Guest;
+import domain.Room;
+
 public class Booking {
 	private int id;
     private Date checkinDate;
@@ -14,25 +17,7 @@ public class Booking {
     private Room room;
     private List<Guest> guests;
     
-    public static Booking fromJSON(JSONObject object) {
-		Calendar c = Calendar.getInstance();
-		int startdate = object.getInt("checkinDate");
-		c.set(Calendar.DAY_OF_YEAR, startdate%365);
-		c.set(Calendar.YEAR, (int)startdate/365);
-		Date sd = c.getTime();
-		
-		int enddate = object.getInt("checkoutDate");
-		c.set(Calendar.DAY_OF_YEAR, enddate%365);
-		c.set(Calendar.YEAR, (int)enddate/365);
-		Date ed = c.getTime();
-		
-		Room r = Room.fromJSON(object.getJSONObject("room"));
-		
-		List<Guest> guests = new LinkedList<>();
-		for(Object o : object.getJSONArray("guests")) 
-			guests.add(Guest.fromJSON((JSONObject)o));
-		return new Booking(object.getInt("id"), sd, ed, r, guests);
-    }
+ 
     
     public Booking(int id, Date checkinDate, Date checkoutDate, Room room, List<Guest> guests) {
         this.id = id;

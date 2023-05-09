@@ -9,4 +9,4 @@ CREATE SCHEMA IF NOT EXISTS HotelManagementDB;
 /* CREATE THE USER 'strava_user' AT LOCAL SERVER WITH PASSWORD 'strava_user' */
 CREATE USER IF NOT EXISTS 'spq'@'localhost' IDENTIFIED BY 'spq';
 /* GRANT FULL ACCESS TO THE DATABASE 'HotelManagementDB' FOR THE USER 'strava_user' AT LOCAL SERVER*/
-GRANT ALL ON  HotelManagementDB.* TO 'sd'@'localhost';
+GRANT ALL ON  HotelManagementDB.* TO 'spq'@'localhost';

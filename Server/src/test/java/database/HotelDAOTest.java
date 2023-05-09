@@ -12,6 +12,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.jdo.JDOHelper;
+import javax.jdo.PersistenceManagerFactory;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -31,6 +34,8 @@ public class HotelDAOTest {
     @Before
     public void setUp() {
         hotelDAO = HotelDAO.getInstance();
+        PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
+		 hotelDAO.setPersistenceManagerFactory(pmf);
         owner = new Guest("gorka", "d", "123456789", 30, "City");
         hotel = new Hotel("Test Hotel", "Test City", owner);
     }

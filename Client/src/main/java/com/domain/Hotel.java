@@ -1,11 +1,14 @@
-package domain;
+package com.domain;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.json.JSONObject;
 
-import remote.APIUtils;
+import com.remote.APIUtils;
+
+import domain.Room;
+import domain.Service;
 
 	public class Hotel {
 		private int id;
@@ -14,18 +17,7 @@ import remote.APIUtils;
 	    private List<Room> rooms;
 	    private List<Service> services;
 
-    public static Hotel fromJSON(JSONObject obj) {
-    	Hotel result = new Hotel(
-    			obj.getInt("id"),
-    			APIUtils.decode(obj.getString("name")),
-    			APIUtils.decode(obj.getString("city"))
-    		);
-    	if(obj.keySet().contains("rooms"))
-    		for(Object o : obj.getJSONArray("rooms"))    result.addRoom(Room.fromJSON((JSONObject)o));
-    	if(obj.keySet().contains("services"))
-    		for(Object o : obj.getJSONArray("services")) result.addService(Service.fromJSON((JSONObject)o));
-    	return result;
-    }
+    
     public Hotel(int id, String name, String city) {
     	this.id = id;
         this.name = name;

@@ -1,4 +1,4 @@
-package remote;
+package com.remote;
 
 import java.io.IOException;
 import java.net.URI;

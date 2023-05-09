@@ -1,4 +1,4 @@
-package remote;
+package com.remote;
 
 import java.net.URISyntaxException;
 import java.net.http.HttpResponse;
@@ -17,6 +17,9 @@ import domain.Hotel;
 import domain.User;
 
 public class ClientController {
+	/*
+	 * RESOURCE
+	 */
 	public static class Response extends RuntimeException {
 		private static final long serialVersionUID = 519375302527407530L;
 		public final String message;
@@ -46,6 +49,11 @@ public class ClientController {
 		 * The server has an unexpected exception
 		 */
 		public static final int INTERNAL_SERVER_ERROR = 500;
+		
+		public final static String APPLICATION_JSON = "application/json";
+	    /**
+	     * A {@link MediaType} constant representing {@value #APPLICATION_JSON} media type.
+	     */
 	}
 	public static void setServerHandler(ServiceLocator sv) {
 		handler = sv;
@@ -53,7 +61,13 @@ public class ClientController {
 	@SuppressWarnings("unused")
 	private static String token = null;
 	private static ServiceLocator handler;
-	
+	/**
+	 * 
+	 * @param g - > cliente
+	 * @return respuesta artifial
+	 * @throws InterruptedException
+	 * @throws ExecutionException
+	 */
 	public static Response register(User g) throws InterruptedException, ExecutionException{
 		try {
 			HttpResponse<String> response = handler.sendPOST("register", APIUtils.objectToJSON(g));

@@ -2,10 +2,11 @@ package database;
 
 import java.util.List;
 
-
+import javax.jdo.JDOHelper;
 import javax.jdo.PersistenceManager;
+import javax.jdo.PersistenceManagerFactory;
 import javax.jdo.Query;
-
+import database.DataAccessObjectBase;
 import domain.User;
 
 /**
@@ -15,6 +16,7 @@ import domain.User;
  */
 public class UserDAO extends DataAccessObjectBase implements IDataAccessObject<User>{
 	private static final UserDAO INSTANCE = new UserDAO();
+	 private static  PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
 	public static UserDAO getInstance() {
 		return INSTANCE;
 	}
@@ -59,5 +61,8 @@ public class UserDAO extends DataAccessObjectBase implements IDataAccessObject<U
 		Query<User> q = pm.newQuery(User.class, "nick == '" + user.replace("'", "''")+"'");
 		return ((List<User>)q.execute()).size() != 0;
 	}
+	 public void setPersistenceManagerFactory(PersistenceManagerFactory factory) {
+	        pmf = factory;
+	    }
 
 }

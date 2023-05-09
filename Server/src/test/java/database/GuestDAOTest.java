@@ -4,6 +4,9 @@ import static org.junit.Assert.*;
 
 import java.util.List;
 
+import javax.jdo.JDOHelper;
+import javax.jdo.PersistenceManagerFactory;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -18,6 +21,9 @@ public class GuestDAOTest {
 	@Before
 	public void setUp() throws Exception {
 		guestDAO = GuestDAO.getInstance();
+		  PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
+			guestDAO.setPersistenceManagerFactory(pmf);
+		
 		guest = new Guest("maitane", "a", "22222222A", 50, null);
 		
 	}

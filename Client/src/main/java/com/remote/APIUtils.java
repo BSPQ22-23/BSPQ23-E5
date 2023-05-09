@@ -1,4 +1,4 @@
-package remote;
+package com.remote;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;

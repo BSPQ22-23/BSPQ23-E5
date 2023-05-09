@@ -1,6 +1,23 @@
 # Hotel Manager Tool
 Manage your hotels or reservations in an easy way...
 
+Para ejecutar el servidor:
+Ejecutar script sql para inicializar DB
+mvn clean compile
+mvn datanucleus:schema-create
+mvn install -DskipTests
+el anterior comando instala en el local REPO de Maven las clases de dominio del servidor que se usan en el lado cliente
+mvn datanucleus:enhance exec:java -DskipTests
+
+
+Para el lado cliente
+de momento sólo podéis ejecutar los unit tests con
+mvn test
+Deberías ejecutar la parte clietne con el sigueitne comando
+mvn exec:java
+Para ello tenéis que trasladar configuración del pom.xml dle servidor al pom.xml del cliente, donde la clase principal será com.windows.LoginWindow
+
+
 <h1>Building the project</h1>
 The client can be compiled into a jar to later run it via Java while the server it's directly ran by maven.
 

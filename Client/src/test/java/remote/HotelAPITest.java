@@ -10,11 +10,13 @@ import java.util.concurrent.ExecutionException;
 import org.junit.Before;
 import org.junit.Test;
 
-import domain.Guest;
-import domain.Hotel;
-import domain.Room;
-import domain.User;
-import remote.ClientController.Response;
+import com.domain.Guest;
+import com.domain.Hotel;
+import com.domain.Room;
+import com.domain.User;
+import com.remote.ClientController;
+import com.remote.ServiceLocator;
+import com.remote.ClientController.Response;
 
 public class HotelAPITest {
 	

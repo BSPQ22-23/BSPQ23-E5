@@ -1,5 +1,10 @@
 package domain;
 import org.junit.Test;
+
+import com.domain.Bill;
+import com.domain.Booking;
+import com.domain.Service;
+
 import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.Date;

@@ -1,7 +1,11 @@
 package database;
 
 import static org.junit.Assert.*;
+
 import java.util.List;
+
+import javax.jdo.JDOHelper;
+import javax.jdo.PersistenceManagerFactory;
 
 import org.junit.After;
 import org.junit.Before;
@@ -16,16 +20,19 @@ public class UserDAOTest {
 
 	@Before
 	public void setUp() throws Exception {
+		
 		dao = UserDAO.getInstance();
+		  PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
+			dao.setPersistenceManagerFactory(pmf);
 		Guest legalInfo = new Guest("Juan", "García", "12345678A", 0, null);
 		user = new User("jgarcia", "password", legalInfo, false);
 	}
 
 	@After
 	public void tearDown() throws Exception {
-		dao.delete(user);
+		/*dao.delete(user);
 		dao = null;
-		user = null;
+		user = null;*/
 	}
 
 	@Test
@@ -58,6 +65,7 @@ public class UserDAOTest {
 	public void testFindString() {
 		dao.save(user);
 		User retrievedUser = dao.find("jgarcia");
+		System.out.println("****************: " + retrievedUser.getNick());
 		assertNotNull(retrievedUser);
 		assertEquals(user.getNick(), retrievedUser.getNick());
 		assertEquals(user.getPassword(), retrievedUser.getPassword());

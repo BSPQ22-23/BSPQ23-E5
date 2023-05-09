@@ -1,7 +1,10 @@
-package domain;
+package com.domain;
 
 import java.util.Date;
 import java.util.List;
+
+import domain.Booking;
+import domain.Service;
 
 public class Bill {
 	 private int id;

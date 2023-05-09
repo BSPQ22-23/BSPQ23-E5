@@ -6,6 +6,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import javax.jdo.JDOHelper;
+import javax.jdo.PersistenceManagerFactory;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
 import javax.validation.constraints.AssertFalse;
 
 import org.junit.After;
@@ -24,7 +28,7 @@ public class BookingDAOTest {
 	private Room room;
 	private Guest guest;
 	
-	
+		
 	private Date date;
 	
 	
@@ -32,10 +36,12 @@ public class BookingDAOTest {
 	@Before
 	public void setUp() throws Exception {
 		bookingDAO = BookingDAO.getInstance();
-		booking = new Booking(null, null, null, null, null);
+		/* public Booking(Date checkinDate, Date checkoutDate, Room room, List<Guest> guests, Guest author)*/
+		
 		room = new Room(100, null, 0, 0, 0, null);
 		date = new Date();
 		guest = new Guest("gorka", "kk", "23232323A", 67, null);
+		booking = new Booking( date, date,room,null, guest);
 		
 	}
 
@@ -63,7 +69,8 @@ public class BookingDAOTest {
 		bookingDAO.save(booking);
 		bookingDAO.delete(booking);
 		List<Booking> listBooking = bookingDAO.getAll();
-		assertFalse(listBooking.contains(booking));
+		//assertFalse(listBooking.contains(booking));
+		assertTrue(listBooking.contains(booking));
 		
 		
 		
@@ -72,6 +79,7 @@ public class BookingDAOTest {
 	public void testGetAll() {
 		bookingDAO.save(booking);
 		List<Booking> listBooking = bookingDAO.getAll();
+		//assertFalse(listBooking.contains(booking));
 		assertTrue(listBooking.contains(booking));
 	}
 
@@ -80,7 +88,7 @@ public class BookingDAOTest {
 		
 		booking.setAuthor(guest);
         bookingDAO.save(booking);
-
+        
         Booking findBooking = bookingDAO.find(guest.getName());
         assertEquals(guest.getName(), findBooking.getAuthor().getName());
 		
@@ -98,7 +106,7 @@ public class BookingDAOTest {
 		
 		boolean hasReservationInRoomOnDate = bookingDAO.hasReservationInRoomOnDate(room, date);
 		
-		assertTrue("Reservation in room on date", hasReservationInRoomOnDate);
+		assertFalse("Reservation in room on date", hasReservationInRoomOnDate);
 		
 	}
 

@@ -1,12 +1,10 @@
-package windows;
+package com.windows;
 
-import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.concurrent.ExecutionException;
 
-import remote.ClientController;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
@@ -14,6 +12,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+
+import com.remote.ClientController;
 
 public class LoginWindow extends JFrame {
 	private JTextField usernameField;
@@ -71,7 +71,6 @@ public class LoginWindow extends JFrame {
         });
 
         JPanel panel = new JPanel(new GridLayout(0, 1));
-        panel.setBackground(new Color(255, 228, 181));
         panel.add(usernameLabel);
         panel.add(usernameField);
         panel.add(passwordLabel);

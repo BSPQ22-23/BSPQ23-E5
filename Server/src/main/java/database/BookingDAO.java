@@ -2,7 +2,9 @@ package database;
 import java.util.Date;
 import java.util.List;
 
+import javax.jdo.JDOHelper;
 import javax.jdo.PersistenceManager;
+import javax.jdo.PersistenceManagerFactory;
 import javax.jdo.Query;
 import javax.jdo.Transaction;
 
@@ -17,7 +19,7 @@ import domain.Room;
 public class BookingDAO extends DataAccessObjectBase implements IDataAccessObject<Booking> {
 
 	private static BookingDAO instance;	
-	
+	//private static PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
 	private BookingDAO() { }
 	
 	public static BookingDAO getInstance() {
@@ -123,7 +125,7 @@ public class BookingDAO extends DataAccessObjectBase implements IDataAccessObjec
 
 	    return hasReservation;
 	}
-
+	
 
 	
 	

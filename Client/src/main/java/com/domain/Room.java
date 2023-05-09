@@ -1,11 +1,14 @@
-package domain;
+package com.domain;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.json.JSONObject;
 
-import remote.APIUtils;
+import com.remote.APIUtils;
+
+import domain.Booking;
+import domain.Hotel;
 
 public class Room {
 	private int roomNumber;
@@ -16,20 +19,7 @@ public class Room {
     private List<Booking> bookings;
     private Hotel hotel;
 
-    public static Room fromJSON(JSONObject object) {
-    	Room res = new Room(
-			object.getInt("roomNumber"), 
-			APIUtils.decode(object.getString("type")),
-			object.getInt("numMaxHosts"),
-			object.getInt("spaceInMeters"),
-			object.getFloat("prize"),
-			Hotel.fromJSON(object.getJSONObject("hotel"))
-		);
-    	if(object.keySet().contains("bookings"))
-    		for(Object o : object.getJSONArray("bookings"))
-    			res.addBooking(Booking.fromJSON((JSONObject)o));
-    	return res;
-    }
+    
     
     public Room(int roomNumber, String type, int numMaxHosts, int spaceInMeters, float prize, Hotel hotel) {
         this.roomNumber = roomNumber;
