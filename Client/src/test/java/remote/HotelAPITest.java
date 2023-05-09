@@ -26,8 +26,8 @@ public class HotelAPITest {
 		User hm = new User(
 			"hotelManager", 
 			"AnotherPassword", 
-			new Guest("Benjamin", "Dover", "305MWW", 29, "Miami, Florida"), 
-			true
+			true, 
+			new Guest("Benjamin", "Dover", "305MWW", 29, "Miami, Florida")
 		);
 		if(ClientController.register(hm).status != Response.SUCCESS)
 			ClientController.login(hm.getNick(), hm.getPassword());

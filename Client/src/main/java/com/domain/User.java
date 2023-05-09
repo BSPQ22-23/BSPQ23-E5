@@ -1,6 +1,6 @@
 package com.domain;
 
-import domain.Guest;
+
 
 public class User {
 
@@ -12,12 +12,13 @@ public class User {
 		return nick;
 	}
 	public User(String nick, String password, boolean isHotelOwner, Guest legalInfo) {
-		super();
+		
 		this.nick = nick;
 		this.password = password;
 		this.isHotelOwner = isHotelOwner;
 		this.legalInfo = legalInfo;
 	}
+	
 	public void setNick(String nick) {
 		this.nick = nick;
 	}

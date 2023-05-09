@@ -59,8 +59,8 @@ public class ClientControllerPerformaceTest {
 	      logger.info("Starting testRegisterUser");  
 		  long startTime = System.currentTimeMillis();
 		// Crear un nuevo usuario public User(String nick, String password, Guest legalInfo, boolean isHotelOwner) {
-	        User user1 = new User("Maitane", "password123", null,false);
-	        User user2 = new User("Gorka", "password124", null,true);
+	        User user1 = new User("Maitane", "password123", false,null);
+	        User user2 = new User("Gorka", "password124", true,null);
 	        // Realizar el registro del usuario
 	        Response response = ClientController.register(user1);
 	

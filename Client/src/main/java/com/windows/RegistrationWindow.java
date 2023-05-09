@@ -89,7 +89,7 @@ public class RegistrationWindow extends JFrame implements ActionListener {
 	            
 	            int ageI = Integer.parseInt(age);
 	            Guest guest = new Guest(name, lastName, id, ageI, city);
-	            User user = new User(nickname, password, guest, false);
+	            User user = new User(nickname, password, false, guest);
 	            
 	            try {
 					ClientController.register(user);
