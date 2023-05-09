@@ -26,7 +26,13 @@ public class Booking {
         this.room = room;
         this.guests = guests;
     }
-
+    public Booking() {
+        this.id = 0;
+        this.checkinDate = null;
+        this.checkoutDate = null;
+        this.room = null;
+        this.guests = null;
+    }
     public int getId() {
         return id;
     }

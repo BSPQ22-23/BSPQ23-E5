@@ -1,9 +1,10 @@
 package domain;
+import org.junit.Before;
 import org.junit.Test;
 
-import com.domain.Bill;
-import com.domain.Booking;
-import com.domain.Service;
+import domain.Bill;
+import domain.Booking;
+import domain.Service;
 
 import static org.junit.Assert.*;
 import java.util.ArrayList;
@@ -12,100 +13,95 @@ import java.util.List;
 
 public class BillTest {
 
-    @Test
-    public void testGetId() {
-        int id = 1;
-        Bill bill = new Bill(id, new Date(), new ArrayList<Service>(), 0, new Booking(id, null, null, null, null));
-        assertEquals(id, bill.getId());
-    }
+	  private Bill bill;
+	    private Service service1;
+	    private Service service2;
+	    private List<Service> services;
+	
+		private int id = 1;
+		private Date issueDate = new Date();
+		
+		private double billTotal = 100.0;
+		private Booking booking = new Booking(issueDate, issueDate, null, null, null);
 
-    @Test
-    public void testSetId() {
-        int id = 1;
-        Bill bill = new Bill(0, new Date(), new ArrayList<Service>(), 0, new Booking(id, null, null, null, null));
-        bill.setId(id);
-        assertEquals(id, bill.getId());
-    }
+	    @Before
+	    public void setUp() throws Exception {
+	        service1 = new Service("Servicio 1", "Descripción del servicio 1", 10.0);
+	        service2 = new Service("Servicio 2", "Descripción del servicio 2", 20.0);
+	        services = new ArrayList<Service>();
+	        services.add(service1);
+	        services.add(service2);
+	        bill = new Bill(1, new Date(), services, 30.0, new Booking(null, null, null, null, null));
+	    }
 
-    @Test
-    public void testGetIssueDate() {
-        Date date = new Date();
-        Bill bill = new Bill(0, date, new ArrayList<Service>(), 0, new Booking(0, date, date, null, null));
-        assertEquals(date, bill.getIssueDate());
-    }
+	    @Test
+	    public void testAddService() {
+	        Service service3 = new Service("Servicio 3", "Descripción del servicio 3", 15.0);
+	        bill.addService(service3);
+	        assertEquals(bill.getServices().size(), 3);
+	        assertTrue(bill.getServices().contains(service3));
+	    }
 
-    @Test
-    public void testSetIssueDate() {
-        Date date = new Date();
-        Bill bill = new Bill(0, new Date(), new ArrayList<Service>(), 0, new Booking(0, date, date, null, null));
-        bill.setIssueDate(date);
-        assertEquals(date, bill.getIssueDate());
-    }
+	    @Test
+	    public void testRemoveService() {
+	        bill.removeService(service1);
+	        assertEquals(bill.getServices().size(), 1);
+	        assertFalse(bill.getServices().contains(service1));
+	    }
+	    @Test
+		public void testGetId() {
+			assertEquals(id, bill.getId());
+		}
+		
+		@Test
+		public void testSetId() {
+			int newId = 2;
+			bill.setId(newId);
+			assertEquals(newId, bill.getId());
+		}
+		
+		@Test
+		public void testGetIssueDate() {
+			assertEquals(issueDate, bill.getIssueDate());
+		}
+		
+		@Test
+		public void testSetIssueDate() {
+			Date newIssueDate = new Date();
+			bill.setIssueDate(newIssueDate);
+			assertEquals(newIssueDate, bill.getIssueDate());
+		}
+		
+		@Test
+		public void testGetServices() {
+			assertEquals(services, bill.getServices());
+		}
+		
+		@Test
+		public void testSetServices() {
+			List<Service> newServices = new ArrayList<>();
+			newServices.add(new Service("New Service", "New Description", 50.0));
+			bill.setServices(newServices);
+			assertEquals(newServices, bill.getServices());
+		}
+		
+		@Test
+		public void testGetBillTotal() {
+			assertEquals(billTotal, bill.getBillTotal(), 0.0);
+		}
+		
+		@Test
+		public void testSetBillTotal() {
+			double newBillTotal = 150.0;
+			bill.setBillTotal(newBillTotal);
+			assertEquals(newBillTotal, bill.getBillTotal(), 0.0);
+		}
+		
+		@Test
+		public void testGetBooking() {
+			assertEquals(booking, bill.getBooking());
+		}
+		
+			    
 
-    @Test
-    public void testGetServices() {
-        List<Service> services = new ArrayList<>();
-        services.add(new Service("testService", null, 10.0));
-        Bill bill = new Bill(0, new Date(), services, 0, new Booking(0, null, null, null, null));
-        assertEquals(services, bill.getServices());
-    }
-
-    @Test
-    public void testSetServices() {
-        List<Service> services = new ArrayList<>();
-        services.add(new Service("testService", null, 10.0));
-        Bill bill = new Bill(0, new Date(), new ArrayList<Service>(), 0, new Booking(0, null, null, null, null));
-        bill.setServices(services);
-        assertEquals(services, bill.getServices());
-    }
-
-    @Test
-    public void testGetBillTotal() {
-        double billTotal = 100.0;
-        Bill bill = new Bill(0, new Date(), new ArrayList<Service>(), billTotal, new Booking(0, null, null, null, null));
-        assertEquals(billTotal, bill.getBillTotal(), 0.001);
-    }
-
-    @Test
-    public void testSetBillTotal() {
-        double billTotal = 100.0;
-        Bill bill = new Bill(0, new Date(), new ArrayList<Service>(), 0, new Booking(0, null, null, null, null));
-        bill.setBillTotal(billTotal);
-        assertEquals(billTotal, bill.getBillTotal(), 0.001);
-    }
-
-    @Test
-    public void testGetBooking() {
-        Booking booking = new Booking(0, null, null, null, null);
-        Bill bill = new Bill(0, new Date(), new ArrayList<Service>(), 0, booking);
-        assertEquals(booking, bill.getBooking());
-    }
-
-    @Test
-    public void testSetBooking() {
-        Booking booking = new Booking(0, null, null, null, null);
-        Bill bill = new Bill(0, new Date(), new ArrayList<Service>(), 0, new Booking(0, null, null, null, null));
-        bill.setBooking(booking);
-        assertEquals(booking, bill.getBooking());
-    }
-    @Test
-    public void testAddService() {
-        Service service = new Service("testService", null, 10.0);
-        List<Service> services = new ArrayList<>();
-        Bill bill = new Bill(0, new Date(), services, 0, new Booking(0, null, null, null, null));
-        bill.addService(service);
-        assertTrue(bill.getServices().contains(service));
-    }
-
-    @Test
-    public void testRemoveService() {
-        Service service = new Service("testService", null, 10.0);
-        List<Service> services = new ArrayList<>();
-        services.add(service);
-        Bill bill = new Bill(0, new Date(), services, 0, new Booking(0, null, null, null, null));
-        bill.removeService(service);
-        assertFalse(bill.getServices().contains(service));
-    }
-    
-}
-
+	}

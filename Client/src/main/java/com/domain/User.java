@@ -11,12 +11,20 @@ public class User {
 	public String getNick() {
 		return nick;
 	}
+	public User(String nick, String password, boolean isHotelOwner, Guest legalInfo) {
+		super();
+		this.nick = nick;
+		this.password = password;
+		this.isHotelOwner = isHotelOwner;
+		this.legalInfo = legalInfo;
+	}
 	public void setNick(String nick) {
 		this.nick = nick;
 	}
 	public String getPassword() {
 		return password;
 	}
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
@@ -34,11 +42,5 @@ public class User {
 		this.isHotelOwner = isHotelOwner;
 	}
 
-	public User(String nick, String password, Guest legalInfo, boolean isHotelOwner) {
-		super();
-		this.nick = nick;
-		this.password = password;
-		this.legalInfo = legalInfo;
-		this.isHotelOwner = isHotelOwner;
-	}
+	
 }
