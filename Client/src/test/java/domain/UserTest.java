@@ -15,11 +15,11 @@ import org.junit.Test;
 public class UserTest {
 
     private User user;
-    private domain.Guest guest;
+    private Guest guest;
 
     @Before
     public void setUp() {
-        guest = new domain.Guest("John", "Doe", "12345678A", 30, "New York");
+        guest = new Guest("John", "Doe", "12345678A", 30, "New York");
         user = new User("johndoe", "password", false, guest);
     }
 

@@ -49,14 +49,14 @@ public class HotelAPITest {
 				new User(
 					"OriginalNick", 
 					"ASecurePassword",
+					false,
 					new Guest(
 						"This is a name", 
 						"This is a surname",  
 						"123456789J", 
 						10, 
 						"A city somewhere" 
-					),
-					false
+					)
 				)
 			).status != Response.SUCCESS)
 			ClientController.login("OriginalNick", "ASecurePassword");
