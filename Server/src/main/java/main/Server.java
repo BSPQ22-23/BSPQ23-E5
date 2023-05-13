@@ -26,7 +26,7 @@ public class Server {
 		UserDAO.getInstance();
 		l.info("Datanucleus started correctly");
 		try {
-	        HttpServer server = HttpServer.create(new InetSocketAddress(8000), 0);
+	        HttpServer server = HttpServer.create(new InetSocketAddress(8080), 0);
 	        server.createContext("/register", new RegisterHandler());
 	        server.createContext("/login", new LoginHandler());
 	        server.createContext("/booking/create", new ReservationCreationHandler());
@@ -36,7 +36,7 @@ public class Server {
 	        server.createContext("/hotel/get", new HotelGetterHandler());
 	        server.setExecutor(null); // creates a default executor
 	        server.start();
-	        l.info("Server started at 127.0.0.1:8000");
+	        l.info("Server started at 127.0.0.1:8080");
 		}catch(Exception e) {
 			l.error("Error starting the server: " + e.getMessage());
 			e.printStackTrace();

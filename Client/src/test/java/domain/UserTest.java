@@ -4,8 +4,8 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import com.domain.Guest;
-import com.domain.User;
+import domain.Guest;
+import domain.User;
 
 import static org.junit.Assert.*;
 

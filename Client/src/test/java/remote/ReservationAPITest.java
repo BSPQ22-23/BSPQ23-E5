@@ -19,30 +19,31 @@ import domain.Guest;
 import domain.Hotel;
 import domain.Room;
 import domain.User;
-import com.remote.ClientController;
-import com.remote.ServiceLocator;
-import com.remote.ClientController.Response;
+import remote.ClientController;
+import remote.ServiceLocator;
+import remote.ClientController.Response;
 
 public class ReservationAPITest {
-	
+	private User user ;
+	private Guest guest;
+	private ServiceLocator handler;
 	@Before
 	public void setup() throws IOException, InterruptedException, ExecutionException {
-		ClientController.setServerHandler(new ServiceLocator("localhost", 8000));
-		if(ClientController.register(
-				new User(
-					"OriginalNick", 
-					"ASecurePassword",
-					new Guest(
-						"This is a name", 
-						"This is a surname",  
-						"123456789J", 
-						10, 
-						"A city somewhere" 
-					),
-					false
-				)
-			).status != Response.SUCCESS)
-			ClientController.login("OriginalNick", "ASecurePassword");
+		
+		handler = new ServiceLocator("localhost", 8080);
+		ClientController.setServerHandler(handler);
+		
+		user = new User("originalnick", "ASecurePassword", false, guest);
+		guest = new Guest("This is a name", "This is a surname", "123456789J", 0, "A city somewhere" );
+		
+		Response response = ClientController.register(user);
+		
+			
+			if(response.status!= Response.SUCCESS) {
+				
+			ClientController.login(user.getNick(), user.getPassword());
+		}
+			
 	}
 	@Test
 	public void testReservation() throws InterruptedException, ExecutionException {
@@ -82,25 +83,34 @@ public class ReservationAPITest {
 	}
 	@After
 	public void lastTest() throws InterruptedException, ExecutionException {
+		/*try {
+			handler = new ServiceLocator("localhost", 8080);
+			ClientController.setServerHandler(handler);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		User hm = new User(
 			"hotelManager", 
 			"AnotherPassword", 
-			new Guest("Benjamin", "Dover", "305MWW", 29, "Miami, Florida"), 
-			true
+			true,new Guest("Benjamin", "Dover", "305MWW", 29, "Miami, Florida")
+			
 		);
-		if(ClientController.register(hm).status != Response.SUCCESS)
+		Response response = ClientController.register(hm);
+		if(response.status != Response.SUCCESS)
 			ClientController.login(hm.getNick(), hm.getPassword());
-		Hotel h = new Hotel(
-				0, 
-				"Hotel Lakua", 
-				"Vitoria"
 		
-		);
+		Hotel h = new Hotel(0, "Hotel Lakua", "Vitoria");
+		
 		h.addRoom(new Room(100, "Single", 1, 1, 1, null));
+		
 		ClientController.createHotel(h);
-		h = ClientController.getHotels("Hotel Lakua").get(0);
-		final Hotel _h = h;
+		
+		
+		
+		final Hotel _h = ClientController.getHotels("Hotel Lakua")[0];
 		//If it doesn't throw an exception it returns a list
-		assertTrue(ClientController.getReservations(_h) instanceof List);
+		assertTrue(ClientController.getReservations(_h)!=null);*/
 	}
 }

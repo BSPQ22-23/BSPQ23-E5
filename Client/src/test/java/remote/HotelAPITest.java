@@ -1,6 +1,7 @@
 package remote;
 
 import static org.junit.Assert.assertEquals;
+
 import static org.junit.Assert.assertNotEquals;
 
 import java.io.IOException;
@@ -10,19 +11,22 @@ import java.util.concurrent.ExecutionException;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.domain.Guest;
-import com.domain.Hotel;
-import com.domain.Room;
-import com.domain.User;
-import com.remote.ClientController;
-import com.remote.ServiceLocator;
-import com.remote.ClientController.Response;
+import domain.Guest;
+import domain.Hotel;
+import domain.Room;
+import domain.User;
+import remote.ClientController;
+import remote.ServiceLocator;
+import remote.ClientController.Response;
 
 public class HotelAPITest {
+	private ServiceLocator handler;
 	
 	@Before
 	public void setup() throws IOException, InterruptedException, ExecutionException {
-		ClientController.setServerHandler(new ServiceLocator("localhost", 8000));
+		handler = new ServiceLocator("localhost", 8080);
+		ClientController.setServerHandler(handler);
+		
 		User hm = new User(
 			"hotelManager", 
 			"AnotherPassword", 
@@ -69,10 +73,10 @@ public class HotelAPITest {
 		assertNotEquals(0, getAll.size());
 		System.out.println(getAll);
 		
-		List<Hotel> getExisting = ClientController.getHotels("La");
-		assertEquals(getExisting.size(), 1);
+		Hotel[] getExisting = ClientController.getHotels("La");
+		assertEquals(getExisting.length, 1);
 		
-		List<Hotel> getNotExisting = ClientController.getHotels("▓");
-		assertEquals(getNotExisting.size(), 0);
+		Hotel[] getNotExisting = ClientController.getHotels("▓");
+		assertEquals(getNotExisting.length, 0);
 	}
 }
