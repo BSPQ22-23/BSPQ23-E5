@@ -18,7 +18,11 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class APIUtils {
-	
+	/**
+	 * Create an expecify hashmap
+	 * @param o
+	 * @return  map
+	 */
 	public static HashMap<String, String> objectToHeaders(Object o) {
 		HashMap<String, String> output = new HashMap<>();
 		for(Field f : o.getClass().getDeclaredFields())
@@ -44,9 +48,19 @@ public class APIUtils {
 			}
 		return output;
 	}
+	/**
+	 * create a method decode
+	 * @param value
+	 * @return code
+	 */
 	public static String decode(String value) {
 		return new String(Base64.getDecoder().decode(value), StandardCharsets.UTF_8);
 	}
+	/**
+	 * Create a list to JSON Array 
+	 * @param o is a collection
+	 * @return array
+	 */
 	public static JSONArray listToJSONArray(Collection<?> o) {
 		JSONArray array = new JSONArray();
 		for(Object obj : o)
@@ -64,6 +78,11 @@ public class APIUtils {
 				array.put(objectToJSON(obj));
 		return array;
 	}
+	/**
+	 * Create a Jsonobject
+	 * @param o
+	 * @return object
+	 */
 	public static JSONObject objectToJSON(Object o) {
 		JSONObject output = new JSONObject();
 		try {
@@ -89,6 +108,15 @@ public class APIUtils {
 		}
 		return output;
 	}
+	/**
+	 * Create a Json string
+	 * @param <T>
+	 * @param json
+	 * @param valueType
+	 * @return ObjctMapper with the value and the type
+	 * @throws JsonMappingException
+	 * @throws JsonProcessingException
+	 */
 	public static <T> T fromJsonString(String json, Class<T> valueType) throws JsonMappingException, JsonProcessingException{
 	    return new ObjectMapper().readValue(json, valueType);
 	}

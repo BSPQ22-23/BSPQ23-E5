@@ -61,7 +61,7 @@ public class ClientControllerPerformaceTest {
 	    public void testRegisterUser() throws Exception {
 		  
 		  
-		  ClientController.setServerHandler(new ServiceLocator("localhost", 8080));
+		  ClientController.setServerHandler(new ServiceLocator("localhost", 8000));
 		  
 	      logger.info("Starting testRegisterUser");  
 		  long startTime = System.currentTimeMillis();

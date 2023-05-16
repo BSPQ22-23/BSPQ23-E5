@@ -4,92 +4,69 @@
 	<groupId>BSPQ23-E5</groupId>
 	<artifactId>Server</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	
 	<parent>
 		<groupId>BSPQ23-E5</groupId>
 		<artifactId>BSPQ23-E5</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	
 	<build>
 		<sourceDirectory>src</sourceDirectory>
 		<!--////////////////////////////////////////////////////////////////////////PLUGINS ////////////////////////////////////////////////////////////////////////-->
-		
 		<plugins>
 			<!-- datanucleus:enhance -->
-			
 			<plugin>
 				<groupId>org.datanucleus</groupId>
 				<artifactId>datanucleus-maven-plugin</artifactId>
 				<version>6.0.0-release</version>
-				
 				<configuration>
 					<api>JDO</api>
 					<verbose>false</verbose>
 					<props>${project.basedir}/src/main/resources/datanucleus.properties</props>
 				</configuration>
-				
 				<executions>
-					
 					<execution>
 						<phase>compile</phase>
-						
 						<goals>
 							<goal>enhance</goal>
 						</goals>
 					</execution>
-					
-					
 				</executions>
 			</plugin>
 			<!-- exec:java -->
-			
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>exec-maven-plugin</artifactId>
 				<version>3.1.0</version>
-				
 				<executions>
-					
 					<execution>
-						
 						<goals>
 							<goal>java</goal>
 						</goals>
 					</execution>
 				</executions>
-				
 				<configuration>
 					<mainClass>main.Server</mainClass>
 					<!--arguments><argument>argument1</argument>...</arguments-->
 					<!--systemProperties><systemProperty><key>myproperty</key><value>myvalue</value></systemProperty>...</systemProperties-->
 				</configuration>
 			</plugin>
-			
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-resources-plugin</artifactId>
 				<version>3.2.0</version>
-				
 				<executions>
-					
 					<execution>
 						<id>copy-datanucleus-properties</id>
 						<phase>process-resources</phase>
-						
 						<goals>
 							<goal>copy-resources</goal>
 						</goals>
-						
 						<configuration>
 							<outputDirectory>${project.build.outputDirectory}</outputDirectory>
-							
 							<resources>
-								
 								<resource>
 									<directory>src/main/resources</directory>
 									<filtering>true</filtering>
-									
 									<includes>
 										<include>datanucleus.properties</include>
 									</includes>
@@ -99,25 +76,19 @@
 					</execution>
 				</executions>
 			</plugin>
-		
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
 				<version>0.8.8</version>
-				
 				<executions>
-					
 					<execution>
-						
 						<goals>
 							<goal>prepare-agent</goal>
 						</goals>
 					</execution>
-					
 					<execution>
 						<id>report</id>
 						<phase>test</phase>
-						
 						<goals>
 							<goal>report</goal>
 						</goals>
@@ -127,88 +98,78 @@
 		</plugins>
 	</build>
 	<!--////////////////////////////////////////////////////////////////////////DEPENDENCIES ////////////////////////////////////////////////////////////////////////-->
-	
 	<dependencies>
-		
 		<dependency>
 			<groupId>org.datanucleus</groupId>
 			<artifactId>javax.jdo</artifactId>
 			<version>[3.2.0-release, )</version>
 		</dependency>
-		
 		<dependency>
 			<groupId>org.datanucleus</groupId>
 			<artifactId>datanucleus-core</artifactId>
 			<version>[6.0.0-m1, )</version>
 		</dependency>
-		
 		<dependency>
 			<groupId>org.datanucleus</groupId>
 			<artifactId>datanucleus-api-jdo</artifactId>
 			<version>[6.0.0-m1, )</version>
 		</dependency>
-		
 		<dependency>
 			<groupId>org.datanucleus</groupId>
 			<artifactId>datanucleus-rdbms</artifactId>
 			<version>[6.0.0-m1, )</version>
 		</dependency>
-		
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>8.0.29</version>
 		</dependency>
 		<!--mockito-->
-		
 		<dependency>
 			<groupId>org.mockito</groupId>
 			<artifactId>mockito-inline</artifactId>
 			<version>4.6.0</version>
 			<scope>test</scope>
 		</dependency>
-	</dependencies>
-	
-	<reporting>
 		
+		<!--<dependency>
+			<groupId>BSPQ23-E5</groupId>
+			<artifactId>BSPQ23-E5</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>-->
+	</dependencies>
+	<reporting>
 		<plugins>
-			
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
 				<version>3.4.0</version>
-				
 				<configuration>
 					<show>private</show>
 					<nohelp>true</nohelp>
 					<source>8</source>
 				</configuration>
 			</plugin>
-			
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-checkstyle-plugin</artifactId>
 				<version>3.1.2</version>
 			</plugin>
-			
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-report-plugin</artifactId>
 				<version>3.0.0-M6</version>
 			</plugin>
-			
 			<plugin>
 				<groupId>com.googlecode.maven-overview-plugin</groupId>
 				<artifactId>maven-overview-plugin</artifactId>
 				<version>1.6</version>
 			</plugin>
-			
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
 				<version>0.8.8</version>
 			</plugin>
-			
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-pmd-plugin</artifactId>

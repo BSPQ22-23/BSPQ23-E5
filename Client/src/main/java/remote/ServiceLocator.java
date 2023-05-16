@@ -13,14 +13,19 @@ import java.net.http.HttpResponse.BodyHandlers;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.concurrent.ExecutionException;
+
+import javax.ws.rs.client.WebTarget;
+
 import org.json.JSONObject;
 
 public class ServiceLocator {
 	private String destination;
 	private HttpClient client = HttpClient.newHttpClient();
+	
 
 	public ServiceLocator(String ip, int port) throws IOException {
 		setService(ip, port);
+		
 	}
 	public void setService(String ip, int port) throws IOException {
 		URL url = new URL("http://"+ip+':'+port+'/');

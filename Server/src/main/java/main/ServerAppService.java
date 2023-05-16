@@ -3,6 +3,9 @@ package main;
 import java.util.Date;
 import java.util.List;
 
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+
 import database.BookingDAO;
 import database.HotelDAO;
 import database.UserDAO;
@@ -92,6 +95,7 @@ public class ServerAppService {
 			HotelDAO.getInstance().addHotel(h);
 		return true;
 	}
+	
 	public static List<Hotel> getHotels() {
 		List<Hotel> h = HotelDAO.getInstance().getAll();
 		h.forEach(v-> {
@@ -100,6 +104,7 @@ public class ServerAppService {
 		});
 		return h;
 	}
+	
 	public static List<Hotel> getHotels(String query) {
 		List<Hotel> h = HotelDAO.getInstance().getbyName(query);
 		h.forEach(v-> {

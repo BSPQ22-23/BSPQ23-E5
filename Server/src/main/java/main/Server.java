@@ -20,13 +20,14 @@ import database.UserDAO;
 import domain.User;
 
 public class Server {
+	
 	private static final HashMap<String, User> tokenList = new HashMap<>();
 	public static void main(String[] args){
 		Logger l = LogManager.getLogger();
 		UserDAO.getInstance();
 		l.info("Datanucleus started correctly");
 		try {
-	        HttpServer server = HttpServer.create(new InetSocketAddress(8080), 0);
+	        HttpServer server = HttpServer.create(new InetSocketAddress(8000), 0);
 	        server.createContext("/register", new RegisterHandler());
 	        server.createContext("/login", new LoginHandler());
 	        server.createContext("/booking/create", new ReservationCreationHandler());
@@ -36,12 +37,14 @@ public class Server {
 	        server.createContext("/hotel/get", new HotelGetterHandler());
 	        server.setExecutor(null); // creates a default executor
 	        server.start();
-	        l.info("Server started at 127.0.0.1:8080");
+	        l.info("Server started at 127.0.0.1:8000");
 		}catch(Exception e) {
 			l.error("Error starting the server: " + e.getMessage());
 			e.printStackTrace();
 		}
+		
     }
+	
 	/**
 	 * Returns the user that corresponds to the token input
 	 * @param token Token of the account

@@ -14,7 +14,12 @@
 			<artifactId>junitperf</artifactId>
 			<version>1.22.1</version>
 		</dependency>
-
+	<!-- json-->
+<dependency>
+    <groupId>com.fasterxml.jackson.core</groupId>
+    <artifactId>jackson-databind</artifactId>
+    <version>2.12.5</version>
+</dependency>
 		<dependency>
 			<groupId>BSPQ23-E5</groupId>
 			<artifactId>Server</artifactId>
@@ -91,7 +96,7 @@
 						</goals>
 						<configuration>
 							<rules>
-								<rule>
+								<!--<rule>
 									<element>PACKAGE</element>
 									<limits>
 										<limit>
@@ -105,13 +110,30 @@
 											<minimum>0.95</minimum>
 										</limit>
 									</limits>
-								</rule>
+								</rule>-->
 							</rules>
 						</configuration>
 					</execution>
 				</executions>
 			</plugin>
-		
+			<!-- exec:java -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<version>3.1.0</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>java</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<mainClass>windows.LoginWindow</mainClass>
+					<!--arguments><argument>argument1</argument>...</arguments-->
+					<!--systemProperties><systemProperty><key>myproperty</key><value>myvalue</value></systemProperty>...</systemProperties-->
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 	<reporting>

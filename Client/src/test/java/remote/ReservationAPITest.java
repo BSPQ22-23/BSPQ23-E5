@@ -30,7 +30,7 @@ public class ReservationAPITest {
 	@Before
 	public void setup() throws IOException, InterruptedException, ExecutionException {
 		
-		handler = new ServiceLocator("localhost", 8080);
+		handler = new ServiceLocator("localhost", 8000);
 		ClientController.setServerHandler(handler);
 		
 		user = new User("originalnick", "ASecurePassword", false, guest);

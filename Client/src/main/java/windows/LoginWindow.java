@@ -15,6 +15,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
+import main.Server;
 import remote.*;
 
 public class LoginWindow extends JFrame {
@@ -34,6 +35,7 @@ public class LoginWindow extends JFrame {
         
         try {
 			ClientController.setServerHandler(new ServiceLocator("localhost", 8000));
+			
 		} catch (IOException e2) {
 			// TODO Auto-generated catch block
 			e2.printStackTrace();

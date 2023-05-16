@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
+import javax.ws.rs.client.WebTarget;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -28,6 +30,7 @@ public class ClientController {
 		private static final long serialVersionUID = 519375302527407530L;
 		public final String message;
 		public final int status;
+		
 		
 		public Response(int status, String message) {
 			super(message);
@@ -67,7 +70,7 @@ public class ClientController {
 	private static String token = null;
 	private static ServiceLocator handler;
 	/**
-	 * 
+	 * Create a POST 
 	 * @param g - > cliente
 	 * @return respuesta artifial
 	 * @throws InterruptedException
@@ -75,7 +78,7 @@ public class ClientController {
 	 */
 	public static Response register(User g) throws InterruptedException, ExecutionException{
 		try {
-			HttpResponse<String> response = handler.sendPOST("register", APIUtils.objectToJSON(g));
+			HttpResponse<String> response = handler.sendPOST("/register", APIUtils.objectToJSON(g));
 			if(response.statusCode() != 200)
 				return new Response(response.statusCode(), response.body());
 			else {
@@ -87,12 +90,20 @@ public class ClientController {
 			return null;
 		}
 	}
+	/**
+	 * POST login
+	 * @param user
+	 * @param password
+	 * @return response of the login
+	 * @throws InterruptedException
+	 * @throws ExecutionException
+	 */
 	public static Response login(String user, String password) throws InterruptedException, ExecutionException {
 		try {
 			JSONObject body = new JSONObject();
 			body.put("user", Base64.getEncoder().encodeToString(user.getBytes()).toString());
 			body.put("password", Base64.getEncoder().encodeToString(password.getBytes()).toString());
-			HttpResponse<String> response = handler.sendPOST("login", body); // no hay nada en la base de datos
+			HttpResponse<String> response = handler.sendPOST("/login", body); // no hay nada en la base de datos
 			if(response.statusCode() != 200)
 				return new Response(response.statusCode(), response.body());
 			else {
@@ -104,6 +115,11 @@ public class ClientController {
 			return null;
 		}
 	}
+	/**
+	 * Create a POST  - create a reservation
+	 * @param b booking
+	 * @return response of the create a reservation
+	 */
 	public static Response createReservation(Booking b) {
 		HashMap<String, String> headers = new HashMap<>();
 		headers.put("token", token);
@@ -116,7 +132,11 @@ public class ClientController {
 			return null;
 		}	
 	}
-	
+	/**
+	 * EDIT A RESERVATION -POST
+	 * @param b Booking
+	 * @return  response
+	 */
 	public static Response editReservation(Booking b) {
 		HashMap<String, String> headers = new HashMap<>();
 		headers.put("token", token);
@@ -129,6 +149,11 @@ public class ClientController {
 			return null;
 		}	
 	}
+	/**
+	 * DELETE A RESERVATION - POST
+	 * @param b booking 
+	 * @return response
+	 */
 	public static Response deleteReservation(Booking b) {
 		HashMap<String, String> headers = new HashMap<>();
 		headers.put("token", token);
@@ -142,7 +167,11 @@ public class ClientController {
 			return null;
 		}	
 	}
-	
+	/**
+	 * CREATE HOTEL
+	 * @param h domain.hotel
+	 * @return response
+	 */
 	public static Response createHotel(Hotel h) {
 		HttpResponse<String> response;
 		try {
@@ -153,6 +182,10 @@ public class ClientController {
 			return null;
 		}
 	}
+	/**
+	 * GET - get all reservations
+	 * @return reservations
+	 */
 	public static List<Booking> getReservations() {
 		HttpResponse<String> response;
 		try {
@@ -174,7 +207,11 @@ public class ClientController {
 	        return null;
 	    }
 	}
-	
+	/**
+	 * GET AL RESERVATION FROM AN EXPECIFY HOTEL
+	 * @param h
+	 * @return reservation
+	 */
 	public static List<Booking> getReservations(Hotel h){
 		HttpResponse<String> response;
 		try {
@@ -195,6 +232,11 @@ public class ClientController {
 			return null;
 		}
 	}
+	/**
+	 * GET RESERVATION BY ID
+	 * @param id
+	 * @return a reservation
+	 */
 	public static Booking getReservation(int id) {
 		HttpResponse<String> response;
 		try {
@@ -209,6 +251,10 @@ public class ClientController {
 			return null;
 		}
 	}
+	/**
+	 * GET HOTELS 
+	 * @return all the hotels
+	 */
 	public static List<Hotel> getHotels(){
 		HttpResponse<String> response;
 		try {
@@ -232,6 +278,11 @@ public class ClientController {
 			return null;
 		}
 	}
+	/**
+	 * GET HOTEL BY NAME
+	 * @param name
+	 * @return a list of hotels
+	 */
 	public static Hotel[] getHotels(String name) {
 	    HttpResponse<String> response;
 	    try {

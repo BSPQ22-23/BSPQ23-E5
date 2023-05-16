@@ -7,66 +7,134 @@ import domain.Booking;
 import domain.Service;
 
 public class Bill {
-	 private int id;
-	    private Date issueDate;
-	    private List<Service> services;
-	    private double billTotal;
-	    private Booking booking;
+	private int id;
+	private Date issueDate;
+	private List<Service> services;
+	private double billTotal;
+	private Booking booking;
 
-	    public Bill(int id, Date issueDate, List<Service> services, double billTotal, Booking booking) {
-	        this.id = id;
-	        this.issueDate = issueDate;
-	        this.services = services;
-	        this.billTotal = billTotal;
-	        this.booking = booking;
-	    }
+	/**
+	 * 
+	 * @param id
+	 * @param issueDate
+	 * @param services
+	 * @param billTotal
+	 * @param booking
+	 */
+	public Bill(int id, Date issueDate, List<Service> services, double billTotal, Booking booking) {
+		this.id = id;
+		this.issueDate = issueDate;
+		this.services = services;
+		this.billTotal = billTotal;
+		this.booking = booking;
+	}
 
-	    public int getId() {
-	        return id;
-	    }
+	/**
+	 * GET ID
+	 * 
+	 * @return id
+	 */
+	public int getId() {
+		return id;
+	}
 
-	    public void setId(int id) {
-	        this.id = id;
-	    }
+	/**
+	 * Set id
+	 * 
+	 * @param id
+	 */
+	public void setId(int id) {
+		this.id = id;
+	}
 
-	    public Date getIssueDate() {
-	        return issueDate;
-	    }
+	/**
+	 * get issue date
+	 * 
+	 * @return date
+	 */
+	public Date getIssueDate() {
+		return issueDate;
+	}
 
-	    public void setIssueDate(Date issueDate) {
-	        this.issueDate = issueDate;
-	    }
+	/**
+	 * Set date
+	 * 
+	 * @param issueDate
+	 */
+	public void setIssueDate(Date issueDate) {
+		this.issueDate = issueDate;
+	}
 
-	    public List<Service> getServices() {
-	        return services;
-	    }
+	/**
+	 * get the list of services
+	 * 
+	 * @return list
+	 */
+	public List<Service> getServices() {
+		return services;
+	}
 
-	    public void setServices(List<Service> services) {
-	        this.services = services;
-	    }
+	/**
+	 * set tthe list of services
+	 * 
+	 * @param services
+	 */
+	public void setServices(List<Service> services) {
+		this.services = services;
+	}
 
-	    public double getBillTotal() {
-	        return billTotal;
-	    }
+	/**
+	 * get the total bill
+	 * 
+	 * @return bill
+	 */
+	public double getBillTotal() {
+		return billTotal;
+	}
 
-	    public void setBillTotal(double billTotal) {
-	        this.billTotal = billTotal;
-	    }
+	/**
+	 * set the total bill
+	 * 
+	 * @param billTotal
+	 */
+	public void setBillTotal(double billTotal) {
+		this.billTotal = billTotal;
+	}
 
-	    public Booking getBooking() {
-	        return booking;
-	    }
+	/**
+	 * Get the booking from the booking class
+	 * 
+	 * @return booking
+	 */
+	public Booking getBooking() {
+		return booking;
+	}
 
-	    public void setBooking(Booking booking) {
-	        this.booking = booking;
-	    }
+	/**
+	 * Modificate the booking
+	 * 
+	 * @param booking
+	 */
+	public void setBooking(Booking booking) {
+		this.booking = booking;
+	}
 
-	    public void addService(Service service) {
-	        services.add(service);
-	    }
+	/**
+	 * Creace a service
+	 * 
+	 * @param service
+	 */
+	public void addService(Service service) {
+		services.add(service);
+	}
 
-	    public void removeService(Service service) {
-	        services.remove(service);
-	    }
-	    
+	/**
+	 * Delete a service
+	 * 
+	 * @param service
+	 */
+	public void removeService(Service service) {
+		services.remove(service);
+	}
+
 }
