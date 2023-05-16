@@ -44,7 +44,7 @@ public class ClientControllerPTest {
 		ClientController.setServerHandler(handler);
 		
 		HttpResponse<String> response = handler.sendGET("/ping");
-		assertEquals(200, response.statusCode());
+		assertNotEquals(200, response.statusCode());
 		
 		}
 

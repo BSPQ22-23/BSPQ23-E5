@@ -28,7 +28,9 @@ public class LoginHandler implements HttpHandler{
 			token = ServerAppService.login(
 				APIUtils.decode(obj.getString("user")),
 				PasswordEncryption.encryptPassword(APIUtils.decode(obj.getString("password")))
+				
 			);
+			System.out.println("se comunica con el server el login");
 		}catch(IllegalArgumentException | JSONException e) {
 			l.info("Illegal use of API: " + e.getMessage());
     		String response = e.getMessage();
@@ -37,6 +39,7 @@ public class LoginHandler implements HttpHandler{
     		os.write(response.getBytes());
     		System.out.println('o');
     		os.close();
+    		System.out.println("excepción : illegal use of API");
     	}
 		if(token == null) {
 			l.info("Authorization failed");
@@ -45,7 +48,9 @@ public class LoginHandler implements HttpHandler{
 			OutputStream os = t.getResponseBody();
 			os.write(res.getBytes());
 			os.close();
+			System.out.println("La error en la autorización");
 			return;
+			
 		}
 		l.info("Authorized " + APIUtils.decode(obj.getString("user")));
 		token = Base64.getEncoder().encodeToString(token.getBytes());
@@ -53,6 +58,7 @@ public class LoginHandler implements HttpHandler{
 		OutputStream os = t.getResponseBody();
  		os.write(token.getBytes());
  		os.close();
+ 		System.out.println("autorización correcta");
     }
 
 }

@@ -25,7 +25,7 @@ public class LoginWindow extends JFrame {
     
     //---------------------------
     private ServiceLocator handler ;
-    private ClientController controller;
+   
     
 
     public LoginWindow() {
@@ -33,8 +33,11 @@ public class LoginWindow extends JFrame {
         JLabel usernameLabel = new JLabel("Username:");
         usernameField = new JTextField(20);
         
+        
+        
         try {
-			ClientController.setServerHandler(new ServiceLocator("localhost", 8000));
+        	this.handler = new ServiceLocator("localhost", 8000);
+			 ClientController.setServerHandler(handler);
 			
 		} catch (IOException e2) {
 			// TODO Auto-generated catch block
@@ -70,6 +73,7 @@ public class LoginWindow extends JFrame {
                 try {
                 	if(!username.equals("") && !password.equals("")) {
                 		ClientController.login(username, password);
+                		System.out.println("ha entrado");
                 		openMenu(true);
                 		
                 	} else {

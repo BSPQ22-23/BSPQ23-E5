@@ -69,6 +69,7 @@ public class ClientController {
 	@SuppressWarnings("unused")
 	private static String token = null;
 	private static ServiceLocator handler;
+	
 	/**
 	 * Create a POST 
 	 * @param g - > cliente
@@ -78,7 +79,9 @@ public class ClientController {
 	 */
 	public static Response register(User g) throws InterruptedException, ExecutionException{
 		try {
+			
 			HttpResponse<String> response = handler.sendPOST("/register", APIUtils.objectToJSON(g));
+			
 			if(response.statusCode() != 200)
 				return new Response(response.statusCode(), response.body());
 			else {
@@ -103,12 +106,18 @@ public class ClientController {
 			JSONObject body = new JSONObject();
 			body.put("user", Base64.getEncoder().encodeToString(user.getBytes()).toString());
 			body.put("password", Base64.getEncoder().encodeToString(password.getBytes()).toString());
+			System.out.println(String.format("Este es el cuerpo :", body));
 			HttpResponse<String> response = handler.sendPOST("/login", body); // no hay nada en la base de datos
+			System.out.println(String.format("que me da el handler", handler));
+			System.out.println(String.format("RESPUESTA DEL LOGIN :", response) );
 			if(response.statusCode() != 200)
+				
 				return new Response(response.statusCode(), response.body());
+			
 			else {
 				token = response.body();
 				return new Response(200, "");
+				
 			}
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
