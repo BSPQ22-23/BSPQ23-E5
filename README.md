@@ -2,22 +2,32 @@
 Manage your hotels or reservations in an easy way...
 
 Para ejecutar el servidor:
+
+-------------------------------
 Ejecutar script sql para inicializar DB
-mvn clean compile
-mvn datanucleus:schema-create
-mvn install -DskipTests
+>mvn clean compile
+
+>mvn datanucleus:schema-create
+
+>mvn install -DskipTests
+
 el anterior comando instala en el local REPO de Maven las clases de dominio del servidor que se usan en el lado cliente
-mvn datanucleus:enhance exec:java -DskipTests
+>mvn datanucleus:enhance exec:java -DskipTests
 
 
-Para el lado cliente
+Para el lado cliente:
+
+------------------------
 de momento sólo podéis ejecutar los unit tests con
-mvn test
+>mvn test
+
 Deberías ejecutar la parte clietne con el sigueitne comando
-mvn exec:java
+
+>mvn exec:java
+
 Para ello tenéis que trasladar configuración del pom.xml dle servidor al pom.xml del cliente, donde la clase principal será com.windows.LoginWindow
 
-
+--------------------------------------
 <h1>Building the project</h1>
 The client can be compiled into a jar to later run it via Java while the server it's directly ran by maven.
 
@@ -47,15 +57,15 @@ Create database schema
 
 Create database and give user permissions
 >/* DELETE 'HotelManagementDB' database*/
-DROP SCHEMA IF EXISTS HotelManagementDB;
+DROP SCHEMA IF EXISTS HotelManagerDB;
 /* DELETE USER 'spq' AT LOCAL SERVER*/
 DROP USER IF EXISTS 'spq'@'localhost';
 /* CREATE 'HotelManagementDB' DATABASE */
-CREATE SCHEMA IF NOT EXISTS HotelManagementDB;
+CREATE SCHEMA IF NOT EXISTS HotelManagerDB;
 /* CREATE THE USER 'spq' AT LOCAL SERVER WITH PASSWORD 'spq' */
 CREATE USER IF NOT EXISTS 'spq'@'localhost' IDENTIFIED BY 'spq';
 /* GRANT FULL ACCESS TO THE DATABASE 'spq' FOR THE USER 'HotelManagementDB' AT LOCAL SERVER*/
-GRANT ALL ON HotelManagementDB.* TO 'spq'@'localhost';
+GRANT ALL ON HotelManagerDB.* TO 'spq'@'localhost';
 
 
 

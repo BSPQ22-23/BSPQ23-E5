@@ -104,8 +104,11 @@ public class ClientController {
 	public static Response login(String user, String password) throws InterruptedException, ExecutionException {
 		try {
 			JSONObject body = new JSONObject();
+			
 			body.put("user", Base64.getEncoder().encodeToString(user.getBytes()).toString());
 			body.put("password", Base64.getEncoder().encodeToString(password.getBytes()).toString());
+			System.out.println(String.format("user", user));
+			System.out.println(String.format("password", password));
 			System.out.println(String.format("Este es el cuerpo :", body));
 			HttpResponse<String> response = handler.sendPOST("/login", body); // no hay nada en la base de datos
 			System.out.println(String.format("que me da el handler", handler));
