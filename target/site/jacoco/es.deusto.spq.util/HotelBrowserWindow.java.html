@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>HotelBrowserWindow.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">HOTEL</a> &gt; <a href="index.source.html" class="el_package">es.deusto.spq.util</a> &gt; <span class="el_source">HotelBrowserWindow.java</span></div><h1>HotelBrowserWindow.java</h1><pre class="source lang-java linenums">package es.deusto.spq.util;
+import javax.swing.*;
+
+
+import es.deusto.spq.*;
+import es.deusto.spq.client.ClientController;
+
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.net.Socket;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.List;
+
+public class HotelBrowserWindow extends JFrame  {
+    private JTextField searchField;
+    private JTextArea hotelListArea;
+    private JButton viewHotelButton, homeButton,searchButton;
+    
+    public  ClientController controller;
+    
+    public static void main(String[] args) {
+<span class="nc" id="L28">        SwingUtilities.invokeLater(new Runnable() {</span>
+            public void run() {
+                //new HotelBrowserWindow(ClientController controller);
+            	
+<span class="nc" id="L32">            }</span>
+        });
+<span class="nc" id="L34">    }</span>
+
+<span class="nc" id="L36">    public HotelBrowserWindow(ClientController controller) {</span>
+<span class="nc" id="L37">        setTitle(&quot;HOTEL BROWSER&quot;);</span>
+<span class="nc" id="L38">        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);</span>
+<span class="nc" id="L39">        getContentPane().setLayout(new BorderLayout());</span>
+<span class="nc" id="L40">        setPreferredSize(new Dimension(600, 400));</span>
+<span class="nc" id="L41">        this.controller = controller;</span>
+
+        // Create components
+<span class="nc" id="L44">        searchField = new JTextField();</span>
+<span class="nc" id="L45">        searchButton = new JButton(&quot;Search&quot;);</span>
+<span class="nc" id="L46">        hotelListArea = new JTextArea();</span>
+<span class="nc" id="L47">        viewHotelButton = new JButton(&quot;View Hotel&quot;);</span>
+<span class="nc" id="L48">        homeButton = new JButton(&quot;Home&quot;);</span>
+
+        // Add action listeners
+<span class="nc" id="L51">        searchButton.addActionListener(new ActionListener() {</span>
+            public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L53">                String query = searchField.getText();</span>
+                // metodo que hay que meter en el client controller -&gt; get hotels
+               // Hotel[]hotels= ClientController.getHotels(query);
+               // hotelListArea.setText(hotels.toString());
+<span class="nc" id="L57">            }</span>
+        });
+
+<span class="nc" id="L60">        viewHotelButton.addActionListener(new ActionListener() {</span>
+            public void actionPerformed(ActionEvent e) {
+                // Implement logic to enter the hotel description window
+<span class="nc" id="L63">                JOptionPane.showMessageDialog(null, &quot;Entering hotel description window...&quot;);</span>
+<span class="nc" id="L64">            }</span>
+        });
+
+<span class="nc" id="L67">        homeButton.addActionListener(new ActionListener() {</span>
+            public void actionPerformed(ActionEvent e) {
+                // Implement logic to return to the home page
+<span class="nc" id="L70">                JOptionPane.showMessageDialog(null, &quot;Returning to the home page...&quot;);</span>
+<span class="nc" id="L71">                dispose();</span>
+<span class="nc" id="L72">                MainMenuClient mmc = new MainMenuClient();</span>
+<span class="nc" id="L73">                mmc.setVisible(true);</span>
+<span class="nc" id="L74">            }</span>
+        });
+
+        // Add components to the frame
+<span class="nc" id="L78">        JPanel searchPanel = new JPanel();</span>
+<span class="nc" id="L79">        searchPanel.setLayout(new BorderLayout());</span>
+<span class="nc" id="L80">        searchPanel.add(searchField, BorderLayout.CENTER);</span>
+<span class="nc" id="L81">        searchPanel.add(searchButton, BorderLayout.EAST);</span>
+
+<span class="nc" id="L83">        JScrollPane hotelListScrollPane = new JScrollPane(hotelListArea);</span>
+
+<span class="nc" id="L85">        JPanel buttonPanel = new JPanel();</span>
+<span class="nc" id="L86">        buttonPanel.setLayout(new FlowLayout());</span>
+<span class="nc" id="L87">        buttonPanel.add(viewHotelButton);</span>
+<span class="nc" id="L88">        buttonPanel.add(homeButton);</span>
+
+<span class="nc" id="L90">        getContentPane().add(searchPanel, BorderLayout.NORTH);</span>
+<span class="nc" id="L91">        getContentPane().add(hotelListScrollPane, BorderLayout.CENTER);</span>
+<span class="nc" id="L92">        getContentPane().add(buttonPanel, BorderLayout.SOUTH);</span>
+
+<span class="nc" id="L94">        pack();</span>
+<span class="nc" id="L95">        setLocationRelativeTo(null);</span>
+<span class="nc" id="L96">        setVisible(true);</span>
+<span class="nc" id="L97">    }</span>
+
+
+
+   
+   
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

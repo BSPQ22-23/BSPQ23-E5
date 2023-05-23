@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RegistrationWindow.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">HOTEL</a> &gt; <a href="index.source.html" class="el_package">es.deusto.spq.util</a> &gt; <span class="el_source">RegistrationWindow.java</span></div><h1>RegistrationWindow.java</h1><pre class="source lang-java linenums">package es.deusto.spq.util;
+
+import javax.swing.*;
+import javax.ws.rs.client.ClientBuilder;
+
+import es.deusto.spq.client.ClientController;
+import es.deusto.spq.server.*;
+
+import java.awt.*;
+import java.awt.event.*;
+import java.util.concurrent.ExecutionException;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Invocation;
+import javax.ws.rs.client.WebTarget;
+
+import es.deusto.spq.client.ClientController; // conexion con cliente
+//import main.Server;  -&gt; abrir el servidor
+
+public class RegistrationWindow extends JFrame implements ActionListener {
+	private JLabel nicknameLabel, passwordLabel, nameLabel, lastNameLabel, idLabel, ageLabel, cityLabel;
+	private JTextField nicknameTextField, passwordTextField, nameTextField, lastNameTextField, idTextField,
+			ageTextField, cityTextField;
+	private JButton submitButton, clearButton;
+	// ---------------------------
+	private ClientController controller;
+	private Client client;
+	private WebTarget webTarget;
+
+	public RegistrationWindow() {
+
+<span class="nc" id="L32">		super(&quot;Hotel Registration Form&quot;);</span>
+		
+		
+
+	
+
+<span class="nc" id="L38">		nicknameLabel = new JLabel(&quot;Nickname:&quot;);</span>
+<span class="nc" id="L39">		passwordLabel = new JLabel(&quot;Password:&quot;);</span>
+<span class="nc" id="L40">		nameLabel = new JLabel(&quot;Name:&quot;);</span>
+<span class="nc" id="L41">		lastNameLabel = new JLabel(&quot;Last Name:&quot;);</span>
+<span class="nc" id="L42">		idLabel = new JLabel(&quot;ID Number:&quot;);</span>
+<span class="nc" id="L43">		ageLabel = new JLabel(&quot;Age:&quot;);</span>
+<span class="nc" id="L44">		cityLabel = new JLabel(&quot;City of Origin:&quot;);</span>
+
+<span class="nc" id="L46">		nicknameTextField = new JTextField(20);</span>
+<span class="nc" id="L47">		passwordTextField = new JTextField(20);</span>
+<span class="nc" id="L48">		nameTextField = new JTextField(20);</span>
+<span class="nc" id="L49">		lastNameTextField = new JTextField(20);</span>
+<span class="nc" id="L50">		idTextField = new JTextField(20);</span>
+<span class="nc" id="L51">		ageTextField = new JTextField(20);</span>
+<span class="nc" id="L52">		cityTextField = new JTextField(20);</span>
+
+<span class="nc" id="L54">		submitButton = new JButton(&quot;Submit&quot;);</span>
+<span class="nc" id="L55">		clearButton = new JButton(&quot;Clear&quot;);</span>
+
+<span class="nc" id="L57">		submitButton.addActionListener(this);</span>
+<span class="nc" id="L58">		clearButton.addActionListener(this);</span>
+
+<span class="nc" id="L60">		JPanel formPanel = new JPanel(new GridLayout(7, 2, 5, 5));</span>
+<span class="nc" id="L61">		formPanel.setBackground(new Color(255, 228, 181));</span>
+<span class="nc" id="L62">		formPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));</span>
+<span class="nc" id="L63">		formPanel.add(nicknameLabel);</span>
+<span class="nc" id="L64">		formPanel.add(nicknameTextField);</span>
+<span class="nc" id="L65">		formPanel.add(passwordLabel);</span>
+<span class="nc" id="L66">		formPanel.add(passwordTextField);</span>
+<span class="nc" id="L67">		formPanel.add(nameLabel);</span>
+<span class="nc" id="L68">		formPanel.add(nameTextField);</span>
+<span class="nc" id="L69">		formPanel.add(lastNameLabel);</span>
+<span class="nc" id="L70">		formPanel.add(lastNameTextField);</span>
+<span class="nc" id="L71">		formPanel.add(idLabel);</span>
+<span class="nc" id="L72">		formPanel.add(idTextField);</span>
+<span class="nc" id="L73">		formPanel.add(ageLabel);</span>
+<span class="nc" id="L74">		formPanel.add(ageTextField);</span>
+<span class="nc" id="L75">		formPanel.add(cityLabel);</span>
+<span class="nc" id="L76">		formPanel.add(cityTextField);</span>
+
+<span class="nc" id="L78">		JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));</span>
+<span class="nc" id="L79">		buttonPanel.setBackground(new Color(135, 206, 250));</span>
+<span class="nc" id="L80">		buttonPanel.setBorder(BorderFactory.createEmptyBorder(0, 10, 10, 10));</span>
+<span class="nc" id="L81">		buttonPanel.add(submitButton);</span>
+<span class="nc" id="L82">		buttonPanel.add(clearButton);</span>
+
+<span class="nc" id="L84">		getContentPane().setLayout(new BorderLayout());</span>
+<span class="nc" id="L85">		getContentPane().add(formPanel, BorderLayout.CENTER);</span>
+<span class="nc" id="L86">		getContentPane().add(buttonPanel, BorderLayout.SOUTH);</span>
+
+<span class="nc" id="L88">		setSize(400, 300);</span>
+<span class="nc" id="L89">		setLocationRelativeTo(null);</span>
+<span class="nc" id="L90">		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);</span>
+<span class="nc" id="L91">		setVisible(true);</span>
+<span class="nc" id="L92">	}</span>
+
+	public void actionPerformed(ActionEvent e) {
+<span class="nc bnc" id="L95" title="All 2 branches missed.">		if (e.getSource() == submitButton) {</span>
+<span class="nc" id="L96">			String nickname = nicknameTextField.getText();</span>
+<span class="nc" id="L97">			String password = passwordTextField.getText();</span>
+<span class="nc" id="L98">			String name = nameTextField.getText();</span>
+<span class="nc" id="L99">			String lastName = lastNameTextField.getText();</span>
+<span class="nc" id="L100">			String id = idTextField.getText();</span>
+<span class="nc" id="L101">			String age = ageTextField.getText();</span>
+<span class="nc" id="L102">			String city = cityTextField.getText();</span>
+<span class="nc" id="L103">			JOptionPane.showMessageDialog(this, &quot;Thank you for registering, &quot; + name + &quot;!\n&quot; + &quot;Your nickname is &quot;</span>
+					+ nickname + &quot; and your password is &quot; + password);
+
+<span class="nc" id="L106">			int ageI = Integer.parseInt(age);</span>
+
+			/* conexión con el cliente */
+<span class="nc" id="L109">			controller.register(id, nickname, lastName, city, ageI, password);</span>
+			// openMenu(user.isHotelOwner().);
+
+<span class="nc bnc" id="L112" title="All 2 branches missed.">		} else if (e.getSource() == clearButton) {</span>
+<span class="nc" id="L113">			nicknameTextField.setText(&quot;&quot;);</span>
+<span class="nc" id="L114">			passwordTextField.setText(&quot;&quot;);</span>
+<span class="nc" id="L115">			nameTextField.setText(&quot;&quot;);</span>
+<span class="nc" id="L116">			lastNameTextField.setText(&quot;&quot;);</span>
+<span class="nc" id="L117">			idTextField.setText(&quot;&quot;);</span>
+<span class="nc" id="L118">			ageTextField.setText(&quot;&quot;);</span>
+<span class="nc" id="L119">			cityTextField.setText(&quot;&quot;);</span>
+		}
+<span class="nc" id="L121">	}</span>
+
+	private void openMenu(boolean isOwner) {
+<span class="nc bnc" id="L124" title="All 2 branches missed.">		if (isOwner) {</span>
+<span class="nc" id="L125">			MainMenuOwner menuOwner = new MainMenuOwner();</span>
+<span class="nc" id="L126">			menuOwner.setVisible(true);</span>
+<span class="nc" id="L127">		} else {</span>
+<span class="nc" id="L128">			MainMenuClient menuClient = new MainMenuClient();</span>
+<span class="nc" id="L129">			menuClient.setVisible(true);</span>
+		}
+<span class="nc" id="L131">		this.dispose();</span>
+<span class="nc" id="L132">	}</span>
+
+	public static void main(String[] args) {
+<span class="nc" id="L135">		String hostname = args[0];</span>
+<span class="nc" id="L136">		String port = args[1];</span>
+		
+<span class="nc" id="L138">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

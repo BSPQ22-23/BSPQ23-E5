@@ -1,0 +1,10 @@
+-------------------------------------------------------------------------------
+Test set: es.deusto.spq.client.ClientControllerTest
+-------------------------------------------------------------------------------
+Tests run: 5, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 9.366 sec <<< FAILURE! - in es.deusto.spq.client.ClientControllerTest
+testLoginWithError(es.deusto.spq.client.ClientControllerTest)  Time elapsed: 4.788 sec  <<< ERROR!
+javax.ws.rs.ProcessingException: java.net.ConnectException: Connection refused: connect
+	at es.deusto.spq.client.ClientControllerTest.testLoginWithError(ClientControllerTest.java:45)
+Caused by: java.net.ConnectException: Connection refused: connect
+	at es.deusto.spq.client.ClientControllerTest.testLoginWithError(ClientControllerTest.java:45)
+

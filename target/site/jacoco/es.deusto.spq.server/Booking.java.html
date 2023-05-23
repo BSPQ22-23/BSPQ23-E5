@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Booking.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">HOTEL</a> &gt; <a href="index.source.html" class="el_package">es.deusto.spq.server</a> &gt; <span class="el_source">Booking.java</span></div><h1>Booking.java</h1><pre class="source lang-java linenums">package es.deusto.spq.server;
+
+import java.util.Calendar;
+
+
+import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
+
+
+
+
+
+
+public class Booking {
+	
+	
+	private int id;
+    private Date checkinDate;
+    private Date checkoutDate;
+    private Room room;
+    private Guest author;
+
+	private List&lt;Guest&gt; guests;
+    
+<span class="fc" id="L26">    public Booking(Date checkinDate, Date checkoutDate, Room room, List&lt;Guest&gt; guests, Guest author) {</span>
+<span class="fc" id="L27">        this.checkinDate = checkinDate;</span>
+<span class="fc" id="L28">        this.checkoutDate = checkoutDate;</span>
+<span class="fc" id="L29">        this.room = room;</span>
+<span class="fc" id="L30">        this.guests = guests;</span>
+<span class="fc" id="L31">        this.author = author;</span>
+<span class="fc" id="L32">    }</span>
+
+	public int getId() {
+<span class="fc" id="L35">        return id;</span>
+    }
+
+    public void setId(int id) {
+<span class="fc" id="L39">        this.id = id;</span>
+<span class="fc" id="L40">    }</span>
+
+    public Date getCheckinDate() {
+<span class="fc" id="L43">        return checkinDate;</span>
+    }
+
+    public void setCheckinDate(Date checkinDate) {
+<span class="fc" id="L47">        this.checkinDate = checkinDate;</span>
+<span class="fc" id="L48">    }</span>
+
+    public Date getCheckoutDate() {
+<span class="fc" id="L51">        return checkoutDate;</span>
+    }
+
+    public void setCheckoutDate(Date checkoutDate) {
+<span class="fc" id="L55">        this.checkoutDate = checkoutDate;</span>
+<span class="fc" id="L56">    }</span>
+
+    public Room getRoom() {
+<span class="fc" id="L59">        return room;</span>
+    }
+
+    public void setRoom(Room room) {
+<span class="fc" id="L63">        this.room = room;</span>
+<span class="fc" id="L64">    }</span>
+
+    public List&lt;Guest&gt; getGuests() {
+<span class="fc" id="L67">        return guests;</span>
+    }
+
+    public void setGuests(List&lt;Guest&gt; guests) {
+<span class="fc" id="L71">        this.guests = guests;</span>
+<span class="fc" id="L72">    }</span>
+    
+    public void setAuthor(Guest author) {
+<span class="fc" id="L75">    	this.author = author;</span>
+<span class="fc" id="L76">    }</span>
+    
+    public Guest getAuthor() {
+<span class="fc" id="L79">		return author;</span>
+	}
+    
+    public void addGuest(Guest guest) {
+<span class="fc" id="L83">        guests.add(guest);</span>
+<span class="fc" id="L84">    }</span>
+
+    public void removeGuest(Guest guest) {
+<span class="fc" id="L87">        guests.remove(guest);</span>
+<span class="fc" id="L88">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Room.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">HOTEL</a> &gt; <a href="index.source.html" class="el_package">es.deusto.spq.jdo</a> &gt; <span class="el_source">Room.java</span></div><h1>Room.java</h1><pre class="source lang-java linenums">package es.deusto.spq.jdo;
+
+import java.util.List;
+
+import javax.jdo.annotations.Join;
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
+
+
+@PersistenceCapable(detachable = &quot;true&quot;)
+public class Room {
+
+    @PrimaryKey
+    @Persistent
+    private int roomNumber;
+    private String type;
+    private int numMaxGuests;
+    private int spaceInMeters;
+    private Hotel hotel; 
+    private float prize;
+    
+    @Join
+    private List&lt;Booking&gt; bookings;
+
+    
+<span class="fc" id="L27">    public Room(int roomNumber, String type, int numMaxGuests, int spaceInMeters, float prize, Hotel hotel) {</span>
+<span class="fc" id="L28">        this.roomNumber = roomNumber;</span>
+<span class="fc" id="L29">        this.type = type;</span>
+<span class="fc" id="L30">        this.numMaxGuests = numMaxGuests;</span>
+<span class="fc" id="L31">        this.spaceInMeters = spaceInMeters;</span>
+<span class="fc" id="L32">        this.hotel = hotel;</span>
+<span class="fc" id="L33">    }</span>
+
+    public int getRoomNumber() {
+<span class="fc" id="L36">        return roomNumber;</span>
+    }
+
+    public void setRoomNumber(int roomNumber) {
+<span class="fc" id="L40">        this.roomNumber = roomNumber;</span>
+<span class="fc" id="L41">    }</span>
+
+    public String getType() {
+<span class="fc" id="L44">        return type;</span>
+    }
+
+    public void setType(String type) {
+<span class="fc" id="L48">        this.type = type;</span>
+<span class="fc" id="L49">    }</span>
+
+    public int getNumMaxGuests() {
+<span class="fc" id="L52">        return numMaxGuests;</span>
+    }
+
+    public void setNumMaxGuests(int numMaxGuests) {
+<span class="fc" id="L56">        this.numMaxGuests = numMaxGuests;</span>
+<span class="fc" id="L57">    }</span>
+
+    public int getSpaceInMeters() {
+<span class="fc" id="L60">        return spaceInMeters;</span>
+    }
+
+    public void setSpaceInMeters(int spaceInMeters) {
+<span class="fc" id="L64">        this.spaceInMeters = spaceInMeters;</span>
+<span class="fc" id="L65">    }</span>
+
+    public Hotel getHotel() {
+<span class="fc" id="L68">        return hotel;</span>
+    }
+
+    public void setHotel(Hotel hotel) {
+<span class="fc" id="L72">        this.hotel = hotel;</span>
+<span class="fc" id="L73">    }</span>
+
+    public float getPrize() {
+<span class="fc" id="L76">        return prize;</span>
+    }
+
+    public void setPrize(float prize) {
+<span class="fc" id="L80">        this.prize = prize;</span>
+<span class="fc" id="L81">    }</span>
+
+    public List&lt;Booking&gt; getBookings() {
+<span class="fc" id="L84">        return bookings;</span>
+    }
+
+    public void setBookings(List&lt;Booking&gt; bookings) {
+<span class="fc" id="L88">        this.bookings = bookings;</span>
+<span class="fc" id="L89">    }</span>
+
+    /*public void addBooking(Booking booking) {
+        this.bookings.add(booking);
+    }*/
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

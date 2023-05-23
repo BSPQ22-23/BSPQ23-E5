@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UserData.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">HOTEL</a> &gt; <a href="index.source.html" class="el_package">es.deusto.spq.pojo</a> &gt; <span class="el_source">UserData.java</span></div><h1>UserData.java</h1><pre class="source lang-java linenums">package es.deusto.spq.pojo;
+
+public class UserData {
+
+	
+    private String login;
+ 
+	private String dni;
+	private String nickname;
+    private String lastname;
+	private String city;
+	private Boolean isHotelOwner ;
+	
+	public UserData(String dni, String nickname, String lastname, String city, Integer age,
+			String password,Boolean isHotelOwner) {
+<span class="nc" id="L16">		super();</span>
+		
+		
+<span class="nc" id="L19">		this.dni = dni;</span>
+<span class="nc" id="L20">		this.nickname = nickname;</span>
+<span class="nc" id="L21">		this.lastname = lastname;</span>
+<span class="nc" id="L22">		this.city = city;</span>
+<span class="nc" id="L23">		this.age = age;</span>
+<span class="nc" id="L24">		this.password = password;</span>
+<span class="nc" id="L25">		this.isHotelOwner = isHotelOwner;</span>
+<span class="nc" id="L26">	}</span>
+
+
+
+
+	public UserData(String nickname, String password,Boolean isHotelOwner) {
+<span class="nc" id="L32">		super();</span>
+<span class="nc" id="L33">		this.nickname =nickname;</span>
+<span class="nc" id="L34">		this.password = password;</span>
+<span class="nc" id="L35">		this.isHotelOwner = isHotelOwner;</span>
+<span class="nc" id="L36">	}</span>
+
+
+
+
+	public Boolean getIsHotelOwner() {
+<span class="fc" id="L42">		return isHotelOwner;</span>
+	}
+
+
+
+
+	public void setIsHotelOwner(Boolean isHotelOwner) {
+<span class="nc" id="L49">		this.isHotelOwner = isHotelOwner;</span>
+<span class="nc" id="L50">	}</span>
+
+
+
+
+	public String getDni() {
+<span class="fc" id="L56">		return dni;</span>
+	}
+
+
+	public void setDni(String dni) {
+<span class="fc" id="L61">		this.dni = dni;</span>
+<span class="fc" id="L62">	}</span>
+
+
+	public String getNickname() {
+<span class="fc" id="L66">		return nickname;</span>
+	}
+
+
+	public void setNickname(String nickname) {
+<span class="fc" id="L71">		this.nickname = nickname;</span>
+<span class="fc" id="L72">	}</span>
+
+
+	public String getLastname() {
+<span class="fc" id="L76">		return lastname;</span>
+	}
+
+
+	public void setLastname(String lastname) {
+<span class="fc" id="L81">		this.lastname = lastname;</span>
+<span class="fc" id="L82">	}</span>
+
+
+	public String getCity() {
+<span class="fc" id="L86">		return city;</span>
+	}
+
+
+	public void setCity(String city) {
+<span class="nc" id="L91">		this.city = city;</span>
+<span class="nc" id="L92">	}</span>
+
+
+	public Integer getAge() {
+<span class="fc" id="L96">		return age;</span>
+	}
+
+
+	public void setAge(Integer age) {
+<span class="nc" id="L101">		this.age = age;</span>
+<span class="nc" id="L102">	}</span>
+
+	private Integer age;
+    private String password;
+
+<span class="fc" id="L107">    public UserData() {</span>
+        // required by serialization
+<span class="fc" id="L109">    }</span>
+
+    
+    public String getLogin() {
+<span class="fc" id="L113">        return this.login;</span>
+    }
+
+    public void setLogin(String login) {
+<span class="fc" id="L117">        this.login = login;</span>
+<span class="fc" id="L118">    }</span>
+
+    public String getPassword() {
+<span class="fc" id="L121">        return this.password;</span>
+    }
+
+    public void setPassword(String password) {
+<span class="fc" id="L125">        this.password = password;</span>
+<span class="fc" id="L126">    }</span>
+
+    public String toStringLogin() {
+<span class="nc" id="L129">        return &quot;[nickname=&quot; + nickname + &quot;, password=&quot; + password + &quot;]&quot;;</span>
+    }
+
+
+
+	public String toStringRegister() {
+<span class="nc" id="L135">		return &quot;Register: [dni=&quot; + dni + &quot;, nickname=&quot; + nickname</span>
+				+ &quot;, lastname=&quot; + lastname + &quot;, city=&quot; + city + &quot;, age=&quot; + age + &quot;, password=&quot; + password + &quot;]&quot;;
+	}
+   
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

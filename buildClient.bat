@@ -1,2 +1,0 @@
-cd Client
-mvn install

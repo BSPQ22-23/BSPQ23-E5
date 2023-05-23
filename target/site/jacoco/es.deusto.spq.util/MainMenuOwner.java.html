@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MainMenuOwner.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">HOTEL</a> &gt; <a href="index.source.html" class="el_package">es.deusto.spq.util</a> &gt; <span class="el_source">MainMenuOwner.java</span></div><h1>MainMenuOwner.java</h1><pre class="source lang-java linenums">package es.deusto.spq.util;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+public class MainMenuOwner extends JFrame implements ActionListener {
+	 	private JLabel welcome, label, info, warningL, infoSettings, hotelNameL, hotelChainL, hotelRoomsL, hotelCityL;
+	 	private JTextField search, hotelName, hotelChain, hotelRooms, hotelCity;
+	    private JButton hotelEditButton, addHotelButton, searchButton, accountButton, searchHotelButton, deleteAccButton, logOutButton, changeDataButton, submitHotelButton, clearHotelButton;
+	    private JMenuBar menuBar;
+	    private JMenu menu, menuH;
+	    private JMenuItem mItem, mItem3, mItem4;
+	    private JPanel buttonPanel, welcomePanel, searchPanel, browserPanel, accountPanel, pCenter, addPanel;
+	    
+	    public MainMenuOwner() {
+<span class="nc" id="L33">	        super(&quot;Menu for Owner&quot;);</span>
+	        
+<span class="nc" id="L35">	        welcome = new JLabel(&quot;Welcome to the Hotel Management App for Owners&quot;);</span>
+<span class="nc" id="L36">	        label = new  JLabel(&quot;My hotel list: &quot;);</span>
+<span class="nc" id="L37">	        info = new JLabel(&quot;User info such as nickname, stats, recently reserved hotels, etc...&quot;);</span>
+<span class="nc" id="L38">	        infoSettings = new JLabel(&quot;Welcome to settings. Yo may edit your account information.&quot;);</span>
+<span class="nc" id="L39">	        warningL = new JLabel(&quot;Warning! Your account and your data will be deleted forever.&quot;);</span>
+<span class="nc" id="L40">	        hotelNameL = new JLabel(&quot;Hotel Name: &quot;);</span>
+<span class="nc" id="L41">	        hotelChainL = new JLabel(&quot;Hotel Chain: &quot;);</span>
+<span class="nc" id="L42">	        hotelRoomsL = new JLabel(&quot;Room quantity: &quot;);</span>
+<span class="nc" id="L43">	        hotelCityL = new JLabel(&quot;Location: &quot;);</span>
+	        
+<span class="nc" id="L45">	        search = new JTextField(20);</span>
+<span class="nc" id="L46">	        hotelName = new JTextField(15);</span>
+<span class="nc" id="L47">	        hotelChain = new JTextField(15);</span>
+<span class="nc" id="L48">	        hotelRooms = new JTextField(5);</span>
+<span class="nc" id="L49">	        hotelCity = new JTextField(15);</span>
+	        
+<span class="nc" id="L51">	        ImageIcon icon = new ImageIcon(&quot;../photos/pencil.png&quot;);</span>
+<span class="nc" id="L52">	        ImageIcon icon2 = new ImageIcon(&quot;../photos/search.png&quot;);</span>
+<span class="nc" id="L53">	        ImageIcon icon3 = new ImageIcon(&quot;../photos/account.png&quot;);</span>
+<span class="nc" id="L54">	        ImageIcon icon4 = new ImageIcon(&quot;../photos/addIcon.png&quot;);</span>
+
+	        
+<span class="nc" id="L57">	        hotelEditButton = new JButton(resizeIcon(icon, 60, 60));</span>
+<span class="nc" id="L58">	        addHotelButton = new JButton(resizeIcon(icon4, 60, 60));</span>
+<span class="nc" id="L59">	        searchButton = new JButton(resizeIcon(icon2, 60, 60));</span>
+<span class="nc" id="L60">	        accountButton = new JButton(resizeIcon(icon3,60, 60));</span>
+<span class="nc" id="L61">	        searchHotelButton = new JButton(resizeIcon(icon2, 10, 10));</span>
+<span class="nc" id="L62">	        changeDataButton = new JButton(&quot;Change account data&quot;);</span>
+<span class="nc" id="L63">	        deleteAccButton = new JButton(&quot;Delete this account&quot;);</span>
+<span class="nc" id="L64">	        logOutButton = new JButton(&quot;Log out&quot;);</span>
+<span class="nc" id="L65">	        submitHotelButton = new JButton(&quot;Submit Hotel&quot;);</span>
+<span class="nc" id="L66">	        clearHotelButton = new JButton(&quot;Clear Info&quot;);</span>
+	        
+<span class="nc" id="L68">	        menuBar = new JMenuBar();</span>
+<span class="nc" id="L69">	        menu = new JMenu(&quot;Account&quot;);</span>
+<span class="nc" id="L70">	        menuH = new JMenu(&quot;Home&quot;);</span>
+<span class="nc" id="L71">	        mItem = new JMenuItem(&quot;Log Out&quot;);</span>
+	       
+<span class="nc" id="L73">	        mItem3 = new JMenuItem(&quot;Exit&quot;);</span>
+	        
+<span class="nc" id="L75">	        hotelEditButton.addActionListener(this);</span>
+<span class="nc" id="L76">	        addHotelButton.addActionListener(this);</span>
+<span class="nc" id="L77">	        searchButton.addActionListener(this);</span>
+<span class="nc" id="L78">	        accountButton.addActionListener(this);</span>
+<span class="nc" id="L79">	        submitHotelButton.addActionListener(this);</span>
+<span class="nc" id="L80">	        clearHotelButton.addActionListener(this);</span>
+	        
+<span class="nc" id="L82">	        pCenter = new JPanel();</span>
+<span class="nc" id="L83">	        pCenter.setBackground(new Color(255, 228, 181));</span>
+
+	        
+<span class="nc" id="L86">	        GridLayout gridLayout = new GridLayout(0, 2);</span>
+<span class="nc" id="L87">	        gridLayout.setVgap(10);</span>
+<span class="nc" id="L88">	        gridLayout.setHgap(50);</span>
+<span class="nc" id="L89">	        buttonPanel = new JPanel(gridLayout);</span>
+<span class="nc" id="L90">	        buttonPanel.setBackground(new Color(255, 228, 181));</span>
+<span class="nc" id="L91">	        buttonPanel.add(hotelEditButton);</span>
+<span class="nc" id="L92">	        buttonPanel.add(addHotelButton);</span>
+<span class="nc" id="L93">	        buttonPanel.add(searchButton);</span>
+<span class="nc" id="L94">	        buttonPanel.add(accountButton);</span>
+	        
+<span class="nc" id="L96">	        welcomePanel = new JPanel(new FlowLayout(FlowLayout.CENTER));</span>
+<span class="nc" id="L97">	        welcomePanel.setBackground(new Color(135, 206, 250));</span>
+<span class="nc" id="L98">	        welcomePanel.add(welcome);</span>
+	        
+<span class="nc" id="L100">	        GridLayout gridLayout2 = new GridLayout(0, 3);</span>
+<span class="nc" id="L101">	        gridLayout2.setVgap(25);</span>
+<span class="nc" id="L102">	        gridLayout2.setHgap(10);</span>
+<span class="nc" id="L103">	        browserPanel = new JPanel(gridLayout2);</span>
+<span class="nc" id="L104">	        browserPanel.setBackground(new Color(255, 228, 181));</span>
+	        
+<span class="nc" id="L106">	        searchPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));</span>
+<span class="nc" id="L107">	        searchPanel.setBackground(new Color(135, 206, 250));</span>
+<span class="nc" id="L108">	        searchPanel.add(label);</span>
+<span class="nc" id="L109">	        searchPanel.add(search);</span>
+<span class="nc" id="L110">	        searchPanel.add(searchHotelButton);</span>
+	        
+<span class="nc" id="L112">	        GridLayout gridLayout4 = new GridLayout(0, 2);</span>
+<span class="nc" id="L113">	        gridLayout4.setVgap(20);</span>
+<span class="nc" id="L114">	        gridLayout4.setHgap(20);</span>
+<span class="nc" id="L115">	        addPanel = new JPanel(gridLayout4);</span>
+<span class="nc" id="L116">	        addPanel.setBackground(new Color(255, 228, 181));</span>
+<span class="nc" id="L117">	        addPanel.add(hotelNameL);</span>
+<span class="nc" id="L118">	        addPanel.add(hotelName);</span>
+<span class="nc" id="L119">	        addPanel.add(hotelChainL);</span>
+<span class="nc" id="L120">	        addPanel.add(hotelChain);</span>
+<span class="nc" id="L121">	        addPanel.add(hotelRoomsL);</span>
+<span class="nc" id="L122">	        addPanel.add(hotelRooms);</span>
+<span class="nc" id="L123">	        addPanel.add(hotelCityL);</span>
+<span class="nc" id="L124">	        addPanel.add(hotelCity);</span>
+<span class="nc" id="L125">	        addPanel.add(submitHotelButton);</span>
+<span class="nc" id="L126">	        addPanel.add(clearHotelButton);</span>
+	        
+<span class="nc" id="L128">	        GridLayout gridLayout3 = new GridLayout(0, 1);</span>
+<span class="nc" id="L129">	        gridLayout3.setVgap(15);</span>
+<span class="nc" id="L130">	        gridLayout3.setHgap(10);</span>
+<span class="nc" id="L131">	        accountPanel = new JPanel(gridLayout3);</span>
+<span class="nc" id="L132">	        accountPanel.setBackground(new Color(135, 206, 250));</span>
+<span class="nc" id="L133">	        accountPanel.add(infoSettings);</span>
+<span class="nc" id="L134">	        accountPanel.add(changeDataButton);</span>
+<span class="nc" id="L135">	        accountPanel.add(logOutButton);</span>
+<span class="nc" id="L136">	        accountPanel.add(warningL);</span>
+<span class="nc" id="L137">	        accountPanel.add(deleteAccButton);</span>
+
+	        
+<span class="nc" id="L140">	        pCenter.add(buttonPanel);</span>
+<span class="nc" id="L141">	        pCenter.add(browserPanel);</span>
+<span class="nc" id="L142">	        pCenter.add(accountPanel);</span>
+<span class="nc" id="L143">	        pCenter.add(addPanel);</span>
+	        
+<span class="nc" id="L145">	        getContentPane().setLayout(new BorderLayout());</span>
+<span class="nc" id="L146">	        getContentPane().add(pCenter, BorderLayout.CENTER);</span>
+<span class="nc" id="L147">		    accountPanel.setVisible(false);</span>
+<span class="nc" id="L148">			browserPanel.setVisible(false);</span>
+<span class="nc" id="L149">			addPanel.setVisible(false);</span>
+<span class="nc" id="L150">			getContentPane().add(searchPanel, BorderLayout.NORTH);</span>
+<span class="nc" id="L151">		    searchPanel.setVisible(false);</span>
+<span class="nc" id="L152">	        getContentPane().add(welcomePanel, BorderLayout.SOUTH);</span>
+	        
+<span class="nc" id="L154">	        menuH.add(mItem3);</span>
+
+<span class="nc" id="L156">	        menu.add(mItem);</span>
+<span class="nc" id="L157">	        menuBar.add(menuH);</span>
+<span class="nc" id="L158">	        menuBar.add(menu);</span>
+<span class="nc" id="L159">	        setJMenuBar(menuBar);</span>
+	        
+<span class="nc" id="L161">	        mItem3.addActionListener(this);</span>
+	      
+	        
+<span class="nc" id="L164">	        setSize(400, 360);</span>
+<span class="nc" id="L165">	        setLocationRelativeTo(null);</span>
+<span class="nc" id="L166">	        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);</span>
+<span class="nc" id="L167">	        setVisible(true);</span>
+<span class="nc" id="L168">	    }</span>
+	    
+	    private static Icon resizeIcon(ImageIcon icon, int w, int h) {
+<span class="nc" id="L171">	        Image img = icon.getImage();  </span>
+<span class="nc" id="L172">	        Image resizedImage = img.getScaledInstance(w, h,  java.awt.Image.SCALE_SMOOTH);  </span>
+<span class="nc" id="L173">	        return new ImageIcon(resizedImage);</span>
+	    }
+	    
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			
+<span class="nc bnc" id="L179" title="All 2 branches missed.">			if (e.getSource() == searchButton) {</span>
+<span class="nc" id="L180">				buttonPanel.setVisible(false);</span>
+<span class="nc" id="L181">				welcomePanel.setVisible(false);</span>
+<span class="nc" id="L182">				searchPanel.setVisible(true);</span>
+<span class="nc" id="L183">				browserPanel.setVisible(true);</span>
+<span class="nc" id="L184">				browserPanel.revalidate();</span>
+<span class="nc" id="L185">				browserPanel.repaint();</span>
+
+				
+<span class="nc bnc" id="L188" title="All 2 branches missed.">			 } else if (e.getSource() == accountButton) {</span>
+<span class="nc" id="L189">				buttonPanel.setVisible(false);</span>
+<span class="nc" id="L190">			    welcomePanel.setVisible(false);</span>
+<span class="nc" id="L191">			    accountPanel.setVisible(true);</span>
+			    
+<span class="nc bnc" id="L193" title="All 2 branches missed.">			 } else if (e.getSource() == addHotelButton) {</span>
+<span class="nc" id="L194">				buttonPanel.setVisible(false);</span>
+<span class="nc" id="L195">				welcomePanel.setVisible(false);</span>
+<span class="nc" id="L196">				addPanel.setVisible(true);</span>
+				
+<span class="nc bnc" id="L198" title="All 2 branches missed.">			 } else if (e.getSource() == submitHotelButton) {</span>
+				 
+				 
+<span class="nc bnc" id="L201" title="All 2 branches missed.">			 } else if (e.getSource() == clearHotelButton) {</span>
+<span class="nc" id="L202">				 hotelName.setText(&quot;&quot;);</span>
+<span class="nc" id="L203">				 hotelChain.setText(&quot;&quot;);</span>
+<span class="nc" id="L204">				 hotelRooms.setText(&quot;&quot;);</span>
+<span class="nc" id="L205">				 hotelCity.setText(&quot;&quot;);</span>
+				
+<span class="nc bnc" id="L207" title="All 2 branches missed.">		     } else if (e.getSource() == mItem3) {</span>
+<span class="nc" id="L208">		    	dispose(); </span>
+		     }
+<span class="nc" id="L210">		}</span>
+		
+		     public static void main(String[] args) {
+<span class="nc" id="L213">		         MainMenuOwner menuOw = new MainMenuOwner();</span>
+<span class="nc" id="L214">		     }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
