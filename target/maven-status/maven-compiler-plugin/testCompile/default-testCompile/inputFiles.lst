@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 C:\Users\BSILV\OneDrive\Escritorio\TERCERO INFOR\SEGUNDO CUATRI\Procesos de software\BSPQ23-E51 V1\BSPQ23-E51\BSPQ23-E51\src\test\java\es\deusto\spq\server\BillTest.java
 C:\Users\BSILV\OneDrive\Escritorio\TERCERO INFOR\SEGUNDO CUATRI\Procesos de software\BSPQ23-E51 V1\BSPQ23-E51\BSPQ23-E51\src\test\java\es\deusto\spq\jdo\HotelTest.java
 C:\Users\BSILV\OneDrive\Escritorio\TERCERO INFOR\SEGUNDO CUATRI\Procesos de software\BSPQ23-E51 V1\BSPQ23-E51\BSPQ23-E51\src\test\java\es\deusto\spq\server\BookingTest.java
@@ -17,3 +18,23 @@ C:\Users\BSILV\OneDrive\Escritorio\TERCERO INFOR\SEGUNDO CUATRI\Procesos de soft
 C:\Users\BSILV\OneDrive\Escritorio\TERCERO INFOR\SEGUNDO CUATRI\Procesos de software\BSPQ23-E51 V1\BSPQ23-E51\BSPQ23-E51\src\test\java\es\deusto\spq\server\RoomTest.java
 C:\Users\BSILV\OneDrive\Escritorio\TERCERO INFOR\SEGUNDO CUATRI\Procesos de software\BSPQ23-E51 V1\BSPQ23-E51\BSPQ23-E51\src\test\java\es\deusto\spq\server\UserTest.java
 C:\Users\BSILV\OneDrive\Escritorio\TERCERO INFOR\SEGUNDO CUATRI\Procesos de software\BSPQ23-E51 V1\BSPQ23-E51\BSPQ23-E51\src\test\java\es\deusto\spq\server\ResourceIntegrationTest.java
+=======
+C:\SoftwareProcess-dowloand\BSPQ23-E51\src\test\java\es\deusto\spq\client\ResourcePerfomaceTest.java
+C:\SoftwareProcess-dowloand\BSPQ23-E51\src\test\java\es\deusto\spq\pojo\UserDataTest.java
+C:\SoftwareProcess-dowloand\BSPQ23-E51\src\test\java\es\deusto\spq\server\RoomTest.java
+C:\SoftwareProcess-dowloand\BSPQ23-E51\src\test\java\es\deusto\spq\jdo\GuestTest.java
+C:\SoftwareProcess-dowloand\BSPQ23-E51\src\test\java\es\deusto\spq\jdo\RoomTest.java
+C:\SoftwareProcess-dowloand\BSPQ23-E51\src\test\java\es\deusto\spq\jdo\UserTest.java
+C:\SoftwareProcess-dowloand\BSPQ23-E51\src\test\java\es\deusto\spq\jdo\bookingTest.java
+C:\SoftwareProcess-dowloand\BSPQ23-E51\src\test\java\es\deusto\spq\server\BillTest.java
+C:\SoftwareProcess-dowloand\BSPQ23-E51\src\test\java\es\deusto\spq\client\ClientControllerTest.java
+C:\SoftwareProcess-dowloand\BSPQ23-E51\src\test\java\categories\PerformanceTest.java
+C:\SoftwareProcess-dowloand\BSPQ23-E51\src\test\java\es\deusto\spq\client\ResourceIntegrationTest.java
+C:\SoftwareProcess-dowloand\BSPQ23-E51\src\test\java\es\deusto\spq\jdo\HotelTest.java
+C:\SoftwareProcess-dowloand\BSPQ23-E51\src\test\java\es\deusto\spq\server\HotelTest.java
+C:\SoftwareProcess-dowloand\BSPQ23-E51\src\test\java\es\deusto\spq\jdo\ServiceTest.java
+C:\SoftwareProcess-dowloand\BSPQ23-E51\src\test\java\es\deusto\spq\server\ServiceTest.java
+C:\SoftwareProcess-dowloand\BSPQ23-E51\src\test\java\categories\IntegrationTest.java
+C:\SoftwareProcess-dowloand\BSPQ23-E51\src\test\java\es\deusto\spq\server\BookingTest.java
+C:\SoftwareProcess-dowloand\BSPQ23-E51\src\test\java\es\deusto\spq\server\GuestTest.java
+>>>>>>> 1bbcaec (update)
