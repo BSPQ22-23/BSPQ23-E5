@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 C:\Users\BSILV\OneDrive\Escritorio\TERCERO INFOR\SEGUNDO CUATRI\Procesos de software\BSPQ23-E51 V1\BSPQ23-E51\BSPQ23-E51\src\main\java\es\deusto\spq\jdo\Service.java
 C:\Users\BSILV\OneDrive\Escritorio\TERCERO INFOR\SEGUNDO CUATRI\Procesos de software\BSPQ23-E51 V1\BSPQ23-E51\BSPQ23-E51\src\main\java\es\deusto\spq\server\dao\UserDAO.java
 C:\Users\BSILV\OneDrive\Escritorio\TERCERO INFOR\SEGUNDO CUATRI\Procesos de software\BSPQ23-E51 V1\BSPQ23-E51\BSPQ23-E51\src\main\java\es\deusto\spq\jdo\User.java
@@ -29,3 +30,35 @@ C:\Users\BSILV\OneDrive\Escritorio\TERCERO INFOR\SEGUNDO CUATRI\Procesos de soft
 C:\Users\BSILV\OneDrive\Escritorio\TERCERO INFOR\SEGUNDO CUATRI\Procesos de software\BSPQ23-E51 V1\BSPQ23-E51\BSPQ23-E51\src\main\java\es\deusto\spq\util\RegistrationWindow.java
 C:\Users\BSILV\OneDrive\Escritorio\TERCERO INFOR\SEGUNDO CUATRI\Procesos de software\BSPQ23-E51 V1\BSPQ23-E51\BSPQ23-E51\src\main\java\es\deusto\spq\jdo\Hotel.java
 C:\Users\BSILV\OneDrive\Escritorio\TERCERO INFOR\SEGUNDO CUATRI\Procesos de software\BSPQ23-E51 V1\BSPQ23-E51\BSPQ23-E51\src\main\java\es\deusto\spq\client\ClientController.java
+=======
+C:\SoftwareProcess-dowloand\BSPQ23-E51\src\main\java\es\deusto\spq\server\Bill.java
+C:\SoftwareProcess-dowloand\BSPQ23-E51\src\main\java\es\deusto\spq\server\dao\GuestDAO.java
+C:\SoftwareProcess-dowloand\BSPQ23-E51\src\main\java\es\deusto\spq\server\dao\DataAccessObjectBase.java
+C:\SoftwareProcess-dowloand\BSPQ23-E51\src\main\java\es\deusto\spq\server\dao\HotelDAO.java
+C:\SoftwareProcess-dowloand\BSPQ23-E51\src\main\java\es\deusto\spq\jdo\User.java
+C:\SoftwareProcess-dowloand\BSPQ23-E51\src\main\java\es\deusto\spq\server\Room.java
+C:\SoftwareProcess-dowloand\BSPQ23-E51\src\main\java\es\deusto\spq\util\HotelBrowserWindow.java
+C:\SoftwareProcess-dowloand\BSPQ23-E51\src\main\java\es\deusto\spq\util\DonationException.java
+C:\SoftwareProcess-dowloand\BSPQ23-E51\src\main\java\es\deusto\spq\server\Booking.java
+C:\SoftwareProcess-dowloand\BSPQ23-E51\src\main\java\es\deusto\spq\jdo\Guest.java
+C:\SoftwareProcess-dowloand\BSPQ23-E51\src\main\java\es\deusto\spq\pojo\UserData.java
+C:\SoftwareProcess-dowloand\BSPQ23-E51\src\main\java\es\deusto\spq\util\MainMenuClient.java
+C:\SoftwareProcess-dowloand\BSPQ23-E51\src\main\java\es\deusto\spq\server\dao\IDataAccessObject.java
+C:\SoftwareProcess-dowloand\BSPQ23-E51\src\main\java\es\deusto\spq\server\DonationServer.java
+C:\SoftwareProcess-dowloand\BSPQ23-E51\src\main\java\es\deusto\spq\server\Service.java
+C:\SoftwareProcess-dowloand\BSPQ23-E51\src\main\java\es\deusto\spq\util\MainMenuOwner.java
+C:\SoftwareProcess-dowloand\BSPQ23-E51\src\main\java\es\deusto\spq\server\DonationManager.java
+C:\SoftwareProcess-dowloand\BSPQ23-E51\src\main\java\es\deusto\spq\jdo\Hotel.java
+C:\SoftwareProcess-dowloand\BSPQ23-E51\src\main\java\es\deusto\spq\jdo\Room.java
+C:\SoftwareProcess-dowloand\BSPQ23-E51\src\main\java\es\deusto\spq\util\VentanaPrincipal.java
+C:\SoftwareProcess-dowloand\BSPQ23-E51\src\main\java\es\deusto\spq\jdo\Service.java
+C:\SoftwareProcess-dowloand\BSPQ23-E51\src\main\java\es\deusto\spq\server\Hotel.java
+C:\SoftwareProcess-dowloand\BSPQ23-E51\src\main\java\es\deusto\spq\util\RegistrationWindow.java
+C:\SoftwareProcess-dowloand\BSPQ23-E51\src\main\java\es\deusto\spq\jdo\Booking.java
+C:\SoftwareProcess-dowloand\BSPQ23-E51\src\main\java\es\deusto\spq\client\ClientController.java
+C:\SoftwareProcess-dowloand\BSPQ23-E51\src\main\java\es\deusto\spq\util\LoginWindow.java
+C:\SoftwareProcess-dowloand\BSPQ23-E51\src\main\java\es\deusto\spq\server\Guest.java
+C:\SoftwareProcess-dowloand\BSPQ23-E51\src\main\java\es\deusto\spq\server\Resource.java
+C:\SoftwareProcess-dowloand\BSPQ23-E51\src\main\java\es\deusto\spq\server\dao\BookingDAO.java
+C:\SoftwareProcess-dowloand\BSPQ23-E51\src\main\java\es\deusto\spq\util\ReservationWindow.java
+>>>>>>> 1bbcaec (update)

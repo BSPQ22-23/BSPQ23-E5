@@ -1,5 +1,10 @@
 package es.deusto.spq.jdo;
 
+<<<<<<< HEAD
+=======
+import java.io.Serializable;
+
+>>>>>>> 1bbcaec (update)
 import javax.jdo.annotations.PersistenceCapable;
 
 import javax.jdo.annotations.Persistent;
@@ -13,6 +18,7 @@ import es.deusto.spq.server.dao.GuestDAO;
 
 
 
+<<<<<<< HEAD
 @PersistenceCapable(detachable="true")
 public class User {
 	
@@ -45,6 +51,21 @@ public class User {
 		this.cityOfProvenance = cityOfProvenance;
 	}
 
+=======
+@PersistenceCapable
+public class User implements Serializable{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@PrimaryKey
+	@Persistent
+	@Unique
+	private String nick = null;
+	@Persistent
+	private String password = null;
+>>>>>>> 1bbcaec (update)
 
 	public String getNick() {
 		return nick;
@@ -58,6 +79,7 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+<<<<<<< HEAD
 	public Guest getLegalInfo() {
 		
 		return legalInfo;
@@ -73,10 +95,14 @@ public class User {
 	public void setHotelOwner(boolean isHotelOwner) {
 		this.isHotelOwner = isHotelOwner;
 	}
+=======
+
+>>>>>>> 1bbcaec (update)
 	/*public boolean equals(Object o) {
 		return o instanceof User && ((User)o).nick.equals(nick);
 	}*/
 
+<<<<<<< HEAD
 	public User(String nick, String password, String dni, int age, String cityOfProvenance, boolean isHotelOwner) {
 		super();
 		this.nick = nick;
@@ -85,6 +111,13 @@ public class User {
 		this.age = age;
 		this.cityOfProvenance = cityOfProvenance;
 		this.isHotelOwner = isHotelOwner;
+=======
+	
+	public User(String nick,String password ) {
+		this.nick = nick;
+		
+		this.password = password;
+>>>>>>> 1bbcaec (update)
 	}
 	/*public User(String nick, String password, Guest legalInfo, boolean isHotelOwner) {
 		
@@ -97,4 +130,14 @@ public class User {
 	/*public User() {
 		// TODO Auto-generated constructor stub
 	}*/
+<<<<<<< HEAD
 }
+=======
+	public String toString() {
+		return "nNck=" + nick + ", password=" + password + "]";
+	}
+	
+	
+}
+
+>>>>>>> 1bbcaec (update)
