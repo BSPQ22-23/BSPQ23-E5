@@ -6,7 +6,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class UserTest {
-<<<<<<< HEAD
 	  private User user;
 	    private String nick;
 	    private String password;
@@ -16,16 +15,10 @@ public class UserTest {
 	    private Guest legalInfo;
 	    private boolean isHotelOwner;
 
-=======
-	private User user;
-	    private String nick;
-	    private String password;
->>>>>>> 1bbcaec (update)
 	    @Before
 	    public void setUp() {
 	        nick = "johnDoe";
 	        password = "password123";
-<<<<<<< HEAD
 	        dni = "123456789";
 	        age = 30;
 	        cityOfProvenance = "New York";
@@ -34,9 +27,6 @@ public class UserTest {
 	        legalInfo = new Guest("John", "Doe", dni, age, cityOfProvenance);
 
 	        user = new User(nick, password, dni, age, cityOfProvenance, isHotelOwner);
-=======
-	       user = new User(nick,password);
->>>>>>> 1bbcaec (update)
 	    }
 
 	    @Test
@@ -62,7 +52,6 @@ public class UserTest {
 	        user.setPassword(newPassword);
 	        assertEquals(newPassword, user.getPassword());
 	    }
-<<<<<<< HEAD
 
 	    @Test
 	    public void testGetDni() {
@@ -125,6 +114,4 @@ public class UserTest {
 	        assertEquals(newIsHotelOwner, user.isHotelOwner());
 	    }
 
-=======
->>>>>>> 1bbcaec (update)
 }

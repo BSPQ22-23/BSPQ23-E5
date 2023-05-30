@@ -9,10 +9,6 @@
 	<name>HOTEL</name>
 	<url>http://maven.apache.org</url>
 	<!--propiedades -->
-<<<<<<< HEAD
-=======
-	
->>>>>>> 1bbcaec (update)
 	<properties>
 		<maven.compiler.release>8</maven.compiler.release>
 		<config.files.dir>${basedir}/src/main/resources</config.files.dir>
@@ -20,22 +16,9 @@
 		<jersey.version>2.35</jersey.version>
 		<server.hostname>127.0.0.1</server.hostname>
 		<server.port>8080</server.port>
-<<<<<<< HEAD
 	</properties>
 	<dependencyManagement>
 		<dependencies>
-=======
-		<!--<sonar.organization>maitanegarcia</sonar.organization>-->
-		<!--<sonar.host.url>https://sonarcloud.io</sonar.host.url>-->
-		<!-- Sonar cloud -->
-		<!--<doxygen.config.file>${basedir}/src/main/resources/Doxyfile</doxygen.config.file>-->
-	</properties>
-	
-	<dependencyManagement>
-		
-		<dependencies>
-			
->>>>>>> 1bbcaec (update)
 			<dependency>
 				<groupId>org.glassfish.jersey</groupId>
 				<artifactId>jersey-bom</artifactId>
@@ -45,7 +28,6 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
-<<<<<<< HEAD
 	<dependencies>
 		<dependency>
             <groupId>org.glassfish.jersey.containers</groupId>
@@ -64,120 +46,66 @@
       		<version>1.22.1</version>
     	</dependency>
 		<!-- datanucluos-->
-=======
-	
-	<dependencies>
-		
->>>>>>> 1bbcaec (update)
 		<dependency>
 			<groupId>org.datanucleus</groupId>
 			<artifactId>javax.jdo</artifactId>
 			<version>[3.2.0-release, )</version>
 		</dependency>
-<<<<<<< HEAD
-=======
-		
->>>>>>> 1bbcaec (update)
 		<dependency>
 			<groupId>org.datanucleus</groupId>
 			<artifactId>datanucleus-core</artifactId>
 			<version>[6.0.0-m1, 6.9)</version>
 		</dependency>
-<<<<<<< HEAD
-=======
-		
->>>>>>> 1bbcaec (update)
 		<dependency>
 			<groupId>org.datanucleus</groupId>
 			<artifactId>datanucleus-api-jdo</artifactId>
 			<version>[6.0.0-m1, 6.9)</version>
 		</dependency>
-<<<<<<< HEAD
-=======
-		
->>>>>>> 1bbcaec (update)
 		<dependency>
 			<groupId>org.datanucleus</groupId>
 			<artifactId>datanucleus-rdbms</artifactId>
 			<version>[6.0.0-m1, 6.9)</version>
 		</dependency>
-<<<<<<< HEAD
-=======
-		
->>>>>>> 1bbcaec (update)
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>8.0.29</version>
 		</dependency>
-<<<<<<< HEAD
 		<!--logging-->
-=======
-		
->>>>>>> 1bbcaec (update)
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-api</artifactId>
 			<version>[2.17.1, )</version>
 		</dependency>
-<<<<<<< HEAD
-=======
-		
->>>>>>> 1bbcaec (update)
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-core</artifactId>
 			<version>[2.17.1, )</version>
 		</dependency>
-<<<<<<< HEAD
 		<!-- jersey-->
 		<dependency>
 			<groupId>org.glassfish.jersey.containers</groupId>
 			<artifactId>jersey-container-servlet-core</artifactId>
 			<!-- use the following artifactId if you don't need servlet 2.x compatibility -->
 			<!-- artifactId>jersey-container-servlet</artifactId -->
-=======
-		
-		<dependency>
-			<groupId>org.glassfish.jersey.containers</groupId>
-			<artifactId>jersey-container-servlet-core</artifactId>
->>>>>>> 1bbcaec (update)
 		</dependency>
 		
 		<dependency>
 			<groupId>org.glassfish.jersey.inject</groupId>
 			<artifactId>jersey-hk2</artifactId>
 		</dependency>
-<<<<<<< HEAD
-=======
-		
->>>>>>> 1bbcaec (update)
 		<dependency>
 			<groupId>org.glassfish.jersey.media</groupId>
 			<artifactId>jersey-media-json-jackson</artifactId>
 		</dependency>
 		
-<<<<<<< HEAD
 		<!--mockito-->
 		<dependency>
 			<groupId>org.mockito</groupId>
-=======
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.13.2</version>
-			<scope>test</scope>
-		</dependency>
-		
-		<dependency>
-			<groupId>org.mockito</groupId>
-			<!-- enables mock of static methods -->
->>>>>>> 1bbcaec (update)
 			<artifactId>mockito-inline</artifactId>
 			<version>4.6.0</version>
 			<scope>test</scope>
 		</dependency>
-<<<<<<< HEAD
 		<!-- json-->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
@@ -195,23 +123,6 @@
 		<resources>
 			<resource>
 				<directory>${config.files.dir}</directory>
-=======
-		
-		<dependency>
-			<groupId>com.github.noconnor</groupId>
-			<artifactId>junitperf</artifactId>
-			<version>1.22.1</version>
-		</dependency>
-	</dependencies>
-	
-	<build>
-		
-		<resources>
-			
-			<resource>
-				<directory>${config.files.dir}</directory>
-				
->>>>>>> 1bbcaec (update)
 				<includes>
 					<include>**/*.jdo</include>
 					<include>**/*.orm</include>
@@ -219,7 +130,6 @@
 				</includes>
 			</resource>
 		</resources>
-<<<<<<< HEAD
 		<finalName>webapp</finalName>
 		<plugins>
 			<!--jacoco-->
@@ -250,22 +160,6 @@
 					<filesets>
 						<fileset>
 							<directory>${basedir}</directory>
-=======
-		
-		<plugins>
-			
-			<plugin>
-				<artifactId>maven-clean-plugin</artifactId>
-				<version>3.2.0</version>
-				
-				<configuration>
-					
-					<filesets>
-						
-						<fileset>
-							<directory>${basedir}</directory>
-							
->>>>>>> 1bbcaec (update)
 							<includes>
 								<include>*.log</include>
 								<include>*.ods</include>
@@ -275,7 +169,6 @@
 				</configuration>
 			</plugin>
 			
-<<<<<<< HEAD
 			
 			<plugin>
     <groupId>org.apache.maven.plugins</groupId>
@@ -307,29 +200,11 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.8.1</version>
 			</plugin>
-=======
-			<plugin>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.8.1</version>
-			</plugin>
-			
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<version>2.19.1</version>
-				
-				<configuration>
-					<testFailureIgnore>false</testFailureIgnore>
-				</configuration>
-			</plugin>
-			
->>>>>>> 1bbcaec (update)
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
 				<version>3.3.2</version>
 			</plugin>
-<<<<<<< HEAD
 			<plugin>
 				<groupId>org.eclipse.jetty</groupId>
 				<artifactId>jetty-maven-plugin</artifactId>
@@ -344,14 +219,10 @@
 				</configuration>
  			</plugin>
 			<!-- datanucleus-->
-=======
-			
->>>>>>> 1bbcaec (update)
 			<plugin>
 				<groupId>org.datanucleus</groupId>
 				<artifactId>datanucleus-maven-plugin</artifactId>
 				<version>6.0.0-release</version>
-<<<<<<< HEAD
 				<configuration>
 					<api>JDO</api>
 					<verbose>true</verbose>
@@ -359,25 +230,11 @@
 					<props>${config.files.dir}/datanucleus.properties</props>
 				</configuration>
 				<executions>
-=======
-				
-				<configuration>
-					<api>JDO</api>
-					<verbose>true</verbose>
-					<fork>false</fork>
-					<!-- Solve windows line too long error -->
-					<props>${config.files.dir}/datanucleus.properties</props>
-				</configuration>
-				
-				<executions>
-					
->>>>>>> 1bbcaec (update)
 					<execution>
 						<phase>compile</phase>
 					</execution>
 				</executions>
 			</plugin>
-<<<<<<< HEAD
 		</plugins>
 	</build>
 	<profiles>
@@ -387,122 +244,20 @@
 			<id>client</id>
 			<build>
 				<plugins>
-=======
-			
-			<plugin>
-				<groupId>org.eclipse.jetty</groupId>
-				<artifactId>jetty-maven-plugin</artifactId>
-				<version>9.4.46.v20220331</version>
-			</plugin>
-			
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>exec-maven-plugin</artifactId>
-				<version>1.2.1</version>
-				
-				<configuration>
-					<mainClass>org.datanucleus.samples.jdo.tutorial.Main</mainClass>
-				</configuration>
-			</plugin>
-			
-			<plugin>
-				<artifactId>maven-assembly-plugin</artifactId>
-				
-				<configuration>
-					
-					<descriptors>
-						<descriptor>${basedir}/assembly.xml</descriptor>
-					</descriptors>
-				</configuration>
-			</plugin>
-			
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>3.0.0</version>
-				
-				<configuration>
-					<show>private</show>
-					<nohelp>true</nohelp>
-				</configuration>
-			</plugin>
-			
-			<plugin>
-				<groupId>com.soebes.maven.plugins</groupId>
-				<artifactId>doxygen-maven-plugin</artifactId>
-				<version>1.1.0</version>
-				
-				<configuration>
-					<configurationFile>${doxygen.config.file}</configurationFile>
-				</configuration>
-			</plugin>
-			
-			<plugin>
-				<groupId>org.jacoco</groupId>
-				<artifactId>jacoco-maven-plugin</artifactId>
-				<version>0.8.8</version>
-				
-				<executions>
-					
-					<execution>
-						
-						<goals>
-							<goal>prepare-agent</goal>
-						</goals>
-					</execution>
-					
-					<execution>
-						<id>report</id>
-						<phase>test</phase>
-						
-						<goals>
-							<goal>report</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-		</plugins>
-	</build>
-	
-	<profiles>
-		<!--exec:java -Pclient-->
-		<profile>
-			<id>client</id>
-			
-			<build>
-				
-				<plugins>
-					
->>>>>>> 1bbcaec (update)
 					<plugin>
 						<groupId>org.codehaus.mojo</groupId>
 						<artifactId>exec-maven-plugin</artifactId>
 						<version>1.2.1</version>
-<<<<<<< HEAD
 						<executions>
 							<execution>
-=======
-						
-						<executions>
-							
-							<execution>
-								
->>>>>>> 1bbcaec (update)
 								<goals>
 									<goal>java</goal>
 								</goals>
 							</execution>
 						</executions>
-<<<<<<< HEAD
 						<configuration>
 							<mainClass>es.deusto.spq.util.LoginWindow</mainClass>
 							<!--<mainClass>es.deusto.spq.client.</mainClass>-->
-=======
-						
-						<configuration>
-							<mainClass>es.deusto.spq.client.ClientController</mainClass>
-							
->>>>>>> 1bbcaec (update)
 							<arguments>
 								<argument>${server.hostname}</argument>
 								<argument>${server.port}</argument>
@@ -513,8 +268,4 @@
 			</build>
 		</profile>
 	</profiles>
-<<<<<<< HEAD
 </project>
-=======
-</project>
->>>>>>> 1bbcaec (update)

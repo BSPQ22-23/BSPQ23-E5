@@ -1,16 +1,9 @@
 es\deusto\spq\server\RoomTest.class
-<<<<<<< HEAD
 es\deusto\spq\jdo\UserTest.class
 es\deusto\spq\server\UserTest.class
 es\deusto\spq\client\ClientControllerTest.class
 es\deusto\spq\jdo\ServiceTest.class
 es\deusto\spq\server\ResourceIntegrationTest.class
-=======
-es\deusto\spq\client\ResourceIntegrationTest.class
-es\deusto\spq\jdo\UserTest.class
-es\deusto\spq\client\ClientControllerTest.class
-es\deusto\spq\jdo\ServiceTest.class
->>>>>>> 1bbcaec (update)
 es\deusto\spq\jdo\GuestTest.class
 es\deusto\spq\server\BillTest.class
 es\deusto\spq\pojo\UserDataTest.class
@@ -18,10 +11,6 @@ es\deusto\spq\jdo\bookingTest.class
 es\deusto\spq\server\BookingTest.class
 es\deusto\spq\server\HotelTest.class
 categories\IntegrationTest.class
-<<<<<<< HEAD
-=======
-es\deusto\spq\client\ResourcePerfomaceTest.class
->>>>>>> 1bbcaec (update)
 es\deusto\spq\jdo\RoomTest.class
 es\deusto\spq\server\GuestTest.class
 es\deusto\spq\server\ServiceTest.class
