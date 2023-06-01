@@ -68,12 +68,7 @@ public class RegistrationWindow extends JFrame implements ActionListener {
 		formPanel.add(nameTextField);
 		formPanel.add(lastNameLabel);
 		formPanel.add(lastNameTextField);
-		formPanel.add(idLabel);
-		formPanel.add(idTextField);
-		formPanel.add(ageLabel);
-		formPanel.add(ageTextField);
-		formPanel.add(cityLabel);
-		formPanel.add(cityTextField);
+	
 
 		JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		buttonPanel.setBackground(new Color(135, 206, 250));
@@ -94,26 +89,24 @@ public class RegistrationWindow extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == submitButton) {
 			String nickname = nicknameTextField.getText();
+			String lastName = lastNameTextField.getText();
 			String password = passwordTextField.getText();
 			String name = nameTextField.getText();
-			String lastName = lastNameTextField.getText();
-			String id = idTextField.getText();
-			String age = ageTextField.getText();
-			String city = cityTextField.getText();
+			
+			
 			JOptionPane.showMessageDialog(this, "Thank you for registering, " + name + "!\n" + "Your nickname is "
 					+ nickname + " and your password is " + password);
 
-			int ageI = Integer.parseInt(age);
+			
 
-			controller.register(id,nickname, lastName,   password,city);
+			controller.register(nickname, lastName,password);
+			new MainMenuClient();
 		} else if (e.getSource() == clearButton) {
 			nicknameTextField.setText("");
 			passwordTextField.setText("");
 			nameTextField.setText("");
 			lastNameTextField.setText("");
-			idTextField.setText("");
-			ageTextField.setText("");
-			cityTextField.setText("");
+			
 		}
 	}
 

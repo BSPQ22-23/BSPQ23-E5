@@ -15,7 +15,7 @@ import es.deusto.spq.server.dao.GuestDAO;
 
 
 
-@PersistenceCapable
+@PersistenceCapable(detachable="true")
 public class User implements Serializable{
 	
 	/**
@@ -23,12 +23,18 @@ public class User implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	@PrimaryKey
-	@Persistent
-	@Unique
 	private String nick = null;
-	@Persistent
+	private String lastname = null;
 	private String password = null;
-
+	
+	public String getLastname() {
+		return lastname;
+	}
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
+	}
+	
+	 
 	public String getNick() {
 		return nick;
 	}
@@ -52,6 +58,11 @@ public class User implements Serializable{
 		
 		this.password = password;
 	}
+	public User(String nick,String lastname ,String password ) {
+		this.nick = nick;
+		this.lastname = lastname;
+		this.password = password;
+	}
 	/*public User(String nick, String password, Guest legalInfo, boolean isHotelOwner) {
 		
 		this.nick = nick;
@@ -65,6 +76,9 @@ public class User implements Serializable{
 	}*/
 	public String toString() {
 		return "nNck=" + nick + ", password=" + password + "]";
+	}
+	public String toString2() {
+		return "nNck=" + nick + ",lastname =" + lastname+", password=" + password + "]";
 	}
 	
 	

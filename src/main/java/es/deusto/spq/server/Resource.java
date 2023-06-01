@@ -4,6 +4,7 @@ import javax.jdo.PersistenceManager;
 
 
 
+
 import javax.jdo.PersistenceManagerFactory;
 
 import javax.jdo.JDOHelper;
@@ -55,10 +56,13 @@ public class Resource {
 			}
 			logger.info("User: {}", user);
 			if (user != null) {
-				return Response.serverError().build();
+				logger.info("Setting password user: {}", user);
+				//return Response.serverError().build();
+				user.setPassword(userData.getPassword());
+				logger.info("Password set user: {}", user);
 			} else {
 				logger.info("Creating user: {}", user);
-				user = new User(userData.getNickname(), userData.getPassword());
+				user = new User(userData.getNickname(), userData.getPassword(), userData.getPassword());
 				//user = new User(userData.getNickname(), userData.getPassword(),null,true);
 				pm.makePersistent(user);					 
 				logger.info("User created: {}", user);

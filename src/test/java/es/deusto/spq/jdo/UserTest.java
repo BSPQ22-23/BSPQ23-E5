@@ -9,9 +9,11 @@ public class UserTest {
 	private User user;
 	    private String nick;
 	    private String password;
+	    private String lastname ;
 	    @Before
 	    public void setUp() {
 	        nick = "johnDoe";
+	        lastname = "B";
 	        password = "password123";
 	       user = new User(nick,password);
 	    }
@@ -38,5 +40,15 @@ public class UserTest {
 	        String newPassword = "newPassword123";
 	        user.setPassword(newPassword);
 	        assertEquals(newPassword, user.getPassword());
+	    }
+	    @Test
+	    public void testGetLastname() {
+	    	assertEquals(lastname, user.getLastname());
+	    }
+	    @Test
+	    public void testSetLastname() {
+	        String newL= "a";
+	        user.setLastname(newL);
+	        assertEquals(newL, user.getLastname());
 	    }
 }
