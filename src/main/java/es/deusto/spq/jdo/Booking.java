@@ -4,6 +4,7 @@ package es.deusto.spq.jdo;
 
 
 
+import java.io.Serializable;
 import java.util.Date;
 
 import java.util.List;
@@ -20,19 +21,26 @@ import javax.jdo.annotations.PersistenceCapable;
 
 
 @PersistenceCapable(detachable="true")
-public class Booking {
+public class Booking implements Serializable{
 	
 	
 	
 	
 	
-	@Persistent
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@Persistent(defaultFetchGroup = "true")
 	private int id;
     private Date checkinDate;
     private Date checkoutDate;
+    @Persistent(defaultFetchGroup = "true")
     private Room room;
+    @Persistent(defaultFetchGroup = "true")
     private Guest author;
-
+    
+    @Persistent(defaultFetchGroup="true", dependentElement="true")
     @Join
 	private List<Guest> guests;
     

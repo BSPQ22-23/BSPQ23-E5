@@ -124,7 +124,7 @@ public class VentanaPrincipal extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				controller.register(textField_4.getText(),textField_1.getText(), textField_2.getText(), passwordField_1.getText(),textField_3.getText());
+				controller.register(textField_1.getText(), textField_2.getText(), passwordField_1.getText());
 				
 			}
 		});

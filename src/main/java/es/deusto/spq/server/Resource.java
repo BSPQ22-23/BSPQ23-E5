@@ -11,6 +11,7 @@ import javax.jdo.Transaction;
 =======
 
 
+
 import javax.jdo.PersistenceManagerFactory;
 
 import javax.jdo.JDOHelper;
@@ -79,6 +80,7 @@ public class Resource {
 			logger.info("User: {}", user);
 			if (user != null) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 				logger.info("Setting password user: {}", user);
 				user.setPassword(userData.getPassword());
 				logger.info("Password set user: {}", user);
@@ -91,6 +93,15 @@ public class Resource {
 				logger.info("Creating user: {}", user);
 				user = new User(userData.getNickname(), userData.getPassword());
 >>>>>>> 1bbcaec (update)
+=======
+				logger.info("Setting password user: {}", user);
+				//return Response.serverError().build();
+				user.setPassword(userData.getPassword());
+				logger.info("Password set user: {}", user);
+			} else {
+				logger.info("Creating user: {}", user);
+				user = new User(userData.getNickname(), userData.getPassword(), userData.getPassword());
+>>>>>>> 6c3960c (update)
 				//user = new User(userData.getNickname(), userData.getPassword(),null,true);
 				pm.makePersistent(user);					 
 				logger.info("User created: {}", user);

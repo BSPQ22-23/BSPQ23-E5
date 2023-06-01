@@ -2,15 +2,20 @@ package es.deusto.spq.jdo;
 
 
 
+import java.io.Serializable;
+
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
 @PersistenceCapable(detachable = "true")
-public class Service {
+public class Service implements Serializable {
 
-    @PrimaryKey
-    @Persistent
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@PrimaryKey
     private String name;
     private String description;
     private double price;

@@ -1,5 +1,6 @@
 package es.deusto.spq.jdo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import java.util.List;
@@ -9,10 +10,14 @@ import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
 @PersistenceCapable(detachable = "true")
-public class Hotel {
+public class Hotel implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@PrimaryKey
-	@Persistent
+	
 	private int id;
 	private String name;
 	private String city;

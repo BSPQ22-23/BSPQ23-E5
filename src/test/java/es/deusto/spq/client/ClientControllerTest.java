@@ -99,7 +99,6 @@ public class ClientControllerTest {
 		
 =======
 		when(webTarget.path("login")).thenReturn(webTarget);
-
 		Response response = Response.ok().build();
 		when(webTarget.request(MediaType.APPLICATION_JSON).post(any(Entity.class))).thenReturn(response);
 

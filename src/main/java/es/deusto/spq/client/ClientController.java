@@ -34,8 +34,8 @@ import es.deusto.spq.jdo.Hotel;
 public class ClientController {
 	protected static final org.apache.logging.log4j.Logger logger = LogManager.getLogger();
 	//private static final org.apache.logging.log4j.Logger logger = LogManager.getLogger();
-	//private static final String USER = "dipina";
-	//private static final String PASSWORD = "dipina";
+	private static final String USER = "M";
+	private static final String PASSWORD = "M";
 
 	private Client client;
 	private static WebTarget webTarget;
@@ -106,20 +106,27 @@ public class ClientController {
  * @param age
  * @param password
  */
+<<<<<<< HEAD
 	public void register(String id, String nickname, String lastname, String city, 
 >>>>>>> 1bbcaec (update)
+=======
+	public void register( String nickname, String lastname,
+>>>>>>> 6c3960c (update)
 			String password) {
 		WebTarget registerUserWebTarget = webTarget.path("register");
 		Invocation.Builder invocationBuilder = registerUserWebTarget.request(MediaType.APPLICATION_JSON);
 
 		UserData userData = new UserData();
 		userData.setNickname(nickname);
+<<<<<<< HEAD
 		userData.setCity(city);
 		userData.setDni(id);
 <<<<<<< HEAD
 		userData.setAge(age);
 =======
 >>>>>>> 1bbcaec (update)
+=======
+>>>>>>> 6c3960c (update)
 		userData.setLastname(lastname);
 		userData.setPassword(password);
 		Response response = invocationBuilder.post(Entity.entity(userData, MediaType.APPLICATION_JSON));
@@ -297,12 +304,15 @@ public class ClientController {
 >>>>>>> 1bbcaec (update)
 		String hostname = args[0];
 		String port = args[1];
+		
+		
 
 	ClientController controller =	new ClientController(hostname, port);
 <<<<<<< HEAD
 	new LoginWindow(hostname, port);
 =======
 	//new VentanaPrincipal(controller);
+	//controller.login(USER, PASSWORD);
 	new LoginWindow(controller);
 >>>>>>> 1bbcaec (update)
 	

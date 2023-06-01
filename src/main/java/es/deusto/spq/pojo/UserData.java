@@ -1,65 +1,40 @@
 package es.deusto.spq.pojo;
 
+
+
+
 public class UserData {
 
 	
-    private String login;
- 
-	private String dni;
+	
 	private String nickname;
     private String lastname;
-	private String city;
-	private Boolean isHotelOwner ;
+	private String password;
 	
-	public UserData(String dni, String nickname, String lastname, String city, Integer age,
-			String password,Boolean isHotelOwner) {
+	public UserData( String nickname, String lastname, String password) {
 		super();
 		
 		
-		this.dni = dni;
 		this.nickname = nickname;
 		this.lastname = lastname;
-		this.city = city;
-		this.age = age;
 		this.password = password;
-		this.isHotelOwner = isHotelOwner;
+		
 	}
 
-
-
-
-	public UserData(String nickname, String password,Boolean isHotelOwner) {
+	public UserData(String nickname, String password) {
 		super();
 		this.nickname =nickname;
 		this.password = password;
-		this.isHotelOwner = isHotelOwner;
+		
+	}
+
+
+	public UserData() {
+		
 	}
 
 
 
-
-	public Boolean getIsHotelOwner() {
-		return isHotelOwner;
-	}
-
-
-
-
-	public void setIsHotelOwner(Boolean isHotelOwner) {
-		this.isHotelOwner = isHotelOwner;
-	}
-
-
-
-
-	public String getDni() {
-		return dni;
-	}
-
-
-	public void setDni(String dni) {
-		this.dni = dni;
-	}
 
 
 	public String getNickname() {
@@ -81,41 +56,7 @@ public class UserData {
 		this.lastname = lastname;
 	}
 
-
-	public String getCity() {
-		return city;
-	}
-
-
-	public void setCity(String city) {
-		this.city = city;
-	}
-
-
-	public Integer getAge() {
-		return age;
-	}
-
-
-	public void setAge(Integer age) {
-		this.age = age;
-	}
-
-	private Integer age;
-    private String password;
-
-    public UserData() {
-        // required by serialization
-    }
-
-    
-    public String getLogin() {
-        return this.login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
+	
 
     public String getPassword() {
         return this.password;
@@ -132,8 +73,8 @@ public class UserData {
 
 
 	public String toStringRegister() {
-		return "Register: [dni=" + dni + ", nickname=" + nickname
-				+ ", lastname=" + lastname + ", city=" + city + ", age=" + age + ", password=" + password + "]";
+		return "Register: nickname=" + nickname
+				+ ", lastname=" + lastname +  ", password=" + password + "]";
 	}
    
 }

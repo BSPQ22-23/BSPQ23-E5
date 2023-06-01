@@ -20,10 +20,15 @@ public class UserTest {
 	private User user;
 	    private String nick;
 	    private String password;
+<<<<<<< HEAD
 >>>>>>> 1bbcaec (update)
+=======
+	    private String lastname ;
+>>>>>>> 6c3960c (update)
 	    @Before
 	    public void setUp() {
 	        nick = "johnDoe";
+	        lastname = "B";
 	        password = "password123";
 <<<<<<< HEAD
 	        dni = "123456789";
@@ -62,6 +67,7 @@ public class UserTest {
 	        user.setPassword(newPassword);
 	        assertEquals(newPassword, user.getPassword());
 	    }
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	    @Test
@@ -127,4 +133,16 @@ public class UserTest {
 
 =======
 >>>>>>> 1bbcaec (update)
+=======
+	    @Test
+	    public void testGetLastname() {
+	    	assertEquals(lastname, user.getLastname());
+	    }
+	    @Test
+	    public void testSetLastname() {
+	        String newL= "a";
+	        user.setLastname(newL);
+	        assertEquals(newL, user.getLastname());
+	    }
+>>>>>>> 6c3960c (update)
 }

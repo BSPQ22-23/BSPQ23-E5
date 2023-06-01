@@ -1,5 +1,6 @@
 package es.deusto.spq.jdo;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.jdo.annotations.Join;
@@ -9,17 +10,23 @@ import javax.jdo.annotations.PrimaryKey;
 
 
 @PersistenceCapable(detachable = "true")
-public class Room {
+public class Room implements Serializable{
 
-    @PrimaryKey
-    @Persistent
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	@PrimaryKey
+   
     private int roomNumber;
     private String type;
     private int numMaxGuests;
     private int spaceInMeters;
+    @Persistent(defaultFetchGroup = "true")
     private Hotel hotel; 
     private float prize;
-    
+    @Persistent(defaultFetchGroup="true", dependentElement="true")
     @Join
     private List<Booking> bookings;
 
