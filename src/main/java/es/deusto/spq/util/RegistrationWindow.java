@@ -27,13 +27,21 @@ public class RegistrationWindow extends JFrame implements ActionListener {
 	private Client client;
 	private WebTarget webTarget;
 
+<<<<<<< HEAD
 	public RegistrationWindow() {
+=======
+	public RegistrationWindow(ClientController controller) {
+>>>>>>> 1bbcaec (update)
 
 		super("Hotel Registration Form");
 		
 		
 
+<<<<<<< HEAD
 	
+=======
+	  this.controller = controller;
+>>>>>>> 1bbcaec (update)
 
 		nicknameLabel = new JLabel("Nickname:");
 		passwordLabel = new JLabel("Password:");
@@ -105,10 +113,14 @@ public class RegistrationWindow extends JFrame implements ActionListener {
 
 			int ageI = Integer.parseInt(age);
 
+<<<<<<< HEAD
 			/* conexión con el cliente */
 			controller.register(id, nickname, lastName, city, ageI, password);
 			// openMenu(user.isHotelOwner().);
 
+=======
+			controller.register(id,nickname, lastName,   password,city);
+>>>>>>> 1bbcaec (update)
 		} else if (e.getSource() == clearButton) {
 			nicknameTextField.setText("");
 			passwordTextField.setText("");
@@ -120,6 +132,7 @@ public class RegistrationWindow extends JFrame implements ActionListener {
 		}
 	}
 
+<<<<<<< HEAD
 	private void openMenu(boolean isOwner) {
 		if (isOwner) {
 			MainMenuOwner menuOwner = new MainMenuOwner();
@@ -130,11 +143,19 @@ public class RegistrationWindow extends JFrame implements ActionListener {
 		}
 		this.dispose();
 	}
+=======
+	
+>>>>>>> 1bbcaec (update)
 
 	public static void main(String[] args) {
 		String hostname = args[0];
 		String port = args[1];
+<<<<<<< HEAD
 		
+=======
+		ClientController controller = new ClientController(hostname, port);
+		new RegistrationWindow(controller);
+>>>>>>> 1bbcaec (update)
 	}
 
 }
