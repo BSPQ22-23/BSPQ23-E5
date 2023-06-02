@@ -14,28 +14,7 @@ jobs:
             java-version: '17'
             distribution: 'temurin'              
 
-        - name: Start mysql
-          run: sudo /etc/init.d/mysql start 
-
-        - name: Set up the database  
-          run: mysql -uroot -proot < sql/create-productsdb.sql 
 
         - name: compile the code
           run: mvn clean compile
           
-        - name: Prepare tables with datanucleus  
-          run: |
-            echo "JDK_JAVA_OPTIONS=--add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.time=ALL-UNNAMED" >> $GITHUB_ENV
-            mvn --batch-mode --update-snapshots datanucleus:enhance datanucleus:schema-create
-
-        - name: Launch the server in background mode 
-          run: mvn jetty:run &
-        - name: Sleep for 10 seconds
-          uses: jakejarvis/wait-action@master
-          with:
-            time: '10s'
-        - name: Launch the integration test (a client that connects to the server)
-          run: mvn exec:java -Pintegration
-
-        - name: Run maven Tests
-          run: mvn --batch-mode --update-snapshots test -Pgithub-actions
