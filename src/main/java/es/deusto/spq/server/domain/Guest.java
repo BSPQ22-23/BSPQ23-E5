@@ -1,18 +1,26 @@
 package es.deusto.spq.server.domain;
 
 
+/**
+ * Represents a guest in the hotel management system.
+ */
 public class Guest {
-	
-	
-	
     private String dni;
-	private String name;
+    private String name;
     private String surname;
     private int age;
     private String cityOfProvenance;
 
+    /**
+     * Constructs a Guest object with the specified details.
+     *
+     * @param name              The name of the guest.
+     * @param surname           The surname of the guest.
+     * @param dni               The DNI (identification) of the guest.
+     * @param age               The age of the guest.
+     * @param cityOfProvenance  The city of provenance of the guest.
+     */
     public Guest(String name, String surname, String dni, int age, String cityOfProvenance) {
-    
         this.name = name;
         this.surname = surname;
         this.dni = dni;
@@ -20,7 +28,7 @@ public class Guest {
         this.cityOfProvenance = cityOfProvenance;
     }
 
-	public String getName() {
+    public String getName() {
         return name;
     }
 
@@ -59,16 +67,26 @@ public class Guest {
     public void setCityOfProvenance(String cityOfProvenance) {
         this.cityOfProvenance = cityOfProvenance;
     }
-    
+
+    /**
+     * Compares the guest object with another object for equality.
+     *
+     * @param o The object to compare with.
+     * @return  True if the guest object is equal to the specified object, false otherwise.
+     */
+    @Override
     public boolean equals(Object o) {
-    	System.out.println(o instanceof Guest && ((Guest)o).dni.equals(dni));
-    	return o instanceof Guest && ((Guest)o).dni.equals(dni);
+        return o instanceof Guest && ((Guest) o).dni.equals(dni);
     }
 
-	@Override
-	public String toString() {
-		return "Guest [name=" + name + ", surname=" + surname + ", dni="
-				+ dni + ", age=" + age + ", cityOfProvenance=" + cityOfProvenance
-				+ "]";
-	}
+    /**
+     * Returns a string representation of the guest.
+     *
+     * @return A string representation of the guest object.
+     */
+    @Override
+    public String toString() {
+        return "Guest [name=" + name + ", surname=" + surname + ", dni=" + dni + ", age=" + age +
+                ", cityOfProvenance=" + cityOfProvenance + "]";
+    }
 }
