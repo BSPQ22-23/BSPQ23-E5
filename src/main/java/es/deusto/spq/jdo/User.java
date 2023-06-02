@@ -15,72 +15,116 @@ import es.deusto.spq.server.dao.GuestDAO;
 
 
 
-@PersistenceCapable(detachable="true")
-public class User implements Serializable{
-	
-	/**
+/**
+ * The User class represents a user in the system.
+ */
+@PersistenceCapable(detachable = "true")
+public class User implements Serializable {
+
+    /**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
 	@PrimaryKey
-	private String nick = null;
-	private String lastname = null;
-	private String password = null;
-	
-	public String getLastname() {
-		return lastname;
-	}
-	public void setLastname(String lastname) {
-		this.lastname = lastname;
-	}
-	
-	 
-	public String getNick() {
-		return nick;
-	}
-	public void setNick(String nick) {
-		this.nick = nick;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    private String nick;
+    private String lastname;
+    private String password;
 
-	/*public boolean equals(Object o) {
-		return o instanceof User && ((User)o).nick.equals(nick);
-	}*/
+    /**
+     * Constructs a User object with the given nick and password.
+     * 
+     * @param nick     the nickname of the user
+     * @param password the password of the user
+     */
+    public User(String nick, String password) {
+        this.nick = nick;
+        this.password = password;
+    }
 
-	
-	public User(String nick,String password ) {
-		this.nick = nick;
-		
-		this.password = password;
-	}
-	public User(String nick,String lastname ,String password ) {
-		this.nick = nick;
-		this.lastname = lastname;
-		this.password = password;
-	}
-	/*public User(String nick, String password, Guest legalInfo, boolean isHotelOwner) {
-		
-		this.nick = nick;
-		this.dni = legalInfo.getDni();
-		this.password = password;
-		this.legalInfo = legalInfo;
-		this.isHotelOwner = isHotelOwner;
-	}*/
-	/*public User() {
-		// TODO Auto-generated constructor stub
-	}*/
-	public String toString() {
-		return "nNck=" + nick + ", password=" + password + "]";
-	}
-	public String toString2() {
-		return "nNck=" + nick + ",lastname =" + lastname+", password=" + password + "]";
-	}
-	
-	
+    /**
+     * Constructs a User object with the given nick, lastname, and password.
+     * 
+     * @param nick     the nickname of the user
+     * @param lastname the lastname of the user
+     * @param password the password of the user
+     */
+    public User(String nick, String lastname, String password) {
+        this.nick = nick;
+        this.lastname = lastname;
+        this.password = password;
+    }
+
+    /**
+     * Returns the lastname of the user.
+     * 
+     * @return the lastname of the user
+     */
+    public String getLastname() {
+        return lastname;
+    }
+
+    /**
+     * Sets the lastname of the user.
+     * 
+     * @param lastname the lastname of the user to set
+     */
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    /**
+     * Returns the nickname of the user.
+     * 
+     * @return the nickname of the user
+     */
+    public String getNick() {
+        return nick;
+    }
+
+    /**
+     * Sets the nickname of the user.
+     * 
+     * @param nick the nickname of the user to set
+     */
+    public void setNick(String nick) {
+        this.nick = nick;
+    }
+
+    /**
+     * Returns the password of the user.
+     * 
+     * @return the password of the user
+     */
+    public String getPassword() {
+        return password;
+    }
+
+    /**
+     * Sets the password of the user.
+     * 
+     * @param password the password of the user to set
+     */
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    /**
+     * Returns a string representation of the User object.
+     * 
+     * @return a string representation of the User object
+     */
+    @Override
+    public String toString() {
+        return "User [nick=" + nick + ", password=" + password + "]";
+    }
+
+    /**
+     * Returns a string representation of the User object including the lastname.
+     * 
+     * @return a string representation of the User object including the lastname
+     */
+    public String toString2() {
+        return "User [nick=" + nick + ", lastname=" + lastname + ", password=" + password + "]";
+    }
 }
-

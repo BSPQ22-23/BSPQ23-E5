@@ -20,92 +20,169 @@ import es.deusto.spq.server.Room;
 import javax.jdo.annotations.PersistenceCapable;
 
 
-@PersistenceCapable(detachable="true")
-public class Booking implements Serializable{
-	
-	
-	
-	
-	
-	/**
-	 * 
-	 */
+
+/**
+ * The Booking class represents a booking made by a guest.
+ */
+@PersistenceCapable(detachable = "true")
+public class Booking implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 	@Persistent(defaultFetchGroup = "true")
 	private int id;
-    private Date checkinDate;
-    private Date checkoutDate;
-    @Persistent(defaultFetchGroup = "true")
-    private Room room;
-    @Persistent(defaultFetchGroup = "true")
-    private Guest author;
-    
-    @Persistent(defaultFetchGroup="true", dependentElement="true")
-    @Join
+	private Date checkinDate;
+	private Date checkoutDate;
+	@Persistent(defaultFetchGroup = "true")
+	private Room room;
+	@Persistent(defaultFetchGroup = "true")
+	private Guest author;
+
+	@Persistent(defaultFetchGroup = "true", dependentElement = "true")
+	@Join
 	private List<Guest> guests;
-    
-    public Booking(Integer id,   Date checkinDate, Date checkoutDate, Room room, List<Guest> guests, Guest author) {
-        this.id = id;
-    	this.checkinDate = checkinDate;
-        this.checkoutDate = checkoutDate;
-        this.room = room;
-        this.guests = guests;
-        this.author = author;
-    }
 
+	/**
+	 * Creates a new instance of Booking.
+	 * 
+	 * @param id           the booking ID
+	 * @param checkinDate  the check-in date
+	 * @param checkoutDate the check-out date
+	 * @param room         the room for the booking
+	 * @param guests       the list of guests for the booking
+	 * @param author       the author of the booking
+	 */
+	public Booking(Integer id, Date checkinDate, Date checkoutDate, Room room, List<Guest> guests, Guest author) {
+		this.id = id;
+		this.checkinDate = checkinDate;
+		this.checkoutDate = checkoutDate;
+		this.room = room;
+		this.guests = guests;
+		this.author = author;
+	}
+
+	/**
+	 * Returns the booking ID.
+	 * 
+	 * @return the booking ID
+	 */
 	public int getId() {
-        return id;
-    }
+		return id;
+	}
 
-    public void setId(int id) {
-        this.id = id;
-    }
+	/**
+	 * Sets the booking ID.
+	 * 
+	 * @param id the booking ID to set
+	 */
+	public void setId(int id) {
+		this.id = id;
+	}
 
-    public Date getCheckinDate() {
-        return checkinDate;
-    }
+	/**
+	 * Returns the check-in date.
+	 * 
+	 * @return the check-in date
+	 */
+	public Date getCheckinDate() {
+		return checkinDate;
+	}
 
-    public void setCheckinDate(Date checkinDate) {
-        this.checkinDate = checkinDate;
-    }
+	/**
+	 * Sets the check-in date.
+	 * 
+	 * @param checkinDate the check-in date to set
+	 */
+	public void setCheckinDate(Date checkinDate) {
+		this.checkinDate = checkinDate;
+	}
 
-    public Date getCheckoutDate() {
-        return checkoutDate;
-    }
+	/**
+	 * Returns the check-out date.
+	 * 
+	 * @return the check-out date
+	 */
+	public Date getCheckoutDate() {
+		return checkoutDate;
+	}
 
-    public void setCheckoutDate(Date checkoutDate) {
-        this.checkoutDate = checkoutDate;
-    }
+	/**
+	 * Sets the check-out date.
+	 * 
+	 * @param checkoutDate the check-out date to set
+	 */
+	public void setCheckoutDate(Date checkoutDate) {
+		this.checkoutDate = checkoutDate;
+	}
 
-    public Room getRoom() {
-        return room;
-    }
+	/**
+	 * Returns the room for the booking.
+	 * 
+	 * @return the room for the booking
+	 */
+	public Room getRoom() {
+		return room;
+	}
 
-    public void setRoom(Room room) {
-        this.room = room;
-    }
+	/**
+	 * Sets the room for the booking.
+	 * 
+	 * @param room the room to set
+	 */
+	public void setRoom(Room room) {
+		this.room = room;
+	}
 
-    public List<Guest> getGuests() {
-        return guests;
-    }
+	/**
+	 * Returns the list of guests for the booking.
+	 * 
+	 * @return the list of guests for the booking
+	 */
+	public List<Guest> getGuests() {
+		return guests;
+	}
 
-    public void setGuests(List<Guest> guests) {
-        this.guests = guests;
-    }
-    
-    public void setAuthor(Guest author) {
-    	this.author = author;
-    }
-    
-    public Guest getAuthor() {
+	/**
+	 * Sets the list of guests for the booking.
+	 * 
+	 * @param guests the list of guests to set
+	 */
+	public void setGuests(List<Guest> guests) {
+		this.guests = guests;
+	}
+
+	/**
+	 * Returns the author of the booking.
+	 * 
+	 * @return the author of the booking
+	 */
+	public Guest getAuthor() {
 		return author;
 	}
-    
-    public void addGuest(Guest guest) {
-        guests.add(guest);
-    }
 
-    public void removeGuest(Guest guest) {
-        guests.remove(guest);
-    }
+	/**
+	 * Sets the author of the booking.
+	 * 
+	 * @param author the author to set
+	 */
+	public void setAuthor(Guest author) {
+		this.author = author;
+	}
+
+	/**
+	 * Adds a guest to the list of guests for the booking.
+	 * 
+	 * @param guest the guest to add
+	 */
+	public void addGuest(Guest guest) {
+		guests.add(guest);
+	}
+
+	/**
+	 * Removes a guest from the list of guests for the booking.
+	 * 
+	 * @param guest the guest to remove
+	 */
+	public void removeGuest(Guest guest) {
+		guests.remove(guest);
+	}
 }
