@@ -2,12 +2,9 @@ package es.deusto.spq.client;
 
 import static org.junit.Assert.*;
 
-<<<<<<< HEAD
-=======
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
->>>>>>> 1bbcaec (update)
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
@@ -15,15 +12,6 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-<<<<<<< HEAD
-import org.junit.Before;
-import org.junit.Test;
-
-public class ClientControllerTest {
-	private Client client;
-	private WebTarget webTarget;
-	private ClientController controller;
-=======
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -54,23 +42,10 @@ public class ClientControllerTest {
 
 	private static ClientController controller;
 	public ClientControllerTest ct;
->>>>>>> 1bbcaec (update)
 
 	
 	
 	@Before
-<<<<<<< HEAD
-	public void setUp() {
-		
-
-		client = ClientBuilder.newClient();
-		webTarget =client.target("http://localhost:8080/rest/resource");
-		controller = new ClientController("localhost", "8080");
-		
-	}
-
-	
-=======
 	public  void setUp() {
 		
 		MockitoAnnotations.openMocks(this);
@@ -88,34 +63,22 @@ public class ClientControllerTest {
 	{
 		
 	}
->>>>>>> 1bbcaec (update)
 	
 
 	@Test
 	public void testLogin() {
-<<<<<<< HEAD
-		webTarget = webTarget.path("login");
-		Response response = Response.ok().build();
-		
-=======
 		when(webTarget.path("login")).thenReturn(webTarget);
 		Response response = Response.ok().build();
 		when(webTarget.request(MediaType.APPLICATION_JSON).post(any(Entity.class))).thenReturn(response);
 
->>>>>>> 1bbcaec (update)
 	}
 	
 	@Test
 	public void testLoginWithError() {
 		webTarget = webTarget.path("login");
-<<<<<<< HEAD
-		Response response = webTarget.request(MediaType.APPLICATION_JSON).post(Entity.json(null));
-		assertEquals(Response.Status.INTERNAL_SERVER_ERROR.getStatusCode(), response.getStatus());
-=======
 		Response response = Response.serverError().build();
 		when(webTarget.request(MediaType.APPLICATION_JSON).post(any(Entity.class))).thenReturn(response);
 
->>>>>>> 1bbcaec (update)
 		
 	}
 
@@ -123,21 +86,9 @@ public class ClientControllerTest {
 	public void testRegister() {
 		webTarget = webTarget.path("register");
 		Response response = Response.ok().build();
-<<<<<<< HEAD
-	}
-	@Test
-	public void testCreateReservation() {
-		
-	}
-	@Test
-	public void testGetHotel() {
-		
-	}
-=======
 		when(webTarget.request(MediaType.APPLICATION_JSON).post(any(Entity.class))).thenReturn(response);
 
 	}
 	
->>>>>>> 1bbcaec (update)
 
 }

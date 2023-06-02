@@ -3,11 +3,8 @@ HOTEL MANAGER
 
 
 First, the whole code can be compile using:
-<<<<<<< HEAD
-=======
 	
 	mvn install -DskipTests
->>>>>>> 1bbcaec (update)
 
     mvn compile
 Run this command to compile all the junit test:

@@ -3,6 +3,7 @@ package es.deusto.spq.server;
 import static org.junit.Assert.*;
 
 
+
 import java.net.URI;
 import java.util.UUID;
 
@@ -18,9 +19,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
 
-import org.glassfish.grizzly.http.server.HttpServer;
-import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
-import org.glassfish.jersey.server.ResourceConfig;
+
+
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -46,7 +46,7 @@ public class ResourcePerfomaceTest {
 	private static final PersistenceManagerFactory pmf = JDOHelper
 			.getPersistenceManagerFactory("datanucleus.properties");
 
-	private static HttpServer server;
+	private static Resource source;
 	private WebTarget target;
 
 	@Rule
@@ -58,15 +58,12 @@ public class ResourcePerfomaceTest {
 		Client c = ClientBuilder.newClient();
 		target = c.target("http://localhost:8080/rest").path("resource");
 
-		// server
-		URI baseUri = UriBuilder.fromUri("http://localhost/").port(8080).build();
-		ResourceConfig config = new ResourceConfig(Resource.class);
-		server = GrizzlyHttpServerFactory.createHttpServer(baseUri, config);
+	
 	}
 
 	@AfterClass
 	public void tearDown() throws Exception {
-		server.shutdown();
+		
 
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx = pm.currentTransaction();

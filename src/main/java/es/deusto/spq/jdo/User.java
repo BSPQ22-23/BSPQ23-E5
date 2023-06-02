@@ -1,10 +1,7 @@
 package es.deusto.spq.jdo;
 
-<<<<<<< HEAD
-=======
 import java.io.Serializable;
 
->>>>>>> 1bbcaec (update)
 import javax.jdo.annotations.PersistenceCapable;
 
 import javax.jdo.annotations.Persistent;
@@ -18,45 +15,7 @@ import es.deusto.spq.server.dao.GuestDAO;
 
 
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 @PersistenceCapable(detachable="true")
-public class User {
-	
-	
-	
-	@Persistent
-	private String nick;
-	private String password;
-	private String dni;
-	private int age;
-	private String cityOfProvenance;
-	private Guest legalInfo;
-	private boolean isHotelOwner;
-	public String getDni() {
-		return dni;
-	}
-	public void setDni(String dni) {
-		this.dni = dni;
-	}
-	public int getAge() {
-		return age;
-	}
-	public void setAge(int age) {
-		this.age = age;
-	}
-	public String getCityOfProvenance() {
-		return cityOfProvenance;
-	}
-	public void setCityOfProvenance(String cityOfProvenance) {
-		this.cityOfProvenance = cityOfProvenance;
-	}
-
-=======
-@PersistenceCapable
-=======
-@PersistenceCapable(detachable="true")
->>>>>>> 6c3960c (update)
 public class User implements Serializable{
 	
 	/**
@@ -67,10 +26,6 @@ public class User implements Serializable{
 	private String nick = null;
 	private String lastname = null;
 	private String password = null;
-<<<<<<< HEAD
->>>>>>> 1bbcaec (update)
-
-=======
 	
 	public String getLastname() {
 		return lastname;
@@ -80,7 +35,6 @@ public class User implements Serializable{
 	}
 	
 	 
->>>>>>> 6c3960c (update)
 	public String getNick() {
 		return nick;
 	}
@@ -93,45 +47,16 @@ public class User implements Serializable{
 	public void setPassword(String password) {
 		this.password = password;
 	}
-<<<<<<< HEAD
-	public Guest getLegalInfo() {
-		
-		return legalInfo;
-	}
-	public void setLegalInfo(Guest legalInfo) {
-		this.legalInfo = legalInfo;
-		this.dni = legalInfo.getDni();
-	}
-	public boolean isHotelOwner() {
-		return isHotelOwner;
-	}
 
-	public void setHotelOwner(boolean isHotelOwner) {
-		this.isHotelOwner = isHotelOwner;
-	}
-=======
-
->>>>>>> 1bbcaec (update)
 	/*public boolean equals(Object o) {
 		return o instanceof User && ((User)o).nick.equals(nick);
 	}*/
 
-<<<<<<< HEAD
-	public User(String nick, String password, String dni, int age, String cityOfProvenance, boolean isHotelOwner) {
-		super();
-		this.nick = nick;
-		this.password = password;
-		this.dni = dni;
-		this.age = age;
-		this.cityOfProvenance = cityOfProvenance;
-		this.isHotelOwner = isHotelOwner;
-=======
 	
 	public User(String nick,String password ) {
 		this.nick = nick;
 		
 		this.password = password;
->>>>>>> 1bbcaec (update)
 	}
 	public User(String nick,String lastname ,String password ) {
 		this.nick = nick;
@@ -149,9 +74,6 @@ public class User implements Serializable{
 	/*public User() {
 		// TODO Auto-generated constructor stub
 	}*/
-<<<<<<< HEAD
-}
-=======
 	public String toString() {
 		return "nNck=" + nick + ", password=" + password + "]";
 	}
@@ -162,4 +84,3 @@ public class User implements Serializable{
 	
 }
 
->>>>>>> 1bbcaec (update)
