@@ -3,12 +3,13 @@ package es.deusto.spq.server.dao;
 import java.util.List;
 
 
+
 import javax.jdo.JDOHelper;
 import javax.jdo.PersistenceManager;
 import javax.jdo.PersistenceManagerFactory;
 import javax.jdo.Query;
-import es.deusto.spq.*;
-import es.deusto.spq.server.*;
+import es.deusto.spq.jdo.*;
+
 
 /**
  * Data Access Object for managing User objects in the hotel management system.
@@ -39,7 +40,7 @@ public class UserDAO extends DataAccessObjectBase implements IDataAccessObject<U
      */
     @Override
     public void save(User object) {
-        GuestDAO.getInstance().save(object.getLegalInfo());
+        GuestDAO.getInstance();
         saveObject(object);
     }
 
@@ -115,5 +116,7 @@ public class UserDAO extends DataAccessObjectBase implements IDataAccessObject<U
     public void setPersistenceManagerFactory(PersistenceManagerFactory factory) {
         pmf = factory;
     }
+
+	
 }
 

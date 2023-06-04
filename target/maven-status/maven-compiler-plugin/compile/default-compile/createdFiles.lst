@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-=======
-es\deusto\spq\util\VentanaPrincipal$2.class
->>>>>>> 1bbcaec (update)
 es\deusto\spq\jdo\Service.class
 es\deusto\spq\server\Service.class
 es\deusto\spq\util\HotelBrowserWindow$4.class
@@ -14,21 +10,12 @@ es\deusto\spq\pojo\UserData.class
 es\deusto\spq\util\ReservationWindow$2.class
 es\deusto\spq\util\RegistrationWindow.class
 es\deusto\spq\util\LoginWindow$2.class
-<<<<<<< HEAD
 es\deusto\spq\server\dao\UserDAO.class
-=======
->>>>>>> 1bbcaec (update)
 es\deusto\spq\server\Resource.class
 es\deusto\spq\util\LoginWindow.class
 es\deusto\spq\util\HotelBrowserWindow$2.class
 es\deusto\spq\util\LoginWindow$3.class
-<<<<<<< HEAD
 es\deusto\spq\server\dao\BookingDAO.class
-=======
-es\deusto\spq\util\VentanaPrincipal.class
-es\deusto\spq\server\dao\BookingDAO.class
-es\deusto\spq\util\VentanaPrincipal$1.class
->>>>>>> 1bbcaec (update)
 es\deusto\spq\util\ReservationWindow$1.class
 es\deusto\spq\server\Guest.class
 es\deusto\spq\util\LoginWindow$1.class
@@ -40,10 +27,6 @@ es\deusto\spq\server\Hotel.class
 es\deusto\spq\util\MainMenuClient.class
 es\deusto\spq\util\ReservationWindow.class
 es\deusto\spq\server\Bill.class
-<<<<<<< HEAD
-es\deusto\spq\server\User.class
-=======
->>>>>>> 1bbcaec (update)
 es\deusto\spq\jdo\Room.class
 es\deusto\spq\jdo\Hotel.class
 es\deusto\spq\server\dao\HotelDAO.class

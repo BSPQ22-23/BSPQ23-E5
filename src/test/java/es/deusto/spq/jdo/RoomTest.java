@@ -25,7 +25,7 @@ public class RoomTest {
 		numMaxGuests = 2;
 		spaceInMeters = 25;
 		prize = 100.0f;
-		hotel = new Hotel("Example Hotel", "Example City", new Guest("John", "Doe", "123456789", 30, "Example City"));
+		hotel = new Hotel("Example Hotel", "Example City");
 
 		room = new Room(roomNumber, type, numMaxGuests, spaceInMeters, prize, hotel);
 	}
@@ -85,7 +85,7 @@ public class RoomTest {
 
 	@Test
 	public void testSetHotel() {
-		Hotel newHotel = new Hotel("New Hotel", "New City", new Guest("Jane", "Smith", "987654321", 35, "New City"));
+		Hotel newHotel = new Hotel("New Hotel", "New City");
 		room.setHotel(newHotel);
 		assertEquals(newHotel, room.getHotel());
 	}

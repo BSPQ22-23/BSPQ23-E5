@@ -2,6 +2,7 @@ package es.deusto.spq.client;
 
 import java.util.ArrayList;
 
+
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
@@ -23,7 +24,7 @@ import es.deusto.spq.pojo.UserData;
 import es.deusto.spq.server.Room;
 import es.deusto.spq.util.LoginWindow;
 import es.deusto.spq.util.MainMenuClient;
-import es.deusto.spq.util.VentanaPrincipal;
+
 import es.deusto.spq.jdo.Booking;
 import es.deusto.spq.jdo.Guest;
 import es.deusto.spq.jdo.Hotel;

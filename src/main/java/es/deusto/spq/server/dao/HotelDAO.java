@@ -16,7 +16,8 @@ import javax.jdo.PersistenceManagerFactory;
 import javax.jdo.Query;
 import javax.jdo.Transaction;
 
-import es.deusto.spq.server.*;
+import es.deusto.spq.jdo.Guest;
+import es.deusto.spq.jdo.Hotel;
 
 
 /**
@@ -47,17 +48,26 @@ public class HotelDAO  extends DataAccessObjectBase implements IDataAccessObject
 		// TODO Auto-generated method stub
 		deleteObject(object);
 	}
-	/**
-	 * Method that get a list of all the hotels
+	/**Method that get a list Hotel
+	 * @return list of hotels
 	 */
 	@Override
 	public List<Hotel> getAll() {
-		PersistenceManager pm = pmf.getPersistenceManager();
-		Query<Hotel> q = pm.newQuery(Hotel.class);
-		List<Hotel> ListHotel = (List<Hotel>) q.executeList();
-		return ListHotel;
 		
-	}
+		    PersistenceManager pm = pmf.getPersistenceManager();
+		    List<Hotel> hotels;
+
+		    try {
+		        Query<Hotel> query = pm.newQuery(Hotel.class);
+		        hotels = query.executeList();
+		    } finally {
+		        pm.close();
+		    }
+
+		    return hotels;
+		}
+		
+	
 	/**
 	 * Method that get a list Hotel by the name
 	 * @param name

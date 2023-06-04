@@ -29,6 +29,7 @@ import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
 import es.deusto.spq.*;
+import es.deusto.spq.jdo.User;
 import es.deusto.spq.pojo.UserData;
 
 import org.junit.experimental.categories.Category;

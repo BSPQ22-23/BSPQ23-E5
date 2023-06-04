@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.text.SimpleDateFormat;
+import java.util.List;
 import java.util.Timer;
 
 import javax.swing.JButton;
@@ -17,6 +18,10 @@ import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
+
+import es.deusto.spq.jdo.Hotel;
+import es.deusto.spq.server.dao.HotelDAO;
+
 import javax.swing.JCheckBox;
 import java.awt.FlowLayout;
 import javax.swing.JRadioButton;
@@ -221,7 +226,7 @@ public static void main(String[] args) {
 
 		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//JOptionPane.showMessageDialog(null,"PARA MÁS SEGURIDAD INTRODUZCA EL SU DNI ");
+				
 				
 					
 			
