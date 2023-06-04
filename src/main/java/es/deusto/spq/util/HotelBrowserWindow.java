@@ -4,6 +4,8 @@ import javax.swing.*;
 
 import es.deusto.spq.*;
 import es.deusto.spq.client.ClientController;
+import es.deusto.spq.jdo.Hotel;
+import es.deusto.spq.server.dao.HotelDAO;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -51,9 +53,17 @@ public class HotelBrowserWindow extends JFrame  {
         searchButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String query = searchField.getText();
-                // metodo que hay que meter en el client controller -> get hotels
-               // Hotel[]hotels= ClientController.getHotels(query);
-               // hotelListArea.setText(hotels.toString());
+                HotelDAO hotelDAO = HotelDAO.getInstance();
+                List<Hotel> hotels = hotelDAO.getbyName(query);
+                StringBuilder sb = new StringBuilder();
+               
+                for (Hotel hotel : hotels) {
+                    sb.append("ID: ").append(hotel.getId())
+                      .append(", Nombre: ").append(hotel.getName())
+                      .append(", Ciudad: ").append(hotel.getCity())
+                      .append("\n");
+                }
+                hotelListArea.setText(sb.toString());
             }
         });
 
