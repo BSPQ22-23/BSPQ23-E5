@@ -2,7 +2,11 @@ package es.deusto.spq.pojo;
 
 
 
-
+/**
+ * User data class
+ * @author BSILV
+ *
+ */
 public class UserData {
 
 	

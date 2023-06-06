@@ -24,7 +24,11 @@ import javax.ws.rs.client.WebTarget;
 import es.deusto.spq.client.ClientController;
 import java.awt.BorderLayout; // conexion con cliente
 //import main.Server;  -> abrir el servidor
-
+/**
+ * lOGIN WINDOW 
+ * @author BSILV
+ *
+ */
 public class LoginWindow extends JFrame {
 	/**
 	 * 

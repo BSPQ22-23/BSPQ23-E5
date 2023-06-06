@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: es.deusto.spq.pojo.UserDataTest
--------------------------------------------------------------------------------
-Tests run: 21, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.006 sec - in es.deusto.spq.pojo.UserDataTest

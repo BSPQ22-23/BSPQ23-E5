@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: es.deusto.spq.server.GuestTest
--------------------------------------------------------------------------------
-Tests run: 12, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 sec - in es.deusto.spq.server.GuestTest

@@ -30,7 +30,11 @@ import javax.swing.JTextField;
 import es.deusto.spq.client.ClientController;
 import es.deusto.spq.jdo.Hotel;
 import es.deusto.spq.server.dao.HotelDAO;
-
+/**
+ * main client menu
+ * @author maitane
+ *
+ */
 public class MainMenuClient extends JFrame implements ActionListener {
 	private JLabel welcome, label, info, warningL, infoSettings;
 	private JTextField search;
