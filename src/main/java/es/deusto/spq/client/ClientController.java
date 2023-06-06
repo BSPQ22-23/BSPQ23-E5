@@ -3,6 +3,7 @@ package es.deusto.spq.client;
 import java.util.ArrayList;
 
 
+
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
@@ -21,7 +22,7 @@ import org.apache.logging.log4j.LogManager;
 
 
 import es.deusto.spq.pojo.UserData;
-import es.deusto.spq.server.Room;
+
 import es.deusto.spq.util.LoginWindow;
 import es.deusto.spq.util.MainMenuClient;
 
@@ -29,6 +30,11 @@ import es.deusto.spq.jdo.Booking;
 import es.deusto.spq.jdo.Guest;
 import es.deusto.spq.jdo.Hotel;
 
+/**
+ * CLIENT CONTROLLER
+ * @author MAITANE
+ *
+ */
 public class ClientController {
 	protected static final org.apache.logging.log4j.Logger logger = LogManager.getLogger();
 	//private static final org.apache.logging.log4j.Logger logger = LogManager.getLogger();

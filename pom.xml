@@ -19,7 +19,7 @@
 		<!--<sonar.organization>maitanegarcia</sonar.organization>-->
 		<!--<sonar.host.url>https://sonarcloud.io</sonar.host.url>-->
 		<!-- Sonar cloud -->
-		<!--<doxygen.config.file>${basedir}/src/main/resources/Doxyfile</doxygen.config.file>-->
+		<doxygen.config.file>${basedir}/src/main/resources/Doxyfile</doxygen.config.file>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -205,14 +205,32 @@
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
 				<version>0.8.8</version>
+				<configuration>
+					<excludes>
+						<exclude>**/util/**</exclude>
+						<exclude>**/dao/**</exclude>
+						<exclude>**/pojo/**</exclude>
+						<exclude>**/jdo/**</exclude>
+					</excludes>
+				</configuration>
 				<executions>
 					<execution>
+						<id>prepare-agent</id>
 						<goals>
 							<goal>prepare-agent</goal>
 						</goals>
+						<configuration>
+							
+						</configuration>
 					</execution>
 					<execution>
 						<id>report</id>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>post-unit-test</id>
 						<phase>test</phase>
 						<goals>
 							<goal>report</goal>

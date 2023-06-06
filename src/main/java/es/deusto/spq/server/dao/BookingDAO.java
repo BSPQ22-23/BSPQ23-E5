@@ -10,6 +10,7 @@ import javax.jdo.PersistenceManagerFactory;
 import javax.jdo.Query;
 import javax.jdo.Transaction;
 
+import es.deusto.spq.jdo.Room;
 import es.deusto.spq.server.*;
 
 /**
@@ -127,8 +128,8 @@ public class BookingDAO extends DataAccessObjectBase implements IDataAccessObjec
 
 	    return hasReservation;
 	}
-	
 
+	
 	
 	
 }

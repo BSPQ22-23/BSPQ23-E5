@@ -25,7 +25,11 @@ import javax.ws.rs.core.Response;
 
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
-
+/**
+ * Resource class 
+ * @author Maitane
+ *
+ */
 @Path("/resource")
 @Produces(MediaType.APPLICATION_JSON)
 public class Resource {

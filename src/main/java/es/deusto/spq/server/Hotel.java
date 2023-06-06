@@ -20,7 +20,6 @@ public class Hotel  {
 	private int id;
 	private String name;
 	private String city;
-	private Guest owner;
 	
 	
 	
@@ -32,11 +31,10 @@ public class Hotel  {
 	 * @param city  the hotel's city
 	 * @param owner the hotel's owner
 	 */
-	public Hotel(String name, String city, Guest owner ) {
+	public Hotel(String name, String city ) {
 		this.name = name;
 		this.city = city;
-		this.owner = owner;
-	
+		
 	
 	}
 
@@ -49,14 +47,7 @@ public class Hotel  {
 		this.name = name;
 	}
 
-	/**
-	 * Returns the hotel's ID.
-	 * 
-	 * @return the hotel's ID
-	 */
-	public int getId() {
-		return id;
-	}
+
 
 	/**
 	 * Returns the hotel's name.
@@ -100,21 +91,4 @@ public class Hotel  {
 
 	
 
-	/**
-	 * Returns the hotel's owner.
-	 * 
-	 * @return the hotel's owner
-	 */
-	public Guest getOwner() {
-		return owner;
-	}
-
-	/**
-	 * Sets the hotel's owner.
-	 * 
-	 * @param owner the hotel's owner to set
-	 */
-	public void setOwner(Guest owner) {
-		this.owner = owner;
-	}
 }

@@ -9,7 +9,11 @@ import javax.jdo.annotations.PrimaryKey;
 
 
 
-
+/**
+ * Guest persistance
+ * @author MAITANE
+ *
+ */
 @PersistenceCapable(detachable = "true")
 public class Guest implements Serializable {
 

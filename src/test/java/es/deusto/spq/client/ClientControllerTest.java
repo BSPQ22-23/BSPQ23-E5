@@ -26,6 +26,34 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import es.deusto.spq.pojo.UserData;
+
+
+import static org.junit.Assert.*;
+
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
+
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import org.mockito.Answers;
+import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
+import org.mockito.Mock;
+import org.mockito.MockedStatic;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
+
+import es.deusto.spq.pojo.UserData;
 import javassist.CtBehavior;
 /**
  * CLIENT CONTROLLER USANDO MOCKITO
@@ -43,8 +71,7 @@ public class ClientControllerTest {
 	private static ClientController controller;
 	public ClientControllerTest ct;
 
-	
-	
+
 	@Before
 	public  void setUp() {
 		
@@ -63,18 +90,28 @@ public class ClientControllerTest {
 	{
 		
 	}
-	
 
 	@Test
+	public void testClientController() {
+		
+	}
+	
+	@Test
 	public void testLogin() {
+		String nickname = "john_doe";
+       
+        String password = "password";
+
+       
+        controller.login(nickname,  password);
 		when(webTarget.path("login")).thenReturn(webTarget);
 		Response response = Response.ok().build();
 		when(webTarget.request(MediaType.APPLICATION_JSON).post(any(Entity.class))).thenReturn(response);
 
 	}
-	
 	@Test
 	public void testLoginWithError() {
+		
 		webTarget = webTarget.path("login");
 		Response response = Response.serverError().build();
 		when(webTarget.request(MediaType.APPLICATION_JSON).post(any(Entity.class))).thenReturn(response);
@@ -84,11 +121,20 @@ public class ClientControllerTest {
 
 	@Test
 	public void testRegister() {
+		String nickname = "john_doe";
+        String lastname = "Doe";
+        String password = "password";
+
+        
+        controller.register(nickname, lastname, password);
 		webTarget = webTarget.path("register");
 		Response response = Response.ok().build();
 		when(webTarget.request(MediaType.APPLICATION_JSON).post(any(Entity.class))).thenReturn(response);
 
 	}
-	
+	@Test
+	public void testMain() {
+		
+	}
 
 }

@@ -11,9 +11,12 @@ import javax.jdo.Query;
 import es.deusto.spq.jdo.*;
 
 
+
 /**
  * Data Access Object for managing User objects in the hotel management system.
- * Extends DataAccessObjectBase and implements IDataAccessObject<User>.
+ * Extends DataAccessObjectBase and implements IDataAccessObject<User CLASS>.
+ * @author MAITANE
+ *
  */
 public class UserDAO extends DataAccessObjectBase implements IDataAccessObject<User> {
 
@@ -116,6 +119,8 @@ public class UserDAO extends DataAccessObjectBase implements IDataAccessObject<U
     public void setPersistenceManagerFactory(PersistenceManagerFactory factory) {
         pmf = factory;
     }
+
+	
 
 	
 }

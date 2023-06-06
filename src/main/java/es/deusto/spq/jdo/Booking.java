@@ -5,6 +5,7 @@ package es.deusto.spq.jdo;
 
 
 import java.io.Serializable;
+
 import java.util.Date;
 
 import java.util.List;
@@ -15,7 +16,7 @@ import javax.jdo.annotations.Persistent;
 
 
 import es.deusto.spq.server.Guest;
-import es.deusto.spq.server.Room;
+
 
 import javax.jdo.annotations.PersistenceCapable;
 
@@ -51,8 +52,8 @@ public class Booking implements Serializable {
 	 * @param guests       the list of guests for the booking
 	 * @param author       the author of the booking
 	 */
-	public Booking(Integer id, Date checkinDate, Date checkoutDate, Room room, List<Guest> guests, Guest author) {
-		this.id = id;
+	public Booking(Date checkinDate, Date checkoutDate, Room room, List<Guest> guests, Guest author) {
+	
 		this.checkinDate = checkinDate;
 		this.checkoutDate = checkoutDate;
 		this.room = room;

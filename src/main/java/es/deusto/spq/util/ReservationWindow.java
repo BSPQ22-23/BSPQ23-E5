@@ -27,7 +27,11 @@ import java.awt.FlowLayout;
 import javax.swing.JRadioButton;
 
 
-
+/**
+ * Reservation window
+ * @author BSILV
+ *
+ */
 public class ReservationWindow extends JPanel {
 	/**
 	 * 

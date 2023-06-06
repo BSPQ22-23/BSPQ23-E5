@@ -2,7 +2,7 @@ package es.deusto.spq.util;
 import javax.swing.*;
 
 
-import es.deusto.spq.*;
+
 import es.deusto.spq.client.ClientController;
 import es.deusto.spq.jdo.Hotel;
 import es.deusto.spq.server.dao.HotelDAO;
@@ -10,15 +10,13 @@ import es.deusto.spq.server.dao.HotelDAO;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
-import java.net.Socket;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.List;
 
+import java.util.List;
+/**
+ * hOTEL BROWSER WINDOW
+ * @author BSILV
+ *
+ */
 public class HotelBrowserWindow extends JFrame  {
     private JTextField searchField;
     private JTextArea hotelListArea;

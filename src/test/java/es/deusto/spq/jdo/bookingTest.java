@@ -18,20 +18,20 @@ public class bookingTest {
 	private int id;
 	private Date checkinDate;
 	private Date checkoutDate;
-	private es.deusto.spq.server.Room room;
+	
 	private es.deusto.spq.server.Guest author;
 	private ArrayList<Guest> guests;
 
 	@Before
 	public void setUp() {
-		id = 1;
+		id = 0;
 		checkinDate = new Date();
 		checkoutDate = new Date();
-		room = new es.deusto.spq.server.Room(id, "fgh", id, id, id, null);
+		
 		author = new es.deusto.spq.server.Guest(null, null, "syhj", id, null);
 		guests = new ArrayList<Guest>();
 
-		booking = new Booking(id, checkinDate, checkinDate, null, null, author);
+		booking = new Booking( checkinDate, checkinDate, null, null, author);
 	}
 
 	@Test
@@ -70,17 +70,8 @@ public class bookingTest {
 		assertEquals(newCheckoutDate, booking.getCheckoutDate());
 	}
 
-	@Test
-	public void testGetRoom() {
-		assertNotEquals(room, booking.getRoom());
-	}
+	
 
-	@Test
-	public void testSetRoom() {
-		es.deusto.spq.server.Room newRoom = new es.deusto.spq.server.Room(id, null, id, id, id, null);
-		booking.setRoom(newRoom);
-		assertEquals(newRoom, booking.getRoom());
-	}
 
 	@Test
 	public void testGetGuests() {

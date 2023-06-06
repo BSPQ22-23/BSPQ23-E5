@@ -19,7 +19,11 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-
+/**
+ * main menu owner
+ * @author maitane
+ *
+ */
 public class MainMenuOwner extends JFrame implements ActionListener {
 	 	private JLabel welcome, label, info, warningL, infoSettings, hotelNameL, hotelChainL, hotelRoomsL, hotelCityL;
 	 	private JTextField search, hotelName, hotelChain, hotelRooms, hotelCity;

@@ -173,5 +173,6 @@ public class HotelDAO  extends DataAccessObjectBase implements IDataAccessObject
 	 public void setPersistenceManagerFactory(PersistenceManagerFactory factory) {
 	        pmf = factory;
 	    }
+
 }
 

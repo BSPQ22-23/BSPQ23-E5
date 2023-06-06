@@ -12,8 +12,9 @@ import es.deusto.spq.server.*;
 
 
 /**
- * Data Access Object for managing Guest objects in the hotel management system.
- * Extends DataAccessObjectBase and implements IDataAccessObject<Guest>.
+ * GUEST DAO
+ * @author BSILV
+ *
  */
 public class GuestDAO extends DataAccessObjectBase implements IDataAccessObject<Guest> {
 
@@ -28,7 +29,9 @@ public class GuestDAO extends DataAccessObjectBase implements IDataAccessObject<
     public static GuestDAO getInstance() {
         return INSTANCE;
     }
-
+/**
+ * Constructor
+ */
     private GuestDAO() {
     }
 
@@ -100,4 +103,6 @@ public class GuestDAO extends DataAccessObjectBase implements IDataAccessObject<
     public void setPersistenceManagerFactory(PersistenceManagerFactory factory) {
         pmf = factory;
     }
+
+	
 }

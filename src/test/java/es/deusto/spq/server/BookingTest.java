@@ -2,6 +2,7 @@ package es.deusto.spq.server;
 
 import static org.junit.Assert.*;
 
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -13,13 +14,13 @@ import es.deusto.spq.server.*;
 
 public class BookingTest {
 	 private Booking booking;
-	    private Room room;
+	   
 	    private List<Guest> guests;
 	    private Guest author;
 
 	    @Before
 	    public void setUp() {
-	        room = new Room(101, "Standard", 2, 25, 100.0f, new Hotel("Hotel XYZ", "City A", new Guest("John", "Doe", "123456789", 30, "City B")));
+	       
 	        guests = new ArrayList<>();
 	        guests.add(new Guest("Jane", "Smith", "987654321", 28, "City C"));
 	        guests.add(new Guest("Bob", "Johnson", "456789123", 35, "City D"));
@@ -27,7 +28,8 @@ public class BookingTest {
 
 	        Date checkinDate = new Date();
 	        Date checkoutDate = new Date();
-	        booking = new Booking(checkinDate, checkoutDate, room, guests, author);
+	      //  public Booking(Integer id, Date checkinDate, Date checkoutDate, Room room, List<Guest> guests, Guest author) {
+	        booking = new Booking( checkinDate, checkoutDate, guests, author);
 	    }
 
 	    @Test
@@ -65,18 +67,7 @@ public class BookingTest {
 	        assertEquals(newCheckoutDate, booking.getCheckoutDate());
 	    }
 
-	    @Test
-	    public void testGetRoom() {
-	        assertEquals(room, booking.getRoom());
-	    }
-
-	    @Test
-	    public void testSetRoom() {
-	        Room newRoom = new Room(102, "Deluxe", 4, 40, 200.0f, new Hotel("Hotel ABC", "City X", new Guest("David", "Brown", "789456123", 45, "City Y")));
-	        booking.setRoom(newRoom);
-	        assertEquals(newRoom, booking.getRoom());
-	    }
-
+	   
 	    @Test
 	    public void testGetGuests() {
 	        assertEquals(guests, booking.getGuests());

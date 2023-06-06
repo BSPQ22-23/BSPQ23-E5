@@ -16,7 +16,11 @@ import javax.ws.rs.client.WebTarget;
 
 import es.deusto.spq.client.ClientController; // conexion con cliente
 //import main.Server;  -> abrir el servidor
-
+/**
+ * registration window
+ * @author maitane
+ *
+ */
 public class RegistrationWindow extends JFrame implements ActionListener {
 	private JLabel nicknameLabel, passwordLabel, nameLabel, lastNameLabel, idLabel, ageLabel, cityLabel;
 	private JTextField nicknameTextField, passwordTextField, nameTextField, lastNameTextField, idTextField,

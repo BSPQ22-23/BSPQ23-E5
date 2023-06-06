@@ -19,7 +19,7 @@ public class Booking {
     private int id;
     private Date checkinDate;
     private Date checkoutDate;
-    private Room room;
+   
     private Guest author;
     private List<Guest> guests;
 
@@ -32,15 +32,19 @@ public class Booking {
      * @param guests       The list of guests included in the booking.
      * @param author       The guest who made the booking.
      */
-    public Booking(Date checkinDate, Date checkoutDate, Room room, List<Guest> guests, Guest author) {
-        this.checkinDate = checkinDate;
-        this.checkoutDate = checkoutDate;
-        this.room = room;
-        this.guests = guests;
-        this.author = author;
-    }
+    public Booking( Date checkinDate, Date checkoutDate,  List<Guest> guests, Guest author) {
+		
+		this.checkinDate = checkinDate;
+		this.checkoutDate = checkoutDate;
+		
+		this.guests = guests;
+		this.author = author;
+	}
 
-    /**
+
+
+
+	/**
      * Returns the ID of the booking.
      *
      * @return The ID of the booking.
@@ -92,24 +96,6 @@ public class Booking {
      */
     public void setCheckoutDate(Date checkoutDate) {
         this.checkoutDate = checkoutDate;
-    }
-
-    /**
-     * Returns the room reserved for the booking.
-     *
-     * @return The room reserved for the booking.
-     */
-    public Room getRoom() {
-        return room;
-    }
-
-    /**
-     * Sets the room reserved for the booking.
-     *
-     * @param room The room reserved for the booking.
-     */
-    public void setRoom(Room room) {
-        this.room = room;
     }
 
     /**

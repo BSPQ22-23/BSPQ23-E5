@@ -2,6 +2,7 @@ package es.deusto.spq.jdo;
 
 import static org.junit.Assert.*;
 
+import es.deusto.spq.jdo.User;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -15,7 +16,7 @@ public class UserTest {
 	        nick = "johnDoe";
 	        lastname = "B";
 	        password = "password123";
-	       user = new User(nick,password);
+	       user = new User(nick,lastname ,password);
 	    }
 
 	    @Test
