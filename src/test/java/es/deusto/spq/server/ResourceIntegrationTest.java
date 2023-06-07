@@ -5,6 +5,8 @@ package es.deusto.spq.server;
 import static org.junit.Assert.assertEquals;
 
 import static org.junit.Assert.assertNotEquals;
+import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.verify;
 
 import java.util.UUID;
 
@@ -26,6 +28,7 @@ import org.junit.Before;
 
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
+import org.mockito.ArgumentCaptor;
 
 import categories.IntegrationTest;
 import es.deusto.spq.pojo.UserData;
@@ -70,22 +73,34 @@ private static final PersistenceManagerFactory pmf = JDOHelper.getPersistenceMan
     
 
     @Test
-    public void testLoginWithError() {
+    public void testLogin() {
     	UserData user = new UserData();
     	
         user.setNickname("A");
         user.setPassword("A");
 
+        Response response = target.path("login")
+                .request(MediaType.APPLICATION_JSON)
+                .post(Entity.entity(user, MediaType.APPLICATION_JSON));
 
+        assertEquals(Response.Status.OK.getStatusCode(), response.getStatus());
+	
     }
     
 
     @Test
-    public void testRegisterWithError() {
+    public void testRegister() {
         UserData user = new UserData();
        
         user.setNickname("A");
         user.setLastname("A");
         user.setPassword("A");
+
+        Response response = target.path("register")
+            .request(MediaType.APPLICATION_JSON)
+            .post(Entity.entity(user, MediaType.APPLICATION_JSON));
+
+
+        assertEquals(Response.Status.OK.getStatusCode(), response.getStatus());
     }
 }
