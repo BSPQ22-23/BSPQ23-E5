@@ -5,16 +5,17 @@ import javax.jdo.PersistenceManager;
 
 
 
+
 import javax.jdo.PersistenceManagerFactory;
 
 import javax.jdo.JDOHelper;
 import javax.jdo.Transaction;
 
-
+import es.deusto.spq.jdo.Booking;
 import es.deusto.spq.jdo.User;
-
-
+import es.deusto.spq.pojo.BookingData;
 import es.deusto.spq.pojo.UserData;
+
 
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -123,6 +124,52 @@ public class Resource {
 
         }
     }
+	@POST
+	@Path("/create")
+	public Response createReservation(BookingData bookingData) {
+		 try
+	        {
+			 tx.begin();
+	            logger.info("Checking whether the user already exits or not: '{}'", bookingData.getGuest_name());
+				Booking booking = null;
+				try {
+					booking = pm.getObjectById(Booking.class, bookingData.getGuest_name());
+				} catch (javax.jdo.JDOObjectNotFoundException jonfe) {
+					logger.info("Exception launched: {}", jonfe.getMessage());
+				}
+				logger.info("Reservation : {}", booking);
+				if (booking != null) {
+					logger.info("Setting guest name: {}",booking);
+					//return Response.serverError().build();
+					booking.setGuest_name(bookingData.getGuest_name());
+					logger.info("Guest name  set reservation: {}", booking);
+					booking.setCheckinDate(bookingData.getCheckinDate());
+					logger.info("Check in set reservation: {}", booking);
+			        booking.setCheckoutDate(bookingData.getCheckoutDate());
+			        logger.info("Check out  set reservation: {}", booking);
+			        booking.setRoom(bookingData.getRoom());
+			        logger.info("Room set reservation: {}", booking);
+			        booking.setType(bookingData.getType());
+					logger.info("Type set reservation: {}", booking);
+				} else {
+					logger.info("Creating reservation: {}", booking);
+					booking = new Booking(bookingData.getGuest_name(), bookingData.getCheckinDate(), bookingData.getCheckoutDate(), bookingData.getRoom(), bookingData.getType());
+					//user = new User(userData.getNickname(), userData.getPassword(),null,true);
+					pm.makePersistent(booking);					 
+					logger.info("Reservation created: {}", booking);
+				}
+				tx.commit();
+				return Response.ok().build();
+	        }
+	        finally
+	        {
+	            if (tx.isActive())
+	            {
+	                tx.rollback();
+	            }
+
+	        }
+}
 	
 
 }

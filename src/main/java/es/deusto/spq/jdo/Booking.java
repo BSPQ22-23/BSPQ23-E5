@@ -13,7 +13,7 @@ import java.util.List;
 import javax.jdo.annotations.Join;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
-
+import javax.jdo.annotations.PrimaryKey;
 
 import es.deusto.spq.server.Guest;
 
@@ -30,107 +30,70 @@ public class Booking implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Persistent(defaultFetchGroup = "true")
-	private int id;
-	private Date checkinDate;
-	private Date checkoutDate;
-	@Persistent(defaultFetchGroup = "true")
-	private Room room;
-	@Persistent(defaultFetchGroup = "true")
-	private Guest author;
+	@PrimaryKey
+	private String guest_name;
+	private String checkinDate;
+	private String checkoutDate;
+	private String room;
+	private String type;
 
 	@Persistent(defaultFetchGroup = "true", dependentElement = "true")
 	@Join
 	private List<Guest> guests;
 
-	/**
-	 * Creates a new instance of Booking.
-	 * 
-	 * @param id           the booking ID
-	 * @param checkinDate  the check-in date
-	 * @param checkoutDate the check-out date
-	 * @param room         the room for the booking
-	 * @param guests       the list of guests for the booking
-	 * @param author       the author of the booking
-	 */
-	public Booking(Date checkinDate, Date checkoutDate, Room room, List<Guest> guests, Guest author) {
 	
-		this.checkinDate = checkinDate;
-		this.checkoutDate = checkoutDate;
-		this.room = room;
-		this.guests = guests;
-		this.author = author;
-	}
+	
 
-	/**
-	 * Returns the booking ID.
-	 * 
-	 * @return the booking ID
-	 */
-	public int getId() {
-		return id;
-	}
-
-	/**
-	 * Sets the booking ID.
-	 * 
-	 * @param id the booking ID to set
-	 */
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	/**
-	 * Returns the check-in date.
-	 * 
-	 * @return the check-in date
-	 */
-	public Date getCheckinDate() {
-		return checkinDate;
-	}
-
-	/**
-	 * Sets the check-in date.
-	 * 
-	 * @param checkinDate the check-in date to set
-	 */
-	public void setCheckinDate(Date checkinDate) {
-		this.checkinDate = checkinDate;
-	}
-
-	/**
-	 * Returns the check-out date.
-	 * 
-	 * @return the check-out date
-	 */
-	public Date getCheckoutDate() {
-		return checkoutDate;
-	}
-
-	/**
-	 * Sets the check-out date.
-	 * 
-	 * @param checkoutDate the check-out date to set
-	 */
-	public void setCheckoutDate(Date checkoutDate) {
-		this.checkoutDate = checkoutDate;
-	}
-
-	/**
-	 * Returns the room for the booking.
-	 * 
-	 * @return the room for the booking
-	 */
-	public Room getRoom() {
+	public String getRoom() {
 		return room;
 	}
 
-	/**
-	 * Sets the room for the booking.
-	 * 
-	 * @param room the room to set
-	 */
-	public void setRoom(Room room) {
+	public void setRoom(String room) {
 		this.room = room;
+	}
+
+	public String getGuest_name() {
+		return guest_name;
+	}
+
+	public void setGuest_name(String guest_name) {
+		this.guest_name = guest_name;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	
+
+	
+	public Booking(String guest_name, String checkinDate, String checkoutDate, String room, String type) {
+		super();
+		this.guest_name = guest_name;
+		this.checkinDate = checkinDate;
+		this.checkoutDate = checkoutDate;
+		this.room = room;
+		this.type = type;
+	}
+
+	public String getCheckinDate() {
+		return checkinDate;
+	}
+
+	public void setCheckinDate(String checkinDate) {
+		this.checkinDate = checkinDate;
+	}
+
+	public String getCheckoutDate() {
+		return checkoutDate;
+	}
+
+	public void setCheckoutDate(String checkoutDate) {
+		this.checkoutDate = checkoutDate;
 	}
 
 	/**
@@ -151,24 +114,7 @@ public class Booking implements Serializable {
 		this.guests = guests;
 	}
 
-	/**
-	 * Returns the author of the booking.
-	 * 
-	 * @return the author of the booking
-	 */
-	public Guest getAuthor() {
-		return author;
-	}
-
-	/**
-	 * Sets the author of the booking.
-	 * 
-	 * @param author the author to set
-	 */
-	public void setAuthor(Guest author) {
-		this.author = author;
-	}
-
+	
 	/**
 	 * Adds a guest to the list of guests for the booking.
 	 * 
@@ -186,4 +132,11 @@ public class Booking implements Serializable {
 	public void removeGuest(Guest guest) {
 		guests.remove(guest);
 	}
+
+	@Override
+	public String toString() {
+		return "Booking  : checkinDate=" + checkinDate + ", checkoutDate=" + checkoutDate + ", room=" + room
+				+ ", guest_name=" + guest_name + ", type=" + type ;
+	}
+	
 }

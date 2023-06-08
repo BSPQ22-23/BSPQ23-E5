@@ -19,8 +19,7 @@ import javax.ws.rs.core.Response.Status;
 
 import org.apache.logging.log4j.LogManager;
 
-
-
+import es.deusto.spq.pojo.BookingData;
 import es.deusto.spq.pojo.UserData;
 
 import es.deusto.spq.util.LoginWindow;
@@ -108,9 +107,38 @@ public class ClientController {
 			 logger.info("User correctly registered");
 		}
 	}
+/**
+ * Create a booking reservation
+ * @param checkin
+ * @param checkout
+ * @param room
+ * @param guest_name
+ * @param type
+ */
+	public void createReservation(String guest_name,String checkin, String checkout, String room,  String type) {
+		
+	    WebTarget reservationWebTarget = webTarget.path("create");
+	    System.out.println(String.format("Entra al paquete del reservation", reservationWebTarget));
+	    Invocation.Builder invocationBuilder = reservationWebTarget.request(MediaType.APPLICATION_JSON);
 
-	
-	
+	    BookingData bookingData = new BookingData();
+	    bookingData.setGuest_name(guest_name);
+	    bookingData.setCheckinDate(checkin);
+	    bookingData.setCheckoutDate(checkout);
+	    bookingData.setRoom(room);
+	    bookingData.setType(type);
+
+	    try {
+	        Response response = invocationBuilder.post(Entity.entity(bookingData, MediaType.APPLICATION_JSON));
+	        if (response.getStatus() != Status.OK.getStatusCode()) {
+	            logger.error("Error connecting with the server. Code: {}", response.getStatus());
+	        } else {
+	            logger.info("Booking created successfully");
+	        }
+	    } catch (Exception e) {
+	        logger.error("Error creating reservation: {}", e.getMessage());
+	    }
+	}
 	
 	
 	

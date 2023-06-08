@@ -15,37 +15,33 @@ import org.junit.Test;
 public class bookingTest {
 
 	private Booking booking;
-	private int id;
-	private Date checkinDate;
-	private Date checkoutDate;
+	
+	private String checkinDate;
+	private String checkoutDate;
+	private String guest_name;
+	private String type;
+	private String room;
 	
 	private es.deusto.spq.server.Guest author;
 	private ArrayList<Guest> guests;
 
 	@Before
 	public void setUp() {
-		id = 0;
-		checkinDate = new Date();
-		checkoutDate = new Date();
 		
-		author = new es.deusto.spq.server.Guest(null, null, "syhj", id, null);
+		checkinDate = "08-06-2023";
+		checkoutDate ="18-06-2023";
+		room = "234A";
+		guest_name = "maitane";
+		type= "single";
+		
+		
+		
 		guests = new ArrayList<Guest>();
 
-		booking = new Booking( checkinDate, checkinDate, null, null, author);
+		booking = new Booking(checkinDate,checkoutDate,room,guest_name,type);
 	}
 
-	@Test
-	public void testGetId() {
-		assertEquals(id, booking.getId());
-	}
-
-	@Test
-	public void testSetId() {
-		int newId = 2;
-		booking.setId(newId);
-		assertEquals(newId, booking.getId());
-	}
-
+	
 	@Test
 	public void testGetCheckinDate() {
 		assertEquals(checkinDate, booking.getCheckinDate());
@@ -53,7 +49,7 @@ public class bookingTest {
 
 	@Test
 	public void testSetCheckinDate() {
-		Date newCheckinDate = new Date();
+		String newCheckinDate = "21-06-2023";
 		booking.setCheckinDate(newCheckinDate);
 		assertEquals(newCheckinDate, booking.getCheckinDate());
 	}
@@ -65,7 +61,7 @@ public class bookingTest {
 
 	@Test
 	public void testSetCheckoutDate() {
-		Date newCheckoutDate = new Date();
+		String newCheckoutDate = "30-06-2023";
 		booking.setCheckoutDate(newCheckoutDate);
 		assertEquals(newCheckoutDate, booking.getCheckoutDate());
 	}
@@ -85,17 +81,7 @@ public class bookingTest {
 		assertEquals(newGuests, booking.getGuests());
 	}
 
-	@Test
-	public void testGetAuthor() {
-		assertEquals(author, booking.getAuthor());
-	}
-
-	@Test
-	public void testSetAuthor() {
-		es.deusto.spq.server.Guest newAuthor = new es.deusto.spq.server.Guest("1yu", null, "2567", 24, null);
-		booking.setAuthor(newAuthor);
-		assertEquals(newAuthor, booking.getAuthor());
-	}
+	
 	@Test
 	public void testAddGuest() {
 		

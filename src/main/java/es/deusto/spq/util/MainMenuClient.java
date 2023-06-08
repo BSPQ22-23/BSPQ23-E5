@@ -47,10 +47,11 @@ public class MainMenuClient extends JFrame implements ActionListener {
 	private JPanel buttonPanel, welcomePanel, searchPanel, browserPanel, accountPanel,hotelpanel, pCenter, settingsPanel;
 	private JButton btnAllHotels;
 	private JTextArea textArea;
+	private ClientController controller;
 
 	public MainMenuClient() {
 		super("Menu");
-
+		this.controller = controller;
 		welcome = new JLabel("Welcome to the Hotel Management App");
 		label = new JLabel("Search my reservations: ");
 		info = new JLabel("User info such as nickname, stats, recently reserved hotels, etc...");
@@ -204,10 +205,10 @@ public class MainMenuClient extends JFrame implements ActionListener {
 			// browserPanel.revalidate();
 			// browserPanel.repaint();
 			setSize(700, 400);
-			ReservationWindow rW = new ReservationWindow();
+			ReservationWindow rW = new ReservationWindow( controller);
 			getContentPane().add(rW);
 			rW.setVisible(true);
-			
+			textArea = new JTextArea();
 			textArea.setEditable(false);
 			hotelpanel.add(new JScrollPane(textArea), BorderLayout.CENTER);
 

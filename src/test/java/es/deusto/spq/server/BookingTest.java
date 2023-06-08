@@ -16,7 +16,9 @@ public class BookingTest {
 	 private Booking booking;
 	   
 	    private List<Guest> guests;
-	    private Guest author;
+	    private String author;
+	    private String type;
+	    private String room;
 
 	    @Before
 	    public void setUp() {
@@ -24,12 +26,14 @@ public class BookingTest {
 	        guests = new ArrayList<>();
 	        guests.add(new Guest("Jane", "Smith", "987654321", 28, "City C"));
 	        guests.add(new Guest("Bob", "Johnson", "456789123", 35, "City D"));
-	        author = new Guest("Michael", "Williams", "654321987", 32, "City E");
+	        author = "maitane";
+	        type = "single";
+	        room = "234A";
 
 	        Date checkinDate = new Date();
 	        Date checkoutDate = new Date();
-	      //  public Booking(Integer id, Date checkinDate, Date checkoutDate, Room room, List<Guest> guests, Guest author) {
-	        booking = new Booking( checkinDate, checkoutDate, guests, author);
+	      //  public Booking(Date checkinDate, Date checkoutDate, String room, String guest_name ,String type) 
+	        booking = new Booking( checkinDate, checkoutDate,room, author,type);
 	    }
 
 	    @Test
@@ -81,17 +85,8 @@ public class BookingTest {
 	        assertEquals(newGuests, booking.getGuests());
 	    }
 
-	    @Test
-	    public void testGetAuthor() {
-	        assertEquals(author, booking.getAuthor());
-	    }
-
-	    @Test
-	    public void testSetAuthor() {
-	        Guest newAuthor = new Guest("Emily", "Davis", "741852963", 27, "City W");
-	        booking.setAuthor(newAuthor);
-	        assertEquals(newAuthor, booking.getAuthor());
-	    }
+	 
+	  
 
 	    @Test
 	    public void testAddGuest() {

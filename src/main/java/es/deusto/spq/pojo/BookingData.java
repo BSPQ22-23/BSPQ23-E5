@@ -1,44 +1,44 @@
-package es.deusto.spq.server;
+package es.deusto.spq.pojo;
 
-import java.util.Date;
+
+
+
 import java.util.List;
 
 
-import es.deusto.spq.server.Guest;
-
-public class Booking {
+import es.deusto.spq.jdo.Guest;
+/**
+ * 
+ * @author maitane
+ *
+ */
+public class BookingData {
 
 	
 		
-		private int id;
-		private Date checkinDate;
-		private Date checkoutDate;
+		
+		private String checkinDate;
+		private String checkoutDate;
 		private String room;
 		private String guest_name;
 		private String type;
 
 		private List<Guest> guests;
 
-		/**
-		 * Creates a new instance of Booking.
-		 * 
-		 * @param id           the booking ID
-		 * @param checkinDate  the check-in date
-		 * @param checkoutDate the check-out date
-		 * @param room         the room for the booking
-		 * @param guests       the list of guests for the booking
-		 * @param author       the author of the booking
-		 * @return 
-		 */
-		public Booking(Date checkinDate, Date checkoutDate, String room, String guest_name ,String type) {
-		
+
+		public BookingData(String checkinDate, String checkoutDate, String room, String guest_name, String type) {
+			super();
 			this.checkinDate = checkinDate;
 			this.checkoutDate = checkoutDate;
 			this.room = room;
-			this.type= type;
-			this.guest_name= guest_name;
+			this.guest_name = guest_name;
+			this.type = type;
+			
 		}
 
+		public BookingData() {
+			
+		}
 		public String getRoom() {
 			return room;
 		}
@@ -63,30 +63,13 @@ public class Booking {
 			this.type = type;
 		}
 
-		/**
-		 * Returns the booking ID.
-		 * 
-		 * @return the booking ID
-		 */
-		public int getId() {
-			return id;
-		}
-
-		/**
-		 * Sets the booking ID.
-		 * 
-		 * @param id the booking ID to set
-		 */
-		public void setId(int id) {
-			this.id = id;
-		}
-
+		
 		/**
 		 * Returns the check-in date.
 		 * 
 		 * @return the check-in date
 		 */
-		public Date getCheckinDate() {
+		public String getCheckinDate() {
 			return checkinDate;
 		}
 
@@ -95,7 +78,7 @@ public class Booking {
 		 * 
 		 * @param checkinDate the check-in date to set
 		 */
-		public void setCheckinDate(Date checkinDate) {
+		public void setCheckinDate(String checkinDate) {
 			this.checkinDate = checkinDate;
 		}
 
@@ -104,7 +87,7 @@ public class Booking {
 		 * 
 		 * @return the check-out date
 		 */
-		public Date getCheckoutDate() {
+		public String getCheckoutDate() {
 			return checkoutDate;
 		}
 
@@ -113,7 +96,7 @@ public class Booking {
 		 * 
 		 * @param checkoutDate the check-out date to set
 		 */
-		public void setCheckoutDate(Date checkoutDate) {
+		public void setCheckoutDate(String checkoutDate) {
 			this.checkoutDate = checkoutDate;
 		}
 
@@ -157,7 +140,7 @@ public class Booking {
 
 		@Override
 		public String toString() {
-			return "Booking  : id=" + id + ", checkinDate=" + checkinDate + ", checkoutDate=" + checkoutDate + ", room=" + room
+			return "Booking  :  checkinDate=" + checkinDate + ", checkoutDate=" + checkoutDate + ", room=" + room
 					+ ", guest_name=" + guest_name + ", type=" + type ;
 		}
 	

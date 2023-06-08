@@ -14,6 +14,7 @@ es\deusto\spq\util\LoginWindow.class
 es\deusto\spq\util\HotelBrowserWindow$2.class
 es\deusto\spq\util\LoginWindow$3.class
 es\deusto\spq\server\dao\BookingDAO.class
+es\deusto\spq\pojo\BookingData.class
 es\deusto\spq\util\ReservationWindow$1.class
 es\deusto\spq\server\Guest.class
 es\deusto\spq\util\LoginWindow$1.class

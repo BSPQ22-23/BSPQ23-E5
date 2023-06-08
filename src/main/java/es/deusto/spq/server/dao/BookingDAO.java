@@ -2,6 +2,7 @@ package es.deusto.spq.server.dao;
 import java.util.Date;
 
 
+
 import java.util.List;
 
 import javax.jdo.JDOHelper;
@@ -12,6 +13,7 @@ import javax.jdo.Transaction;
 
 import es.deusto.spq.jdo.Room;
 import es.deusto.spq.server.*;
+import es.deusto.spq.jdo.Booking;
 
 /**
  * DAO for Booking class
@@ -23,7 +25,7 @@ public class BookingDAO extends DataAccessObjectBase implements IDataAccessObjec
 
 	private static BookingDAO instance;	
 	//private static PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
-	private BookingDAO() { }
+	public BookingDAO() { }
 	
 	public static BookingDAO getInstance() {
 		if (instance == null) {
@@ -94,42 +96,24 @@ public class BookingDAO extends DataAccessObjectBase implements IDataAccessObjec
 	    return result;
 	}
 
-	
-	
-	public boolean hasReservationInRoomOnDate(Room room, Date date) {
-	    PersistenceManager pm = pmf.getPersistenceManager();
-	    Transaction tx = pm.currentTransaction();
+	/**
+	 */
+	public void createBooking(Booking booking) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx = pm.currentTransaction();
 
-	    boolean hasReservation = false;
-
-	    try {
-	        tx.begin();
-
-	        Query<Booking> q = pm.newQuery(Booking.class);
-	        q.setFilter("room == roomParam && date == dateParam");
-	        q.declareParameters("Room roomParam, java.util.Date dateParam");
-	        q.setUnique(true);
-	        Booking reservation = (Booking) q.execute(room, date);
-
-	        if (reservation != null) {
-	            hasReservation = true;
-	        }
-
-	        tx.commit();
-	    } catch (Exception ex) {
-	        System.out.println("Error: " + ex.getMessage());
-	    } finally {
-	        if (tx != null && tx.isActive()) {
-	            tx.rollback();
-	        }
-
-	        pm.close();
-	    }
-
-	    return hasReservation;
-	}
-
-	
-	
+        try {
+            tx.begin();
+            pm.makePersistent(booking);
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            pm.close();
+        }
+    }
 	
 }
