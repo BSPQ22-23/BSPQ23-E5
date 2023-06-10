@@ -19,7 +19,7 @@ import javax.ws.rs.core.Response.Status;
 
 import org.apache.logging.log4j.LogManager;
 
-import es.deusto.spq.pojo.BookingData;
+//import es.deusto.spq.pojo.BookingData;
 import es.deusto.spq.pojo.UserData;
 
 import es.deusto.spq.util.LoginWindow;
@@ -76,7 +76,7 @@ public class ClientController {
 		} else {
 			System.out.println("User correctly logged");
 			logger.info("User correctly logged");
-			MainMenuClient mmc = new MainMenuClient();
+			MainMenuClient mmc = new MainMenuClient(null);
 			mmc.setVisible(true);
 
 		}
@@ -121,7 +121,7 @@ public class ClientController {
 	    System.out.println(String.format("Entra al paquete del reservation", reservationWebTarget));
 	    Invocation.Builder invocationBuilder = reservationWebTarget.request(MediaType.APPLICATION_JSON);
 
-	    BookingData bookingData = new BookingData();
+	    Booking bookingData = new Booking();
 	    bookingData.setGuest_name(guest_name);
 	    bookingData.setCheckinDate(checkin);
 	    bookingData.setCheckoutDate(checkout);

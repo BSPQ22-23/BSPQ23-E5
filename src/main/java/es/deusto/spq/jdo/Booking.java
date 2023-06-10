@@ -80,6 +80,12 @@ public class Booking implements Serializable {
 		this.type = type;
 	}
 
+	public Booking() {
+		// TODO Auto-generated constructor stub
+	}
+
+
+
 	public String getCheckinDate() {
 		return checkinDate;
 	}

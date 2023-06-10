@@ -77,7 +77,7 @@ public class HotelBrowserWindow extends JFrame  {
                 // Implement logic to return to the home page
                 JOptionPane.showMessageDialog(null, "Returning to the home page...");
                 dispose();
-                MainMenuClient mmc = new MainMenuClient();
+                MainMenuClient mmc = new MainMenuClient(controller);
                 mmc.setVisible(true);
             }
         });

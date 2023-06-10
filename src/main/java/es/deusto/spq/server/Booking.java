@@ -38,6 +38,8 @@ public class Booking {
 			this.type= type;
 			this.guest_name= guest_name;
 		}
+		public Booking() {
+		}
 
 		public String getRoom() {
 			return room;

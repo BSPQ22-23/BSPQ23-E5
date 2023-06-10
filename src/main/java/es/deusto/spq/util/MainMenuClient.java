@@ -49,7 +49,7 @@ public class MainMenuClient extends JFrame implements ActionListener {
 	private JTextArea textArea;
 	private ClientController controller;
 
-	public MainMenuClient() {
+	public MainMenuClient(ClientController controller) {
 		super("Menu");
 		this.controller = controller;
 		welcome = new JLabel("Welcome to the Hotel Management App");
@@ -248,13 +248,13 @@ public class MainMenuClient extends JFrame implements ActionListener {
 	}else if(e.getSource()==mItem4)
 
 	{
-		MainMenuClient mmc = new MainMenuClient();
+		MainMenuClient mmc = new MainMenuClient(controller);
 		mmc.setVisible(true);
 	}
 	}
 
 	public static void main(String[] args) {
-		         MainMenuClient menuW = new MainMenuClient();
+		         MainMenuClient menuW = new MainMenuClient(null);
 		     }
 
 }

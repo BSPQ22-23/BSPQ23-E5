@@ -13,7 +13,7 @@ import javax.jdo.Transaction;
 
 import es.deusto.spq.jdo.Booking;
 import es.deusto.spq.jdo.User;
-import es.deusto.spq.pojo.BookingData;
+//import es.deusto.spq.pojo.BookingData;
 import es.deusto.spq.pojo.UserData;
 
 
@@ -126,7 +126,7 @@ public class Resource {
     }
 	@POST
 	@Path("/create")
-	public Response createReservation(BookingData bookingData) {
+	public Response createReservation(Booking bookingData) {
 		 try
 	        {
 			 tx.begin();

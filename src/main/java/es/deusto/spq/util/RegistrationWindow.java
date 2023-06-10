@@ -104,7 +104,7 @@ public class RegistrationWindow extends JFrame implements ActionListener {
 			
 
 			controller.register(nickname, lastName,password);
-			new MainMenuClient();
+			new MainMenuClient(controller);
 		} else if (e.getSource() == clearButton) {
 			nicknameTextField.setText("");
 			passwordTextField.setText("");

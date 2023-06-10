@@ -172,8 +172,8 @@ public class ReservationWindow extends JPanel {
 					type = rdbtn3.getText();
 				}
 
-				if (controller != null) {
-					controller.createReservation(txtname.getText(), txtcheckin.getText(), txtcheckout.getText(), txtroom.getText(), type);
+				if (cont != null) {
+					cont.createReservation(txtname.getText(), txtcheckin.getText(), txtcheckout.getText(), txtroom.getText(), type);
 				} else {
 					System.err.println("Error: controller is null");
 				}
