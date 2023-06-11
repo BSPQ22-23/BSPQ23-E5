@@ -30,6 +30,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import es.deusto.spq.*;
 import es.deusto.spq.jdo.User;
+import es.deusto.spq.pojo.BookingData;
 import es.deusto.spq.pojo.UserData;
 
 import org.junit.experimental.categories.Category;
@@ -84,14 +85,17 @@ public class ResourcePerfomaceTest {
 
 	@Test
 	
-  //  @JUnitPerfTest(threads = 2, durationMs =35913)
-	//@JUnitPerfTestRequirement(meanLatency = 500) // <-- allow 1% of executions to be errors
+	@JUnitPerfTest(threads = 10, durationMs = 10_000, warmUpMs = 1_000, maxExecutionsPerSecond = 100)
 	public void testRegister() {
+		Resource resource = new Resource();
 		UserData user = new UserData();
-		user.setNickname("Juan");
-		user.setLastname("Garcia");
-		user.setPassword("1234");
+		user.setNickname("M");
+		user.setLastname("M");
+		user.setPassword("M");
 
+		Response response = resource.register(user);
+
+        assertEquals(Response.Status.OK.getStatusCode(), response.getStatus());
 		
 		 
 		
@@ -102,15 +106,28 @@ public class ResourcePerfomaceTest {
 	@JUnitPerfTest(threads = 2, durationMs = 1000)
 	@JUnitPerfTestRequirement(meanLatency = 100) // <-- allow 1% of executions to be errors
 	public void testLoginUser() {
+		Resource resource = new Resource();
 		UserData user = new UserData();
-		user.setNickname("B");
-		user.setPassword("B");
-		/*
-		 * Response response = target.path("login") .request(MediaType.APPLICATION_JSON)
-		 * .post(Entity.entity(user, MediaType.APPLICATION_JSON));
-		 * 
-		 * assertNotEquals(Response.Status.OK, response.getStatusInfo());
-		 */
+		user.setNickname("M");
+		user.setPassword("M");
+		Response response = resource.loginUser(user);
+
+        assertEquals(Response.Status.OK.getStatusCode(), response.getStatus());
+	}
+	@Test
+	@JUnitPerfTest(threads = 10, durationMs = 10_000, warmUpMs = 1_000, maxExecutionsPerSecond = 100)
+	
+	public void testCreateReservation() {
+		Resource resource = new Resource();
+		BookingData bookingdata = new BookingData();
+		 bookingdata.setGuest_name("name");
+	        bookingdata.setCheckinDate("03-04-2024");
+	        bookingdata.setCheckoutDate("08-04-2024");
+	        bookingdata.setRoom("room45");
+	        bookingdata.setType("Single");
+		Response response = resource.createReservation(bookingdata);
+
+        assertEquals(Response.Status.OK.getStatusCode(), response.getStatus());
 	}
 
 }

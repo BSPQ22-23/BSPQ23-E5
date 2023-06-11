@@ -23,8 +23,7 @@ public class BookingData {
 		private String guest_name;
 		private String type;
 
-		private List<Guest> guests;
-
+	
 
 		public BookingData(String checkinDate, String checkoutDate, String room, String guest_name, String type) {
 			super();
@@ -101,43 +100,6 @@ public class BookingData {
 		}
 
 		
-		/**
-		 * Returns the list of guests for the booking.
-		 * 
-		 * @return the list of guests for the booking
-		 */
-		public List<Guest> getGuests() {
-			return guests;
-		}
-
-		/**
-		 * Sets the list of guests for the booking.
-		 * 
-		 * @param guests the list of guests to set
-		 */
-		public void setGuests(List<Guest> guests) {
-			this.guests = guests;
-		}
-
-		
-		/**
-		 * Adds a guest to the list of guests for the booking.
-		 * 
-		 * @param guest the guest to add
-		 */
-		public void addGuest(Guest guest) {
-			guests.add(guest);
-		}
-
-		/**
-		 * Removes a guest from the list of guests for the booking.
-		 * 
-		 * @param guest the guest to remove
-		 */
-		public void removeGuest(Guest guest) {
-			guests.remove(guest);
-		}
-
 		@Override
 		public String toString() {
 			return "Booking  :  checkinDate=" + checkinDate + ", checkoutDate=" + checkoutDate + ", room=" + room

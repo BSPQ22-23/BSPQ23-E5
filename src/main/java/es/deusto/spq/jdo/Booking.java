@@ -29,7 +29,7 @@ import javax.jdo.annotations.PersistenceCapable;
 public class Booking implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	@Persistent(defaultFetchGroup = "true")
+	
 	@PrimaryKey
 	private String guest_name;
 	private String checkinDate;
@@ -37,9 +37,9 @@ public class Booking implements Serializable {
 	private String room;
 	private String type;
 
-	@Persistent(defaultFetchGroup = "true", dependentElement = "true")
-	@Join
-	private List<Guest> guests;
+	
+
+	
 
 	
 	
@@ -102,42 +102,8 @@ public class Booking implements Serializable {
 		this.checkoutDate = checkoutDate;
 	}
 
-	/**
-	 * Returns the list of guests for the booking.
-	 * 
-	 * @return the list of guests for the booking
-	 */
-	public List<Guest> getGuests() {
-		return guests;
-	}
-
-	/**
-	 * Sets the list of guests for the booking.
-	 * 
-	 * @param guests the list of guests to set
-	 */
-	public void setGuests(List<Guest> guests) {
-		this.guests = guests;
-	}
-
 	
-	/**
-	 * Adds a guest to the list of guests for the booking.
-	 * 
-	 * @param guest the guest to add
-	 */
-	public void addGuest(Guest guest) {
-		guests.add(guest);
-	}
-
-	/**
-	 * Removes a guest from the list of guests for the booking.
-	 * 
-	 * @param guest the guest to remove
-	 */
-	public void removeGuest(Guest guest) {
-		guests.remove(guest);
-	}
+	
 
 	@Override
 	public String toString() {

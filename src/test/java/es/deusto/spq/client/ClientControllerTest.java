@@ -132,6 +132,20 @@ public class ClientControllerTest {
 		when(webTarget.request(MediaType.APPLICATION_JSON).post(any(Entity.class))).thenReturn(response);
 
 	}
+	@Test 
+	public void testReservation() {
+		String guest_name = "M";
+		String checkin = "30-06-2023";
+		String checkout = "09-07-2023";
+		String room = "room1";
+		String type = "Single";
+		
+		controller.createReservation(guest_name, checkin, checkout, room, type);
+		webTarget = webTarget.path("create");
+		Response response = Response.ok().build();
+		when(webTarget.request(MediaType.APPLICATION_JSON).post(any(Entity.class))).thenReturn(response);
+
+	}
 	@Test
 	public void testMain() {
 		

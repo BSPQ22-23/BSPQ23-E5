@@ -38,7 +38,7 @@ public class bookingTest {
 		
 		guests = new ArrayList<Guest>();
 
-		booking = new Booking(checkinDate,checkoutDate,room,guest_name,type);
+		booking = new Booking(guest_name,checkinDate,checkoutDate,room,type);
 	}
 
 	
@@ -69,17 +69,6 @@ public class bookingTest {
 	
 
 
-	@Test
-	public void testGetGuests() {
-		assertNotEquals(guests, booking.getGuests());
-	}
-
-	@Test
-	public void testSetGuests() {
-		java.util.List<es.deusto.spq.server.Guest> newGuests = new ArrayList<es.deusto.spq.server.Guest>();
-		booking.setGuests(newGuests);
-		assertEquals(newGuests, booking.getGuests());
-	}
 
 	
 	@Test

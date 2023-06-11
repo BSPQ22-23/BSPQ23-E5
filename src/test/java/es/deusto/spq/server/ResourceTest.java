@@ -16,6 +16,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import es.deusto.spq.jdo.User;
+import es.deusto.spq.pojo.BookingData;
 import es.deusto.spq.pojo.UserData;
 
 
@@ -74,5 +75,14 @@ public class ResourceTest {
 	        Response response = resource.loginUser(userData);
 	        assertNotEquals(Response.Status.OK.getStatusCode(), response.getStatus());
 	}
+	
+	@Test
+	public void testCreateReservation() {
+		Resource resource = new Resource();
+		BookingData bookingData = new BookingData("Name","03-04-2024","08-04-2023","room45","Single");
+		Response response = resource.createReservation(bookingData);
 
+        assertEquals(Response.Status.OK.getStatusCode(), response.getStatus());
+	}
+	
 }

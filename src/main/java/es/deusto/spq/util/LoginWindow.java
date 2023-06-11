@@ -49,7 +49,7 @@ public class LoginWindow extends JFrame {
 		passwordField.setEchoChar('*');
 		JButton loginButton = new JButton("Login");
 		showPasswordCheckbox = new JCheckBox("Show password");
-		JButton rbotton = new JButton("r");
+		JButton rbotton = new JButton("Registration");
 		JPanel panel = new JPanel();
 		panel.setLayout(new GridLayout(0, 1, 0, 0));
 		panel.add(usernameLabel);

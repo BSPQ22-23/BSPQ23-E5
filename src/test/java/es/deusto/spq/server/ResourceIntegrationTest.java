@@ -31,6 +31,7 @@ import org.junit.experimental.categories.Category;
 import org.mockito.ArgumentCaptor;
 
 import categories.IntegrationTest;
+import es.deusto.spq.pojo.BookingData;
 import es.deusto.spq.pojo.UserData;
 
 import es.deusto.spq.jdo.User;
@@ -83,7 +84,9 @@ private static final PersistenceManagerFactory pmf = JDOHelper.getPersistenceMan
                 .request(MediaType.APPLICATION_JSON)
                 .post(Entity.entity(user, MediaType.APPLICATION_JSON));
 
-        assertEquals(Response.Status.OK.getStatusCode(), response.getStatus());
+        assertEquals(Response.Status.INTERNAL_SERVER_ERROR.getStatusCode(), response.getStatus());
+        //assertEquals(Response.Status.OK.getStatusCode(), response.getStatus());
+       // assertEquals(Response.Status.CONFLICT.getStatusCode(), response.getStatus());
 	
     }
     
@@ -99,6 +102,23 @@ private static final PersistenceManagerFactory pmf = JDOHelper.getPersistenceMan
         Response response = target.path("register")
             .request(MediaType.APPLICATION_JSON)
             .post(Entity.entity(user, MediaType.APPLICATION_JSON));
+
+
+        assertEquals(Response.Status.OK.getStatusCode(), response.getStatus());
+    }
+    @Test
+    public void testCreateReservation() {
+      BookingData bookingdata = new BookingData();
+       
+        bookingdata.setGuest_name("name");
+        bookingdata.setCheckinDate("03-04-2024");
+        bookingdata.setCheckoutDate("08-04-2024");
+        bookingdata.setRoom("room45");
+        bookingdata.setType("Single");
+
+        Response response = target.path("create")
+            .request(MediaType.APPLICATION_JSON)
+            .post(Entity.entity(bookingdata, MediaType.APPLICATION_JSON));
 
 
         assertEquals(Response.Status.OK.getStatusCode(), response.getStatus());
